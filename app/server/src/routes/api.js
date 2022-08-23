@@ -7,6 +7,10 @@ import formidable from 'koa2-formidable'
 import { generatePDF, generateSourceCode } from '../generator'
 import { sanitizer, jsonResume } from '../middleware'
 
+const wkhtmltopdf = require('wkhtmltopdf');
+// See how to add on linux machine
+wkhtmltopdf.command = 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe';
+
 const router = new Router({ prefix: '/api' })
 
 /**
@@ -15,6 +19,7 @@ const router = new Router({ prefix: '/api' })
 
 router.use('/generate', sanitizer()) // Remove falsy values and empty objects/arrays from request body
 router.use('/upload', formidable(), jsonResume()) // Parse multipart/form-data
+router.use('/htmltopdf')
 
 /**
  * Generate PDF from form data
@@ -43,4 +48,12 @@ router.post('/upload', async ({ request, response }) => {
   response.type = 'application/json'
 })
 
+/**
+ * Handle HTML input and generate pdf from it
+ */
+
+router.post('/htmltopdf', async ({ request, response }) => {
+  wkhtmltopdf(request.html, {output: 'out.pdf'});
+  response.body = 'Success'
+})
 export default router

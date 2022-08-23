@@ -43,7 +43,8 @@
     "koa2-formidable": "^1.0.2",
     "node-latex": "^2.5.0",
     "pretty-latex": "^0.1.0",
-    "sanitize-latex": "^0.1.2"
+    "sanitize-latex": "^0.1.2",
+    "wkhtmltopdf": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
