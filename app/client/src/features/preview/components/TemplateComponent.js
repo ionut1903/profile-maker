@@ -3,7 +3,7 @@ import jsonResume from '../../../../../../test_json.json'
 import {
     AddressElement,
     AddressLabelElement,
-    ContactData,
+    ContactData, DivFlexContainer,
     HeaderContainer,
     HeaderSubTitle,
     HeaderTitle,
@@ -75,7 +75,7 @@ class TemplateComponent extends Component<Props> {
         return (
             <div id="componentToPrint">
                 <TemplateContainer>
-                    <HeaderContainer>
+                    <DivFlexContainer>
                         <LogoContainer>
                             <img
                                 src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
@@ -104,7 +104,7 @@ class TemplateComponent extends Component<Props> {
                                 <AddressLabelElement title='Year: ' value={dateOfBirth}/>
                             </div>
                         </ContactData>
-                    </HeaderContainer>
+                    </DivFlexContainer>
                     <section>
                         <SectionTitleAndDescriptionComponent title={'Profesional Profile'}
                                                              description={description}/>

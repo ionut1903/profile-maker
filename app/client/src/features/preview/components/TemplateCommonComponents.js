@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import {Icon} from "../../../common/components";
+import {divide} from "lodash/math";
 
 //colors
 const white = '#fff';
@@ -22,6 +23,15 @@ const mgBottom = 10;
 const border = '1px solid lightgray';
 
 //Flex components
+
+export const DivFlexContainer = (props) => {
+    return (
+        <div style={{display: 'flex', background: 'red', padding: '10px', height: '250px', color: 'black'}}>
+            {props.children}
+        </div>
+    )
+}
+
 export const FlexBetweenContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -52,7 +62,7 @@ export const TemplateContainer = styled.div`
   text-align: initial;
   width: 90%;
   margin: 0 auto;
-  overflow:  scroll;
+  overflow: scroll;
 `
 
 export const HeaderContainer = styled(FlexBetweenContainer)`
@@ -249,7 +259,7 @@ export const WorkExperienceSection = ({work}) => {
     const date = `${work.startDate} - ${work.endDate}`
     const {name, summary} = work;
     const summaryData = summary.split("\n\n");
-    if(summaryData.length !==3) {
+    if (summaryData.length !== 3) {
         return '';
     }
     // console.log("data ", summaryData);
@@ -265,7 +275,7 @@ export const WorkExperienceSection = ({work}) => {
                 <p className="mgBtn">{mainAchievementsTitle}</p>
                 <ul className="pdLeft">
                     {
-                        mainAchievementsFinalList.map(a=>{
+                        mainAchievementsFinalList.map(a => {
                             return <li key={a}>{a.trim()}</li>
                         })
                     }
