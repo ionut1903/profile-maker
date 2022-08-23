@@ -7,17 +7,17 @@ import type { Action } from '../../app/types'
 
 const initialState = {
   progress: 0,
-  prev: 'templates',
-  curr: 'templates',
-  next: 'profile',
+  prev: 'profile',
+  curr: 'profile',
+  next: 'education',
   sections: [
-    'templates',
     'profile',
     'education',
     'work',
     'skills',
     'projects',
-    'awards'
+    'awards',
+    'templates',
   ]
 }
 

@@ -6,13 +6,13 @@ import { setSectionOrder, setProgress } from '../actions'
 import type { ProgressAction as Action } from '../types'
 
 const sections = [
-  'templates',
   'profile',
   'education',
   'work',
   'skills',
   'projects',
-  'awards'
+  'awards',
+  'templates',
 ]
 
 describe('actions', () => {

@@ -99,9 +99,8 @@ class Form extends Component<Props> {
             <Route
               exact
               path="/generator"
-              render={() => <Redirect to="/generator/templates" />}
+              render={() => <Redirect to="/generator/profile" />}
             />
-            <Route exact path="/generator/templates" component={Templates} />
             <Route exact path="/generator/profile" component={Profile} />
             <Route exact path="/generator/education" component={Education} />
             <Route exact path="/generator/work" component={Work} />
@@ -109,6 +108,7 @@ class Form extends Component<Props> {
             <Route exact path="/generator/projects" component={Projects} />
             <Route exact path="/generator/awards" component={Awards} />
             <Route exact path="/generator/mobile-preview" component={Preview} />
+            <Route exact path="/generator/templates" component={Templates} />
             <Route path="*" render={() => <h1 style={{ margin: 0 }}>404</h1>} />
           </Switch>
         </ScrollToTop>

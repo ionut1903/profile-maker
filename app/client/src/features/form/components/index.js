@@ -17,7 +17,6 @@ import Project from './fragments/Project'
 import Award from './fragments/Award'
 
 export {
-  Templates,
   Profile,
   Education,
   Work,
@@ -28,7 +27,8 @@ export {
   Job,
   Skill,
   Project,
-  Award
+  Award,
+  Templates,
 }
 
 export default Form

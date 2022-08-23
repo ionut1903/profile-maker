@@ -16,6 +16,7 @@ import { hasPrevSession } from '../selectors'
 import { colors } from '../../common/theme'
 import type { State } from '../types'
 import data from "../../../../../test_json.json";
+import makeRequestForJSONResume, {setAndGetOptionsForJSONResumeRequest} from "../services/sovrenHttpService";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -262,317 +263,39 @@ class Home extends Component<Props> {
     }
   }
   onFileUploadProfile = async (e: SyntheticInputEvent<*>) => {
-    const { uploadFileAndGenerateResume } = this.props
-    const http = require('https');
-    var file = e.target.files[0];
-    var modifiedDate = (new Date(file.lastModified)).toISOString().substring(0, 10);
-    var reader = new FileReader();
-    var resumeData;
-      reader.onload = async function (event) {
-        // console.log('test')
-        //the Base64 library can be found at https://sovren.com/downloads/v10/Libs/base64.zip
-        var base64Text = Base64.encodeArray(event.target.result);
+    const {uploadFileAndGenerateResume} = this.props
+    const file = e.target.files[0];
+    const modifiedDate = (new Date(file.lastModified)).toISOString().substring(0, 10);
+    const reader = new FileReader();
 
-        //other options here (see https://sovren.com/technical-specs/latest/rest-api/resume-parser/api/)
-        var postData = JSON.stringify({
-          'DocumentAsBase64String': base64Text,
-          'DocumentLastModified': modifiedDate
-        });
-        // console.log(postData)
-        // console.log(Buffer.byteLength(postData))
+    reader.onload = async (event) => {
+      const [options, postData] = setAndGetOptionsForJSONResumeRequest(event.target.result, modifiedDate)
 
-        //use https://eu-rest.resumeparsing.com/v10/parser/resume if your account is in the EU data center or
-        //use https://au-rest.resumeparsing.com/v10/parser/resume if your account is in the AU data center
-        var options = {
-          host: 'eu-rest.resumeparsing.com',
-          protocol: 'https:',
-          path: '/v10/parser/resume',
-          method: 'POST',
-          headers: {
-            'Sovren-AccountId': '18007492',
-            'Sovren-ServiceKey': 'YRXLfLXmoEtuP7K7RzJ5XsHAfWIWKh9J3LihwiCU',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(postData)
+      const createJsonFileAndUpload = (resume) => {
+        console.log("createJsonFileAndUpload");
+        const newJsonFile = new Blob([JSON.stringify(resume, null, 2)], {type: 'text/json'});
+
+        const resolveAfter2Seconds = async (file) => {
+          await uploadFileAndGenerateResume(file);
+          console.log("response received - moving forward to redirect ");
+          const {jsonUpload, history} = this.props
+          if (jsonUpload.status === 'success') {
+            history.push('/generator')
+          } else if (jsonUpload.status === 'failure') {
+            toast.error(jsonUpload.errMessage, {position: toast.POSITION.TOP_LEFT})
           }
-        };
-        var request = http.request(options, function (response) {
-          console.log('STATUS: ${response.statusCode}');
-          response.setEncoding('utf8');
+        }
 
-          var responseAsString = '';
-
-          response.on('data', (chunk) => {
-            responseAsString += chunk;
-          });
-
-          response.on('end', () => {
-            var responseAsJson = JSON.parse(responseAsString);
-            //console.log(responseAsJson);
-            resumeData = responseAsJson.Value.ResumeData;
-
-            //now you can consume the resumeData
-            //console.log(resumeData)
-            //sendToMertus(resumeData)
-
-            var data = resumeData;
-            var resume_json = {};
-            // console.log(data.ContactInformation);
-
-            // Work Experince
-            var WorkExperince = {
-              work: []
-            };
-            for (var i in data.EmploymentHistory.Positions) {
-              var item = data.EmploymentHistory.Positions[i];
-              WorkExperince.work.push({
-                "name": (item.Employer ? item.Employer.Name.Raw : ""),
-                "position": (item.JobTitle ? item.JobTitle.Raw : ""),
-                "url": "",
-                "startDate": (item.StartDate ? item.StartDate.Date : ""),
-                "endDate": (item.EndDate ? item.EndDate.Date : ""),
-                "summary": (item.Description ? item.Description : ""),
-                "highlights": [
-                  (item.Description ? item.Description : "")
-                ],
-                "company": (item.Employer ? item.Employer.Name.Raw : "")
-              });
-            }
-
-            //Skills
-            var Skills = {
-              skills: []
-            };
-
-            for (var i in data.SkillsData) {
-              for (var b in data.SkillsData[i].Taxonomies) {
-                var Keywords = {
-                  keywords: []
-                };
-                for (var c in data.SkillsData[i].Taxonomies[b].SubTaxonomies) {
-                  var item = data.SkillsData[i].Taxonomies[b].SubTaxonomies[c];
-                  Keywords.keywords.push(
-                      item.SubTaxonomyName
-                  );
-                }
-                var item = data.SkillsData[i].Taxonomies[b];
-                Skills.skills.push({
-                  "name": item.Name,
-                  "level": "",
-                  "keywords": Keywords.keywords
-                });
-              }
-            }
-
-            // Lnaguaes
-            var Languaes = {
-              languages: []
-            };
-            for (var i in data.LanguageCompetencies) {
-              var item = data.LanguageCompetencies[i];
-              Languaes.languages.push({
-                "language": item.Language,
-                "fluency": ""
-              });
-            }
-
-            // Educations
-            var Education = {
-              education: []
-            };
-            if (data.Education) {
-              for (var i in data.Education.EducationDetails) {
-                var item = data.Education.EducationDetails[i];
-                Education.education.push({
-                  "institution": "",
-                  "url": "",
-                  "area": item.Majors,
-                  "studyType": item.Degree.Name.Raw,
-                  "startDate": "",
-                  "endDate": item.LastEducationDate.Date,
-                  "score": "",
-                  "courses": [
-                    ""
-                  ]
-                });
-              }
-            }
-
-            if (data.Certifications) {
-              for (var i in data.Certifications) {
-                var item = data.Certifications[i];
-                Education.education.push({
-                  "institution": "",
-                  "url": "",
-                  "area": item.Name,
-                  "studyType": item.Name,
-                  "startDate": "",
-                  "endDate": "",
-                  "score": "",
-                  "courses": [
-                    ""
-                  ]
-                });
-              }
-            }
-
-            resume_json = {
-              "basics": {
-                "name": data.ContactInformation.CandidateName.FormattedName,
-                "label": "",
-                "image": "",
-                "email": data.ContactInformation.EmailAddresses,
-                "phone": data.ContactInformation.Telephones[0].Normalized,
-                "url": "",
-                "summary": data.ProfessionalSummary,
-                "location": {
-                  "address": data.ContactInformation.Location.StreetAddressLines[0],
-                  "postalCode": data.ContactInformation.Location.PostalCode,
-                  "city": data.ContactInformation.Location.Municipality,
-                  "countryCode": data.ContactInformation.Location.CountryCode,
-                  "region": ""
-                },
-                "profiles": [{
-                  // "network": "",
-                  // "username": "",
-                  // "url": ""
-                }]
-              },
-              "work": WorkExperince.work,
-              // "work": [/*{
-              //   "name": "Company",
-              //   "position": "President",
-              //   "url": "https://company.com",
-              //   "startDate": "2013-01-01",
-              //   "endDate": "2014-01-01",
-              //   "summary": "Description…",
-              //   "highlights": [
-              //     "Started the company"
-              //   ]
-              // }*/],
-              "volunteer": [{
-                // "organization": "Organization",
-                // "position": "Volunteer",
-                // "url": "https://organization.com/",
-                // "startDate": "2012-01-01",
-                // "endDate": "2013-01-01",
-                // "summary": "Description…",
-                // "highlights": [
-                //   "Awarded 'Volunteer of the Month'"
-                // ]
-              }],
-              "education": Education.education,
-              // "education": [{
-              //   "institution": "University",
-              //   "url": "https://institution.com/",
-              //   "area": "Software Development",
-              //   "studyType": "Bachelor",
-              //   "startDate": "2011-01-01",
-              //   "endDate": "2013-01-01",
-              //   "score": "4.0",
-              //   "courses": [
-              //     "DB1101 - Basic SQL"
-              //   ]
-              // }],
-              "awards": [{
-                // "title": "Award",
-                // "date": "2014-11-01",
-                // "awarder": "Company",
-                // "summary": "There is no spoon."
-              }],
-              "publications": [{
-                // "name": "Publication",
-                // "publisher": "Company",
-                // "releaseDate": "2014-10-01",
-                // "url": "https://publication.com",
-                // "summary": "Description…"
-              }],
-              "skills": Skills.skills,
-              // "skills": [{
-              //   "name": "Web Development",
-              //   "level": "Master",
-              //   "keywords": [
-              //     "HTML",
-              //     "CSS",
-              //     "JavaScript"
-              //   ]
-              // }],
-              "languaes": Languaes.languages,
-              // "languages": [{
-              //   "language": "English",
-              //   "fluency": "Native speaker"
-              // }],
-              "interests": [{
-                // "name": "",
-                // "keywords": [
-                //   "",
-                //   ""
-                // ]
-              }],
-              "references": [{
-                // "name": "Jane Doe",
-                // "reference": "Reference…"
-              }],
-              "projects": [{
-                // "name": "Project",
-                // "description": "Description…",
-                // "highlights": [
-                //   "Won award at AIHacks 2016"
-                // ],
-                // "keywords": [
-                //   "HTML"
-                // ],
-                // "startDate": "2019-01-01",
-                // "endDate": "2021-01-01",
-                // "url": "https://project.com/",
-                // "roles": [
-                //   "Team Lead"
-                // ],
-                // "entity": "Entity",
-                // "type": "application"
-              }]
-            }
-            var newJsonFile = new Blob([JSON.stringify(resume_json, null, 2)], {type: 'text/json'});
-            //this.onFileUpload2();
-            //await uploadFileAndGenerateResume(newJsonFile);
-            console.log(resume_json);
-
-            //uploadFileAndGenerateResume(newJsonFile);
-
-            function resolveAfter2Seconds(x) {
-              return new Promise(resolve => {
-                uploadFileAndGenerateResume(newJsonFile);
-              });
-            }
-
-            async function f1() {
-              var x = await resolveAfter2Seconds()
-              if (x){
-                const { jsonUpload, history } = this.props
-                if (jsonUpload.status === 'success') {
-                  history.push('/generator')
-                } else if (jsonUpload.status === 'failure') {
-                  toast.error(jsonUpload.errMessage, { position: toast.POSITION.TOP_LEFT })
-                }
-              }
-            }
-            f1();
-
-          });
-        });
-
-
-        request.write(postData);
-        request.end();
-
-
+        resolveAfter2Seconds(newJsonFile);
       }
 
+      const resumeRequest = makeRequestForJSONResume(options, createJsonFileAndUpload);
+      resumeRequest.write(postData);
+      resumeRequest.end();
+    }
 
-// when the file is read it triggers the onload event above.
+    // when the file is read it triggers the onload event above.
     reader.readAsArrayBuffer(file);
-
-
   }
 
 
