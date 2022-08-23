@@ -53,7 +53,7 @@ router.post('/upload', async ({ request, response }) => {
  */
 
 router.post('/htmltopdf', async ({ request, response }) => {
-  wkhtmltopdf(request.html, {output: 'out.pdf'});
+  wkhtmltopdf(request.body.html, {output: 'resume.pdf'});
   response.body = 'Success'
 })
 export default router

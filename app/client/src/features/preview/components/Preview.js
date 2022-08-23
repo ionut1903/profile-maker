@@ -13,6 +13,7 @@ import {sizes} from '../../../common/theme'
 import type {State as ReduxState} from '../../../app/types'
 import BlankPDF from '../assets/blank.pdf'
 import TemplateComponent from "./TemplateComponent";
+import {generatePDF} from "../../../app/services/generatePdfService";
 
 const Wrapper = styled.div`
   width: 60%;
@@ -122,7 +123,7 @@ class Preview extends Component<Props, State> {
 
     downloadPdfResume = async () => {
         const node = await document.querySelector("#componentToPrint");
-        debugger
+        generatePDF(node);
     }
 
     render() {
