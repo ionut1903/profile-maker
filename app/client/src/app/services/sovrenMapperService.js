@@ -65,7 +65,7 @@ export const getEducation = (education) => {
                 "area": item.Majors,
                 "studyType": item.Degree.Name ? item.Degree.Name.Raw : '',
                 "startDate": "",
-                "endDate": item.LastEducationDate? item.LastEducationDate.Date: '',
+                "endDate": item.LastEducationDate ? item.LastEducationDate.Date : '',
                 "score": "",
                 "courses": [
                     ""
@@ -113,3 +113,25 @@ export const getLocation = (locationObj) => {
         region: ""
     }
 }
+
+export const getAdditionalData = (resume) => {
+    const languages = getLanguages(resume.LanguageCompetencies);
+    // const technologies =
+
+}
+
+// const getLanguages=(languageCompetencies)=>{
+//     if (!languageCompetencies) {
+//         return {};
+//     }
+//     const languageList = languageCompetencies.map((langObj) => {
+//         return langObj.Language;
+//     })
+//     return {
+//         languages: {
+//             type: 'list',
+//             name: 'Languages',
+//             languageList
+//         }
+//     }
+// }

@@ -42,13 +42,11 @@ const makeRequestForJSONResume = (options, callback) => {
         response.setEncoding('utf8');
         let responseAsString = '';
         response.on('data', (chunk) => {
-            console.log("ON DATA concatenate buffer");
             responseAsString += chunk;
         });
         response.on('end', () => {
-            console.log("ON END returns the resume JSON");
             const responseAsJson = JSON.parse(responseAsString);
-            console.log(responseAsJson);
+            console.log("Sovren resume: ", responseAsJson);
             const resumeData = responseAsJson.Value.ResumeData;
 
             const work = getWorkExperience(resumeData.EmploymentHistory.Positions);
@@ -62,6 +60,10 @@ const makeRequestForJSONResume = (options, callback) => {
             if (resumeData.Certifications) {
                 education = getCertification(education, resumeData.Certifications);
             }
+
+            //ADDITIONAL
+
+            // const additionalData = getAdditionalData(resumeData);
 
             const resume = {
                 basics: {

@@ -1,0 +1,465 @@
+{
+  "selectedTemplate": 1,
+  "basics": {
+    "name": "Justus Daase",
+    "label": "",
+    "image": "",
+    "email": [
+      "justus.daase@mertus-consulting.com"
+    ],
+    "phone": "+49 173 43 91 430",
+    "url": "",
+    "summary": "Lösungen sowie vertiefte Kenntnisse und Erfahrungen mit BI-bezogenen Tools von SAP\nBusiness Objects und Oracle. Projekterfahrung, weist er sowohl in der DWH-Modellierung /\nReporting als auch im Datenmanagement / ETL vor. Weitere besondere Expertise verfügt\nder Berater im Bereich Datenqualitäts-Management und Projektmanagement.\n\n\n• DWH / BI\t• Oracle RDBMS\nCORE\t• SAP BO\t• Daten-Management, Daten-Integration,",
+    "location": {
+      "address": "Neumühlen 42",
+      "postalCode": "D-22763",
+      "city": "Hamburg",
+      "countryCode": "DE",
+      "region": ""
+    },
+    "profiles": [
+      {}
+    ]
+  },
+  "education": [
+    {
+      "institution": "",
+      "url": "",
+      "area": "SAP Certified Application Associate - SAP BusinessObjects Web Intelligence 4.0",
+      "studyType": "SAP Certified Application Associate - SAP BusinessObjects Web Intelligence 4.0",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    },
+    {
+      "institution": "",
+      "url": "",
+      "area": "2006: TDWI: Certified BI Professional Consultant - Data Analysis and Design",
+      "studyType": "2006: TDWI: Certified BI Professional Consultant - Data Analysis and Design",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    },
+    {
+      "institution": "",
+      "url": "",
+      "area": "2007: TDWI: Certified BI Professional Consultant - Business Analytics",
+      "studyType": "2007: TDWI: Certified BI Professional Consultant - Business Analytics",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    },
+    {
+      "institution": "",
+      "url": "",
+      "area": "Certified Data Vault Practitioner 2.0",
+      "studyType": "Certified Data Vault Practitioner 2.0",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    },
+    {
+      "institution": "",
+      "url": "",
+      "area": "Certified BI Professional Consultant",
+      "studyType": "Certified BI Professional Consultant",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    },
+    {
+      "institution": "",
+      "url": "",
+      "area": "SAP Certified Application Associate",
+      "studyType": "SAP Certified Application Associate",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": [
+        ""
+      ]
+    }
+  ],
+  "work": [
+    {
+      "name": "Gothaer Allgemeine Versicherung AG",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "2021-05-01",
+      "endDate": "2022-08-16",
+      "summary": "Berater und Entwickler für Datenqualitäts-Management\n\nEinführung von DQM im NextGen Data Warehouse\n•  Erstellung der DQ-Leitlinien und DQ-Prüfungen\n•  Entwicklung eines zentralen DQ-Monitorings der DQ-Regeln\n•  Agile Projekt-Methodik/Kanban (Teamsprints monatlich)\n\nTech-Stack: SAP BO Information Steward, SAP BO Data Services, SAP BW/HANA",
+      "highlights": [
+        "Berater und Entwickler für Datenqualitäts-Management\n\nEinführung von DQM im NextGen Data Warehouse\n•  Erstellung der DQ-Leitlinien und DQ-Prüfungen\n•  Entwicklung eines zentralen DQ-Monitorings der DQ-Regeln\n•  Agile Projekt-Methodik/Kanban (Teamsprints monatlich)\n\nTech-Stack: SAP BO Information Steward, SAP BO Data Services, SAP BW/HANA"
+      ],
+      "company": "Gothaer Allgemeine Versicherung AG"
+    },
+    {
+      "name": "Maßnahmen wie Indizierung",
+      "position": "Leiter Enterprise Datawarehouse Entwicklung",
+      "url": "",
+      "startDate": "2009-03-01",
+      "endDate": "2022-08-16",
+      "summary": "•\tDisziplinarische und fachliche Führung von 6 Mitarbeitern\n•\tStrategische, technische und fachliche Ausrichtung des Teams beim Aufbau eines unternehmensweiten Datawarehouse (EDWH) im Bereich SAP\n•\tBO Reporting und SAP BusinessObjects Data Services (BODS) mit Beratung und Unterstützung der Fachbereiche\n•\tTransition von Datawarehouse Architekturen und Applikationen von Oracle DB nach Oracle Exadata Umgebungen inkl. Migration, Testpläne und Production\nGovernance\n•\tTransition von BI Architekturen und Applikationen von Microstrategy nach SAP\nBusinessObjects\n•\tSicherstellung des IKS (Internes Kontrollsystem) - Compliance der EDWH- Prozesse\n(Change, Access)\n•\tNachhalten und Pflegen der Datenschutz-Prozesse im EDWH\n•\tErstellung von Vorgaben für Qualitätssicherung und Qualitätsmanagement im EDWH\n•\tArchitektur für Datenintegration, Datenmodellierung und Datenschutz in Sandbox-Umgebungen\n•\tMigrations- und Integrationskonzepte von Datamarts zu EDWH auf Basis von Sandbox-Systemen\nProjekte:",
+      "highlights": [
+        "•\tDisziplinarische und fachliche Führung von 6 Mitarbeitern\n•\tStrategische, technische und fachliche Ausrichtung des Teams beim Aufbau eines unternehmensweiten Datawarehouse (EDWH) im Bereich SAP\n•\tBO Reporting und SAP BusinessObjects Data Services (BODS) mit Beratung und Unterstützung der Fachbereiche\n•\tTransition von Datawarehouse Architekturen und Applikationen von Oracle DB nach Oracle Exadata Umgebungen inkl. Migration, Testpläne und Production\nGovernance\n•\tTransition von BI Architekturen und Applikationen von Microstrategy nach SAP\nBusinessObjects\n•\tSicherstellung des IKS (Internes Kontrollsystem) - Compliance der EDWH- Prozesse\n(Change, Access)\n•\tNachhalten und Pflegen der Datenschutz-Prozesse im EDWH\n•\tErstellung von Vorgaben für Qualitätssicherung und Qualitätsmanagement im EDWH\n•\tArchitektur für Datenintegration, Datenmodellierung und Datenschutz in Sandbox-Umgebungen\n•\tMigrations- und Integrationskonzepte von Datamarts zu EDWH auf Basis von Sandbox-Systemen\nProjekte:"
+      ],
+      "company": "Maßnahmen wie Indizierung"
+    },
+    {
+      "name": "Business Intelligence Center",
+      "position": "Controlling, Management Information und Business Intelligence",
+      "url": "",
+      "startDate": "2011-07-01",
+      "endDate": "2022-08-16",
+      "summary": "Leiter BI Governance im Bereich Controlling & Business Intelligence:\n•\tAufbau der unternehmensweiten BI- und Datawarehouse Governance\n•\tDefinition, Aufbau und Optimierung von Geschäftsprozessen, Tools, und Inhalten für die unternehmensweite BI Strategie\n•\tAufbau und Pflege der BIC (Business Intelligence Center) Prozesslandkarte abgeleitet aus der BI Strategie\n•\tAufbau eines Kennzahlensystems mit Prozessdefinition für das Nachhalten und Pflegen der KPI-Definitionen & KPI Kategorisierungen\n•\tDesign und Entwicklung von Rahmenbedingungen für Datenmodellen über alle\nEDWH Layer\n•\tEntwurf und Weiterentwicklung sämtlicher Daten-Layer inklusive notwendiger",
+      "highlights": [
+        "Leiter BI Governance im Bereich Controlling & Business Intelligence:\n•\tAufbau der unternehmensweiten BI- und Datawarehouse Governance\n•\tDefinition, Aufbau und Optimierung von Geschäftsprozessen, Tools, und Inhalten für die unternehmensweite BI Strategie\n•\tAufbau und Pflege der BIC (Business Intelligence Center) Prozesslandkarte abgeleitet aus der BI Strategie\n•\tAufbau eines Kennzahlensystems mit Prozessdefinition für das Nachhalten und Pflegen der KPI-Definitionen & KPI Kategorisierungen\n•\tDesign und Entwicklung von Rahmenbedingungen für Datenmodellen über alle\nEDWH Layer\n•\tEntwurf und Weiterentwicklung sämtlicher Daten-Layer inklusive notwendiger"
+      ],
+      "company": "Business Intelligence Center"
+    },
+    {
+      "name": "LB Landesbank",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "2020-09-01",
+      "endDate": "2021-12-01",
+      "summary": "Data Analyst und Berater für Data Quality Management\n\nAZ6-OSPlus-Quellsystemanbindung an das Datenqualitätsmanagement (DQM) im Rahmen\nBCBS 239 / Reconciliation\n\n•\tEntwicklung von DQ-Regeln im Zuge der Einführung eines neuen operativen\nBanksystems\n•\tUmsetzung im DQM-Regelwerk auf Basis SAP Data Services und IBM Cognos\n•\tEntwicklung und Umsetzung eines Schnittstellen-Frameworks im Kontext qualitätsgesicherter Daten für die Einführung der Compliance- Anforderungen\n•\tAgile Projekt-Methodik mit Kanban im Big-Bang-Projektzyklus\n\nTech-Stack: SAP BO Data Services, SAP BW 7.5, SAP Bank Analyzer 9.x, IBM DB2\n\nPersönliche Referenz: [Bei Interesse auf Anfrage], IT-Banksteuerung/Integration DQ- & BI-\nManagement",
+      "highlights": [
+        "Data Analyst und Berater für Data Quality Management\n\nAZ6-OSPlus-Quellsystemanbindung an das Datenqualitätsmanagement (DQM) im Rahmen\nBCBS 239 / Reconciliation\n\n•\tEntwicklung von DQ-Regeln im Zuge der Einführung eines neuen operativen\nBanksystems\n•\tUmsetzung im DQM-Regelwerk auf Basis SAP Data Services und IBM Cognos\n•\tEntwicklung und Umsetzung eines Schnittstellen-Frameworks im Kontext qualitätsgesicherter Daten für die Einführung der Compliance- Anforderungen\n•\tAgile Projekt-Methodik mit Kanban im Big-Bang-Projektzyklus\n\nTech-Stack: SAP BO Data Services, SAP BW 7.5, SAP Bank Analyzer 9.x, IBM DB2\n\nPersönliche Referenz: [Bei Interesse auf Anfrage], IT-Banksteuerung/Integration DQ- & BI-\nManagement"
+      ],
+      "company": "LB Landesbank"
+    },
+    {
+      "name": "Hessisches Competence Center",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "2019-07-01",
+      "endDate": "2021-05-01",
+      "summary": "Business Analyst und SAP BO Dataservices Entwickler\n\nE-Governance mit Schnittstellenintegration\n•   Datenanalyse und -integration von SAP ECC Stamm- und Bewegungsdaten aus einem Bank-System mit Beladung in eine SAP BW Umgebung auf Basis XML mit Prüfungen auf Datenqualität\n\nTech-Stack: SAP BW 7.4, SAP BO Data Services, SAP PO, SAP Data Quality,\nManagement/microservices\n\n\nMertus Consulting UG   Ihr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\t Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "Business Analyst und SAP BO Dataservices Entwickler\n\nE-Governance mit Schnittstellenintegration\n•   Datenanalyse und -integration von SAP ECC Stamm- und Bewegungsdaten aus einem Bank-System mit Beladung in eine SAP BW Umgebung auf Basis XML mit Prüfungen auf Datenqualität\n\nTech-Stack: SAP BW 7.4, SAP BO Data Services, SAP PO, SAP Data Quality,\nManagement/microservices\n\n\nMertus Consulting UG   Ihr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\t Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "Hessisches Competence Center"
+    },
+    {
+      "name": "Hessisches Competence Center",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "2019-02-01",
+      "endDate": "2019-06-30",
+      "summary": "SAP BO-/BI-/DS-/EIM-Berater\n\nE-Governance, Neue Verwaltungssteuerung\n•   Analyse und Extraktion von XML-Daten aus heterogenen Quellen und\n•   Integration eines fachlichen Kontextes im SAP BW\n•   Dubletten Prüfung und Qualitätssicherung\n•   Integration von SAP BODS im SAP-Transport Management System (CTS+)\n\nTech-Stack: SAP BW 7.4, SAP BO Data Services, SAP BO Information Steward (4.2)",
+      "highlights": [
+        "SAP BO-/BI-/DS-/EIM-Berater\n\nE-Governance, Neue Verwaltungssteuerung\n•   Analyse und Extraktion von XML-Daten aus heterogenen Quellen und\n•   Integration eines fachlichen Kontextes im SAP BW\n•   Dubletten Prüfung und Qualitätssicherung\n•   Integration von SAP BODS im SAP-Transport Management System (CTS+)\n\nTech-Stack: SAP BW 7.4, SAP BO Data Services, SAP BO Information Steward (4.2)"
+      ],
+      "company": "Hessisches Competence Center"
+    },
+    {
+      "name": "SEAT und ŠKODA",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "2016-08-01",
+      "endDate": "2018-11-01",
+      "summary": "BI-Architekturberater und -Entwickler für Datenmodellierung, Daten-Integration und Reporting\n\nEnterprise DWH für Vertrieb und Service\n•\tErheben, analysieren, modellieren und dokumentieren von Anforderungen für neue Datenversorgungsstrecken innerhalb des EDWH\n•\tKlärung von fachlichen Mappings, fachlich motivierten Berechnungen,\nAggregationen etc. mit den Fachbereichen in Interviews und Workshops\n•\tÜbersetzung der Anforderungen in IT-Spezifikation / -Design Logische und physische Modellierung neuer oder zu ergänzender\n•\tKennzahlen und Dimensionen in den Data Marts Vertrieb und Service\n•\tImplementierung und Test von Datenversorgungsprozessen\n•\tUniverse-Modellierungen und WEBI Report-Entwicklung\n•\tSAP Design Studio Dashboard Design\n•\tFachliche Beratung bei der Paketierung und Durchführung von Deployments / Rollouts\n•\tBug- / Hot-Fixing, Re-Engineering und / oder Tuning-Maßnahmen bestehender\nDatenversorgungs-Implementierungen\n•\tData Services Applikationsbetreuung\n\nTech-Stack: SAP BO IDT 4.2, SAP BO 4.2 Data Services (BODS), MS SQL Server 2016, MS SQL\nServer Studio, SAP BO Web Intelligence 4.2, Sybase Power Designer 16.x\n\nPersönliche Referenz: [Bei Interesse auf Anfrage], Projekt Lead Informationssysteme",
+      "highlights": [
+        "BI-Architekturberater und -Entwickler für Datenmodellierung, Daten-Integration und Reporting\n\nEnterprise DWH für Vertrieb und Service\n•\tErheben, analysieren, modellieren und dokumentieren von Anforderungen für neue Datenversorgungsstrecken innerhalb des EDWH\n•\tKlärung von fachlichen Mappings, fachlich motivierten Berechnungen,\nAggregationen etc. mit den Fachbereichen in Interviews und Workshops\n•\tÜbersetzung der Anforderungen in IT-Spezifikation / -Design Logische und physische Modellierung neuer oder zu ergänzender\n•\tKennzahlen und Dimensionen in den Data Marts Vertrieb und Service\n•\tImplementierung und Test von Datenversorgungsprozessen\n•\tUniverse-Modellierungen und WEBI Report-Entwicklung\n•\tSAP Design Studio Dashboard Design\n•\tFachliche Beratung bei der Paketierung und Durchführung von Deployments / Rollouts\n•\tBug- / Hot-Fixing, Re-Engineering und / oder Tuning-Maßnahmen bestehender\nDatenversorgungs-Implementierungen\n•\tData Services Applikationsbetreuung\n\nTech-Stack: SAP BO IDT 4.2, SAP BO 4.2 Data Services (BODS), MS SQL Server 2016, MS SQL\nServer Studio, SAP BO Web Intelligence 4.2, Sybase Power Designer 16.x\n\nPersönliche Referenz: [Bei Interesse auf Anfrage], Projekt Lead Informationssysteme"
+      ],
+      "company": "SEAT und ŠKODA"
+    },
+    {
+      "name": "metafinanz Informationssysteme GmbH",
+      "position": "BI Solution Architekt",
+      "url": "",
+      "startDate": "2016-02-01",
+      "endDate": "2016-07-31",
+      "summary": "BI Solution Architekt im Bereich Enterprise Architektur Management\n•\tErarbeitung von EDWH Architekturkonzepten im Kontext Data Vault 2.0\n•\tMarkt- und Themenentwicklung zu BI- und Data Governance\n•\tBetreuung der Applikation für Kalkulation der Lebensversicherungen\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "BI Solution Architekt im Bereich Enterprise Architektur Management\n•\tErarbeitung von EDWH Architekturkonzepten im Kontext Data Vault 2.0\n•\tMarkt- und Themenentwicklung zu BI- und Data Governance\n•\tBetreuung der Applikation für Kalkulation der Lebensversicherungen\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "metafinanz Informationssysteme GmbH"
+    },
+    {
+      "name": "Allianz Lebensversicherung",
+      "position": "BI-Berater, BI-Entwickler",
+      "url": "",
+      "startDate": "2016-02-01",
+      "endDate": "2016-06-01",
+      "summary": "Stuttgart\n•\tBeratung und Analysen für eine BI-Applikation im Bereich Lebensversicherungen\n•\tSQL- und Performance Tuning der Applikation\n•\tTechnologie: Oracle 12c & Oracle DBA Tools",
+      "highlights": [
+        "Stuttgart\n•\tBeratung und Analysen für eine BI-Applikation im Bereich Lebensversicherungen\n•\tSQL- und Performance Tuning der Applikation\n•\tTechnologie: Oracle 12c & Oracle DBA Tools"
+      ],
+      "company": "Allianz Lebensversicherung"
+    },
+    {
+      "name": "Financial Services Risiko",
+      "position": "BI Solution Architekt",
+      "url": "",
+      "startDate": "2012-04-01",
+      "endDate": "2016-01-31",
+      "summary": "BI Solution Architekt im Bereich Business Intelligence\n•\tArchitektur- und System-Beratung für eine Financial Services Risiko- und Controlling BI-Applikation basierend auf SAP BO 3.x und WebIntelligence\n•\tArchitektur- und System-Beratung für eine BI-Applikation im HCM / LMS\nBereich basierend auf SAP BO 3.x/ 4.x und Web Intelligence einschließlich\nGo-Live und Rollout\n•\tUnterstützung Vertrieb und Business Development\n•\tMigrationsplanung und Durchführung für eine HR/Vertriebs-Reporting-\nLösung für 8000 User von SAP BO 3.x nach 4.x",
+      "highlights": [
+        "BI Solution Architekt im Bereich Business Intelligence\n•\tArchitektur- und System-Beratung für eine Financial Services Risiko- und Controlling BI-Applikation basierend auf SAP BO 3.x und WebIntelligence\n•\tArchitektur- und System-Beratung für eine BI-Applikation im HCM / LMS\nBereich basierend auf SAP BO 3.x/ 4.x und Web Intelligence einschließlich\nGo-Live und Rollout\n•\tUnterstützung Vertrieb und Business Development\n•\tMigrationsplanung und Durchführung für eine HR/Vertriebs-Reporting-\nLösung für 8000 User von SAP BO 3.x nach 4.x"
+      ],
+      "company": "Financial Services Risiko"
+    },
+    {
+      "name": "BMW Group",
+      "position": "BI-Architekturberater",
+      "url": "",
+      "startDate": "2014-09-01",
+      "endDate": "2016-01-31",
+      "summary": "Projekt: BI-Applikation im Bereich Human Resources\nKunde: BMW Group\n•\tArchitektur- und System-Beratung für eine BI-Applikation im Bereich Human\n•\tCapital Management / Learning Management mit Entwicklung, Test, Go-\n•\tLive und Rollout\n•\tMigrationsplanung und Durchführung dieser HR/Vertriebs-Reporting-Lösung\n•\tfür 8000 User von SAP BO 3.x nach 4.x\n•\tAgile Projekt-Methodik/SCRUM (Teamsprints 14-tägig)\n•\tTechnologie: SAP BO 3.x/ 4.x und Web Intelligence, Oracle 12c\n\n04/13 - 06/13 - Proof of Concept SAP Mobile Reporting on HANA\nim Bereich BMW Financial Services:\n•\tTest-Aufbau eines SAP BO Web Intelligence Reporting-Systems inkl. SAP Mobile auf\nBasis HANA und BW on HANA",
+      "highlights": [
+        "Projekt: BI-Applikation im Bereich Human Resources\nKunde: BMW Group\n•\tArchitektur- und System-Beratung für eine BI-Applikation im Bereich Human\n•\tCapital Management / Learning Management mit Entwicklung, Test, Go-\n•\tLive und Rollout\n•\tMigrationsplanung und Durchführung dieser HR/Vertriebs-Reporting-Lösung\n•\tfür 8000 User von SAP BO 3.x nach 4.x\n•\tAgile Projekt-Methodik/SCRUM (Teamsprints 14-tägig)\n•\tTechnologie: SAP BO 3.x/ 4.x und Web Intelligence, Oracle 12c\n\n04/13 - 06/13 - Proof of Concept SAP Mobile Reporting on HANA\nim Bereich BMW Financial Services:\n•\tTest-Aufbau eines SAP BO Web Intelligence Reporting-Systems inkl. SAP Mobile auf\nBasis HANA und BW on HANA"
+      ],
+      "company": "BMW Group"
+    },
+    {
+      "name": "BMW Group",
+      "position": "BI-Architekturberater",
+      "url": "",
+      "startDate": "2012-04-01",
+      "endDate": "2014-08-31",
+      "summary": "Projekt: Risiko- und Controlling BI-Applikation\nKunde: BMW Financial Services\n•\tKonzeption und Modellierung von Data Marts innerhalb eine 3-Schicht DWH\nArchitektur für 30 Länder für die Fachbereiche Financials/P&L, Interest Rate,\nCredit Risk, New Business, Residual Value Risk\n•\tLogische und physische Daten-Modellierung\n•\tImplementierung der Datamarts\n•\tUniverse Design, Web Intelligence Reports Design\n•\tTechnologie: Oracle Data Modeler 4.x, SAP BO XI 3.1 / 4.1, Oracle 12c\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg   Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "Projekt: Risiko- und Controlling BI-Applikation\nKunde: BMW Financial Services\n•\tKonzeption und Modellierung von Data Marts innerhalb eine 3-Schicht DWH\nArchitektur für 30 Länder für die Fachbereiche Financials/P&L, Interest Rate,\nCredit Risk, New Business, Residual Value Risk\n•\tLogische und physische Daten-Modellierung\n•\tImplementierung der Datamarts\n•\tUniverse Design, Web Intelligence Reports Design\n•\tTechnologie: Oracle Data Modeler 4.x, SAP BO XI 3.1 / 4.1, Oracle 12c\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg   Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "BMW Group"
+    },
+    {
+      "name": "BMW Group",
+      "position": "",
+      "url": "",
+      "startDate": "2002-05-01",
+      "endDate": "2002-11-01",
+      "summary": "München:\n•\tKonzeption für Datencluster im Rahmen des Software Life Cycle Projektes\n•\tVerfahren zur unternehmensweiten Datenmodellierung\n•\tAnalyse und Konzeption für ein Metadaten-Verzeichnis im Rahmen des Vertriebs\nData Warehouse",
+      "highlights": [
+        "München:\n•\tKonzeption für Datencluster im Rahmen des Software Life Cycle Projektes\n•\tVerfahren zur unternehmensweiten Datenmodellierung\n•\tAnalyse und Konzeption für ein Metadaten-Verzeichnis im Rahmen des Vertriebs\nData Warehouse"
+      ],
+      "company": "BMW Group"
+    },
+    {
+      "name": "Kabel Deutschland Vertrieb und Service GmbH",
+      "position": "BI / DWH Experte",
+      "url": "",
+      "startDate": "2009-03-01",
+      "endDate": "2012-03-31",
+      "summary": "",
+      "highlights": [
+        ""
+      ],
+      "company": "Kabel Deutschland Vertrieb und Service GmbH"
+    },
+    {
+      "name": "Kontext des Aufbaus eines Business Intelligence Competence Centers (BICC)",
+      "position": "BI-Architekturberater",
+      "url": "",
+      "startDate": "2010-06-01",
+      "endDate": "2012-03-01",
+      "summary": "BI-Architekturberater\n•   Erstellung einer BI und Data Governance Prozesslandkarte\n•   Soll-Definition, Ist-Analyse, GAP Analyse und Definition der BI Governance\nKernprozesse\n•   Detaillierung, Entwicklung und Pflege der Prozesslandkarte im Kontext BICC\n(Business Intelligence Competence Center) mit Business Process Modeling\n•   Priorisierung und Umsetzungsplanung\n•   Standardisierung und Harmonisierung von Prozessen, Vorgehensmodellen,\nSystemen und Produkten zur Verbesserung der Qualität von BI Lösungen sowie\nder Datenqualität\n•   Sicherstellung der Verwendung von richtigen, abgestimmten Kennzahlen im Unternehmen\n•   Aufbau eines Datenkatalogs bzw. Glossars für die Pflege und anschließende\nProzessdefinition aller unternehmensweiten KPI-Definitionen und KPI\nKategorisierungen (Kennzahlen Dashboard)\n•   Vereinheitlichung des Enterprise Reporting durch Vermeidung von Doppelentwicklungen mit Hilfe einer BI-Bebauungsplanung und BI-Portfolio-\nManagement Steuerung\n•   Erstellung von Anforderungen und Vorgaben für Enterprise DWH\nDatenarchitekturkonzepte\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com\n•\tErstellung von Konzepten zum Management von Masterdaten, Metadaten und Datenqualität auf Basis von SAP-Software (Data Services, Information Steward)\n•\tManagement und Durchführung von EDWH Audits\n•\tImplementierung eines EDWH Release Prozesses\n•\tEinführung eines Systems für den internen Kontrollprozess (SOX) innerhalb des EDWH\n•\tEinführung von Datenschutz- und Löschprozessen innerhalb des EDWH (BDSG, DSGVO)",
+      "highlights": [
+        "BI-Architekturberater\n•   Erstellung einer BI und Data Governance Prozesslandkarte\n•   Soll-Definition, Ist-Analyse, GAP Analyse und Definition der BI Governance\nKernprozesse\n•   Detaillierung, Entwicklung und Pflege der Prozesslandkarte im Kontext BICC\n(Business Intelligence Competence Center) mit Business Process Modeling\n•   Priorisierung und Umsetzungsplanung\n•   Standardisierung und Harmonisierung von Prozessen, Vorgehensmodellen,\nSystemen und Produkten zur Verbesserung der Qualität von BI Lösungen sowie\nder Datenqualität\n•   Sicherstellung der Verwendung von richtigen, abgestimmten Kennzahlen im Unternehmen\n•   Aufbau eines Datenkatalogs bzw. Glossars für die Pflege und anschließende\nProzessdefinition aller unternehmensweiten KPI-Definitionen und KPI\nKategorisierungen (Kennzahlen Dashboard)\n•   Vereinheitlichung des Enterprise Reporting durch Vermeidung von Doppelentwicklungen mit Hilfe einer BI-Bebauungsplanung und BI-Portfolio-\nManagement Steuerung\n•   Erstellung von Anforderungen und Vorgaben für Enterprise DWH\nDatenarchitekturkonzepte\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com\n•\tErstellung von Konzepten zum Management von Masterdaten, Metadaten und Datenqualität auf Basis von SAP-Software (Data Services, Information Steward)\n•\tManagement und Durchführung von EDWH Audits\n•\tImplementierung eines EDWH Release Prozesses\n•\tEinführung eines Systems für den internen Kontrollprozess (SOX) innerhalb des EDWH\n•\tEinführung von Datenschutz- und Löschprozessen innerhalb des EDWH (BDSG, DSGVO)"
+      ],
+      "company": "Kontext des Aufbaus eines Business Intelligence Competence Centers (BICC)"
+    },
+    {
+      "name": "Datamart Design für VideoOnDemand",
+      "position": "Phone und Capex Controlling",
+      "url": "",
+      "startDate": "2009-05-01",
+      "endDate": "2011-11-01",
+      "summary": "BI-Architekturberater, BI-Datenmodellierer und Entwickler\n•   Analyse der Datenquellen (MDM, CSV, XLM mit XLS-Transformation)\n•   Architekturdefinition des Data Provisioning Layers\n•   Konzeption und Erstellung des Data Mart Layers\n•   Datenmodellierung ETL Entwicklung, Report Design\n•   Schulung der Fachbereiche in SAP BO Web Intelligence 3.x\n•   Agile Projekt-Methodik (Teamsprint 21Tage)\n•   Technologie: CA Erwin, Oracle Data Modeler, SAP BO XI 3.x Web Intelligence, Oracle\n11c, SAP BO 3.x Data Services",
+      "highlights": [
+        "BI-Architekturberater, BI-Datenmodellierer und Entwickler\n•   Analyse der Datenquellen (MDM, CSV, XLM mit XLS-Transformation)\n•   Architekturdefinition des Data Provisioning Layers\n•   Konzeption und Erstellung des Data Mart Layers\n•   Datenmodellierung ETL Entwicklung, Report Design\n•   Schulung der Fachbereiche in SAP BO Web Intelligence 3.x\n•   Agile Projekt-Methodik (Teamsprint 21Tage)\n•   Technologie: CA Erwin, Oracle Data Modeler, SAP BO XI 3.x Web Intelligence, Oracle\n11c, SAP BO 3.x Data Services"
+      ],
+      "company": "Datamart Design für VideoOnDemand"
+    },
+    {
+      "name": "",
+      "position": "Senior Consultant",
+      "url": "",
+      "startDate": "2006-02-01",
+      "endDate": "2009-02-01",
+      "summary": "Senior Consultant in den Rollen BI-Architekt, BI-Projektleiter, BI-Berater,\nAuditor, Coach:\n•\tArchitekturberatung für BI-Projekte im Rahmen der Operationalisierung der definierten BI-Strategie im VW Konzern\n•\tAuditierung von 18 verschiedenen Datamarts (Gravitationszentren) und Konsolidierungskandidaten im VW Konzern\n•\tErarbeiten und Erproben von Vorgehensmodellen bei der Konsolidierung von BI-\nSystemen mit Erarbeitung einer 'Roadmap' für eine Data Mart Konsolidierung (VW)\n•\tErarbeiten von Architekturen für das neue Data Warehouse Vertrieb (VW)\n•\tAnalyse aller Schnittstellen mit ETL- und SLA-Definition für ein das internationale\nData Warehouse Subscriber Acquisition Cost (T-Mobile)\n•\tMachbarkeitsstudien für neue Kennzahlen bei Subventionierung (T-Mobile)\n\nProjekte:",
+      "highlights": [
+        "Senior Consultant in den Rollen BI-Architekt, BI-Projektleiter, BI-Berater,\nAuditor, Coach:\n•\tArchitekturberatung für BI-Projekte im Rahmen der Operationalisierung der definierten BI-Strategie im VW Konzern\n•\tAuditierung von 18 verschiedenen Datamarts (Gravitationszentren) und Konsolidierungskandidaten im VW Konzern\n•\tErarbeiten und Erproben von Vorgehensmodellen bei der Konsolidierung von BI-\nSystemen mit Erarbeitung einer 'Roadmap' für eine Data Mart Konsolidierung (VW)\n•\tErarbeiten von Architekturen für das neue Data Warehouse Vertrieb (VW)\n•\tAnalyse aller Schnittstellen mit ETL- und SLA-Definition für ein das internationale\nData Warehouse Subscriber Acquisition Cost (T-Mobile)\n•\tMachbarkeitsstudien für neue Kennzahlen bei Subventionierung (T-Mobile)\n\nProjekte:"
+      ],
+      "company": ""
+    },
+    {
+      "name": "BI-Strategie",
+      "position": "",
+      "url": "",
+      "startDate": "2006-08-01",
+      "endDate": "2009-02-01",
+      "summary": "Kunde: VW\n•   Durchführung von Coaching- und Machbarkeitsprojekten im VW Konzern (national und international)\n•   Konsolidierung und Migration von BI Systemen nach Vorgaben der BIStrategie\n•   Erarbeiten von Transition Plänen für Oracle- und Cognos-BI Architekturen\n•   Überführung von Projekten nach Systemen im Rahmen eines Application\nManagement Service\n•   Mitarbeit bei Neu-Projekten in den Phasen Lasten-/Pflichtenheft unter Einhaltung",
+      "highlights": [
+        "Kunde: VW\n•   Durchführung von Coaching- und Machbarkeitsprojekten im VW Konzern (national und international)\n•   Konsolidierung und Migration von BI Systemen nach Vorgaben der BIStrategie\n•   Erarbeiten von Transition Plänen für Oracle- und Cognos-BI Architekturen\n•   Überführung von Projekten nach Systemen im Rahmen eines Application\nManagement Service\n•   Mitarbeit bei Neu-Projekten in den Phasen Lasten-/Pflichtenheft unter Einhaltung"
+      ],
+      "company": "BI-Strategie"
+    },
+    {
+      "name": "BI-Strategie",
+      "position": "BI-Berater, BI-Auditor",
+      "url": "",
+      "startDate": "2006-08-01",
+      "endDate": "2008-12-01",
+      "summary": "Kunde: VW\n•   Durchführung von Business Intelligence Audits in den Bereichen\nQualitätssicherung und Beschaffung mit dem Fokus Daten-Management, ETL und Präsentation\n•   Erarbeitung eines Vorgehens-Models für Data Mart Konsolidierungen\n•   Durchführung von BI IT-Assessments mit Business Case Berechnung\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "Kunde: VW\n•   Durchführung von Business Intelligence Audits in den Bereichen\nQualitätssicherung und Beschaffung mit dem Fokus Daten-Management, ETL und Präsentation\n•   Erarbeitung eines Vorgehens-Models für Data Mart Konsolidierungen\n•   Durchführung von BI IT-Assessments mit Business Case Berechnung\n\n\nMertus Consulting UG\t\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "BI-Strategie"
+    },
+    {
+      "name": "T-Mobile",
+      "position": "",
+      "url": "",
+      "startDate": "2006-02-01",
+      "endDate": "2006-08-01",
+      "summary": "02/06 - 08/06 - Internationales Data Warehouse für Subscriber Acquisition\nBI-Architektur- und Prozessberatung\nCost/Customer Retention Cost\nKunde: T-Mobile, Bonn\n•   Analyse der Anforderungen für das Subventions-Reporting von Handsets und für neue Key Performance Indikatoren (KPIs)\n•   Machbarkeitsstudie\n•   Grobkonzept, Architektur, Schnittstellen und Reports für die T-Mobile Deutschland\n•   Erstellung eines Detail Design für Konzept, Architektur, Schnittstellen und Reports\nsowie für die Integration der T-Mobile Länder NL, A, CZ, UK",
+      "highlights": [
+        "02/06 - 08/06 - Internationales Data Warehouse für Subscriber Acquisition\nBI-Architektur- und Prozessberatung\nCost/Customer Retention Cost\nKunde: T-Mobile, Bonn\n•   Analyse der Anforderungen für das Subventions-Reporting von Handsets und für neue Key Performance Indikatoren (KPIs)\n•   Machbarkeitsstudie\n•   Grobkonzept, Architektur, Schnittstellen und Reports für die T-Mobile Deutschland\n•   Erstellung eines Detail Design für Konzept, Architektur, Schnittstellen und Reports\nsowie für die Integration der T-Mobile Länder NL, A, CZ, UK"
+      ],
+      "company": "T-Mobile"
+    },
+    {
+      "name": "BODI, ehem. Acta Works",
+      "position": "Senior Consultant",
+      "url": "",
+      "startDate": "2003-07-01",
+      "endDate": "2005-12-01",
+      "summary": "Senior Consultant in den Rollen Projektleiter, BI-Berater, Coach:\n•\tDatenintegration und -management auf Basis BO Data Integrator (BODI, ehem. Acta Works)\n•\tAnalyse, Konzeption und Umsetzung von BO Migrationen\n•\tProof of Concepts in den Bereichen ETL / Metadaten-Management mit dem BO\nSoftware Tool-Set\n•\tAnforderungsanalyse und Anforderungsmanagement für Datenintegrationsprojekte\n•\tDurchführen von internen und externen Workshops und Schulungen für BOE\nund BO Data Integrator\n•\tTraining und Projektcoaching für BO Data Integrator\n•\tInstallation und Konfiguration BO-Enterprise und BODI\n•\tReview und Qualitätssicherung einzelner Phasen von Kundenprojekten mit BO-\nEnterprise und -ETL Focus",
+      "highlights": [
+        "Senior Consultant in den Rollen Projektleiter, BI-Berater, Coach:\n•\tDatenintegration und -management auf Basis BO Data Integrator (BODI, ehem. Acta Works)\n•\tAnalyse, Konzeption und Umsetzung von BO Migrationen\n•\tProof of Concepts in den Bereichen ETL / Metadaten-Management mit dem BO\nSoftware Tool-Set\n•\tAnforderungsanalyse und Anforderungsmanagement für Datenintegrationsprojekte\n•\tDurchführen von internen und externen Workshops und Schulungen für BOE\nund BO Data Integrator\n•\tTraining und Projektcoaching für BO Data Integrator\n•\tInstallation und Konfiguration BO-Enterprise und BODI\n•\tReview und Qualitätssicherung einzelner Phasen von Kundenprojekten mit BO-\nEnterprise und -ETL Focus"
+      ],
+      "company": "BODI, ehem. Acta Works"
+    },
+    {
+      "name": "Kunden-Stamm und -Bewegungsdaten von der Schmitt-Bank zur Commerzbank",
+      "position": "Entwickler, Coach, Trainer",
+      "url": "",
+      "startDate": "2004-06-01",
+      "endDate": "2005-02-01",
+      "summary": "Projekt: Enterprise Data Migration innerhalb eines Big/Bang-\nProjektes mit der Migration von Kunden-Stamm und -Bewegungsdaten von der Schmitt-Bank zur Commerzbank\nEntwickler, Coach, Trainer\nKunde: Commerzbank\n•\tKonzeption, Datenmodellierung und Umsetzung in einer Integrations- und Migrations- Plattform auf Basis BusinessObjects Data Integrator\n•\tEntwicklung generischer Frameworks zum Mapping von Stamm- und Bewegungsdaten zwischen zwei Kern-Banksystemen\n•\tTraining, Coaching und Mentoring von 15 Projektmitarbeitern mit BO Data\nIntegrator / Data Services (BODS)\n•\tMigration der operativen Datenbestände mit Qualitätssicherung der Daten\n•\tTeilprojektleitung im Big/Bang-Projekt\n•\tQualitätssicherung der Jobprozess-Landkarte\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services",
+      "highlights": [
+        "Projekt: Enterprise Data Migration innerhalb eines Big/Bang-\nProjektes mit der Migration von Kunden-Stamm und -Bewegungsdaten von der Schmitt-Bank zur Commerzbank\nEntwickler, Coach, Trainer\nKunde: Commerzbank\n•\tKonzeption, Datenmodellierung und Umsetzung in einer Integrations- und Migrations- Plattform auf Basis BusinessObjects Data Integrator\n•\tEntwicklung generischer Frameworks zum Mapping von Stamm- und Bewegungsdaten zwischen zwei Kern-Banksystemen\n•\tTraining, Coaching und Mentoring von 15 Projektmitarbeitern mit BO Data\nIntegrator / Data Services (BODS)\n•\tMigration der operativen Datenbestände mit Qualitätssicherung der Daten\n•\tTeilprojektleitung im Big/Bang-Projekt\n•\tQualitätssicherung der Jobprozess-Landkarte\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services"
+      ],
+      "company": "Kunden-Stamm und -Bewegungsdaten von der Schmitt-Bank zur Commerzbank"
+    },
+    {
+      "name": "Aegis Media",
+      "position": "BI-Berater, Trainer",
+      "url": "",
+      "startDate": "2004-02-01",
+      "endDate": "2004-06-01",
+      "summary": "•\tAnalyse, Konzept, Design und Datenmodellierung\n•\tKonzeption und Umsetzung der ETL-Architektur (insgesamt 10 verschiedene Datenquellen) basierend auf Data Integrator / Data Services\n•\tAufbau eines Reporting-Systems (BO Desktop- und Web Intelligence)\n•\tPerformance Analysen, Datenbanktuning, Betriebskonzepte, Sizing\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg   Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "•\tAnalyse, Konzept, Design und Datenmodellierung\n•\tKonzeption und Umsetzung der ETL-Architektur (insgesamt 10 verschiedene Datenquellen) basierend auf Data Integrator / Data Services\n•\tAufbau eines Reporting-Systems (BO Desktop- und Web Intelligence)\n•\tPerformance Analysen, Datenbanktuning, Betriebskonzepte, Sizing\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg   Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "Aegis Media"
+    },
+    {
+      "name": "McDonalds",
+      "position": "BI-Berater",
+      "url": "",
+      "startDate": "2004-01-01",
+      "endDate": "2004-02-01",
+      "summary": "•\tAnalyse, Konzept und Datenmodellierung\n•\tKonzeption und Umsetzung der ETL-Architektur mit Anbindung AS400 DB/2 basierend auf Data Integrator / Data Services (BODS)\n•\tQualitätssicherung\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services",
+      "highlights": [
+        "•\tAnalyse, Konzept und Datenmodellierung\n•\tKonzeption und Umsetzung der ETL-Architektur mit Anbindung AS400 DB/2 basierend auf Data Integrator / Data Services (BODS)\n•\tQualitätssicherung\n•\tTools: BusinessObjects Data Integrator / SAP BO Data Services"
+      ],
+      "company": "McDonalds"
+    },
+    {
+      "name": "ExperTeam AG, Köln und München",
+      "position": "Lead Consultant",
+      "url": "",
+      "startDate": "2002-04-01",
+      "endDate": "2003-06-01",
+      "summary": "Leitender Berater, Software- Ingenieur und Projektleiter:\n•   Konzeption von Datencluster bei der unternehmensweiter Datenmodellierung\n•   Business-Development und Strategieentwicklung für Data Mining- und Meta-\nDatenmanagement-Lösungen\n•   Data Warehouse-Beratung bei analytischen CRM-Projekten",
+      "highlights": [
+        "Leitender Berater, Software- Ingenieur und Projektleiter:\n•   Konzeption von Datencluster bei der unternehmensweiter Datenmodellierung\n•   Business-Development und Strategieentwicklung für Data Mining- und Meta-\nDatenmanagement-Lösungen\n•   Data Warehouse-Beratung bei analytischen CRM-Projekten"
+      ],
+      "company": "ExperTeam AG, Köln und München"
+    },
+    {
+      "name": "Oracle Deutschland GmbH, München und Düsseldorf",
+      "position": "Senior Consultant",
+      "url": "",
+      "startDate": "1993-12-01",
+      "endDate": "2002-03-01",
+      "summary": "Senior-Systemberater, Senior Principal Consultant, Projektleiter und Technischer Architekt:\n•\tData Warehouse Konfiguration und Entwicklung auf Basis Oracle9i und 8i\n•\tDatenmanagement auf Basis Oracle RDBMS 6, 7, 8i, 9i\n•\tDB-Migrations-Konzepte\n•\tProof of Concepts in den Bereichen Clickstream Analysis, ETL, Metadaten-\nManagement und Web-Mining\n•\tProjektinitiierung und Angebotsmanagement\n•\tQuality-Reviews von Data Warehouse Systemen\n•\tProjekt- und Qualitäts-Reviews von Data Warehouse Projekten\n•\tAnforderungsanalyse und Anforderungsmanagement in Kundenprojekten\n•\tLösungskonzepte für Spezialthemen im Bereich DWH-Hochverfügbarkeit (Oracle Cluster, Tuning)\n•\tDurchführen von internen und externen Workshops sowie Schulungen mit OWB\nWorkflow Manager, Oracle Discoverer\n•\tMitarbeiter-Coaching für Data Warehouse Projekte\n•\tThemen-Verantwortlicher und -Scout für ETL und Clickstream Analyse für Oracle\nEMEA\n•\tErarbeitung von Einsatzmöglichkeiten und Vertriebspotentialen neuer\nSoftwaretechnologien und Kundenlösungen\n\nProjekte:",
+      "highlights": [
+        "Senior-Systemberater, Senior Principal Consultant, Projektleiter und Technischer Architekt:\n•\tData Warehouse Konfiguration und Entwicklung auf Basis Oracle9i und 8i\n•\tDatenmanagement auf Basis Oracle RDBMS 6, 7, 8i, 9i\n•\tDB-Migrations-Konzepte\n•\tProof of Concepts in den Bereichen Clickstream Analysis, ETL, Metadaten-\nManagement und Web-Mining\n•\tProjektinitiierung und Angebotsmanagement\n•\tQuality-Reviews von Data Warehouse Systemen\n•\tProjekt- und Qualitäts-Reviews von Data Warehouse Projekten\n•\tAnforderungsanalyse und Anforderungsmanagement in Kundenprojekten\n•\tLösungskonzepte für Spezialthemen im Bereich DWH-Hochverfügbarkeit (Oracle Cluster, Tuning)\n•\tDurchführen von internen und externen Workshops sowie Schulungen mit OWB\nWorkflow Manager, Oracle Discoverer\n•\tMitarbeiter-Coaching für Data Warehouse Projekte\n•\tThemen-Verantwortlicher und -Scout für ETL und Clickstream Analyse für Oracle\nEMEA\n•\tErarbeitung von Einsatzmöglichkeiten und Vertriebspotentialen neuer\nSoftwaretechnologien und Kundenlösungen\n\nProjekte:"
+      ],
+      "company": "Oracle Deutschland GmbH, München und Düsseldorf"
+    },
+    {
+      "name": "WestLB Systems",
+      "position": "",
+      "url": "",
+      "startDate": "2001-01-01",
+      "endDate": "2001-12-01",
+      "summary": "Düsseldorf:\n•\tKonzeption, Entwicklung und Einführung eines Clickstream Data Mart\n•\tMetadaten-Management\n•\tOracle Early Adaptor Support für neue Oracle Produkte\n\n\nMertus Consulting UG   Ihr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\t Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "Düsseldorf:\n•\tKonzeption, Entwicklung und Einführung eines Clickstream Data Mart\n•\tMetadaten-Management\n•\tOracle Early Adaptor Support für neue Oracle Produkte\n\n\nMertus Consulting UG   Ihr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\t Mob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "WestLB Systems"
+    },
+    {
+      "name": "Metro AG",
+      "position": "",
+      "url": "",
+      "startDate": "1999-12-01",
+      "endDate": "2000-04-01",
+      "summary": "•\tInformationsanalyse und Planung\n•\tModellierung und Systemkonzept\n•\tArchitekturdesign auf SMP- und MPP- Hardware mit Oracle Parallel Server\n•\tBackup-/Recovery Konzept\n•\tAggregationskonzept\n•\tSicherheits- und Benutzer-Konzept\n•\tKapazitätsplanung",
+      "highlights": [
+        "•\tInformationsanalyse und Planung\n•\tModellierung und Systemkonzept\n•\tArchitekturdesign auf SMP- und MPP- Hardware mit Oracle Parallel Server\n•\tBackup-/Recovery Konzept\n•\tAggregationskonzept\n•\tSicherheits- und Benutzer-Konzept\n•\tKapazitätsplanung"
+      ],
+      "company": "Metro AG"
+    },
+    {
+      "name": "Objektorientierte Tools",
+      "position": "Freiberufler",
+      "url": "",
+      "startDate": "1993-08-01",
+      "endDate": "1993-11-01",
+      "summary": "OOA, OOD\n\n\nWEITERE\tInformationen zu weiteren Berufserfahrungen für die Zeit zwischen 1985 und 1993 können\nvor 02/1993\tbei Bedarf auf Anfrage gerne zur Verfügung gestellt werden.\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com",
+      "highlights": [
+        "OOA, OOD\n\n\nWEITERE\tInformationen zu weiteren Berufserfahrungen für die Zeit zwischen 1985 und 1993 können\nvor 02/1993\tbei Bedarf auf Anfrage gerne zur Verfügung gestellt werden.\n\n\nMertus Consulting UG\tIhr Ansprechpartner:\nNeumühlen 42\tTel.: +49 (0)40 571 99 133\nD-22763 Hamburg\tMob.: +49 (0)173 43 91 430\nE-Mail: justus.daase@mertus-consulting.com\nwww.mertus-consulting.com"
+      ],
+      "company": "Objektorientierte Tools"
+    }
+  ],
+  "skills": [],
+  "projects": [
+    {}
+  ],
+  "awards": [
+    {}
+  ],
+  "headings": {},
+  "sections": [
+    "templates",
+    "profile",
+    "education",
+    "work",
+    "skills",
+    "projects",
+    "awards"
+  ]
+}

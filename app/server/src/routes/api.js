@@ -52,12 +52,14 @@ router.post('/htmltopdf', async ({request, response}) => {
     try {
         const browser = await pupeteer.launch();
         const page = await browser.newPage();
+        // const  website_url = 'https://www.robinwieruch.de/';
+        // await page.goto(website_url, { waitUntil: 'networkidle0' });
         await page.setContent(request.body.html);
         await page.emulateMediaType('screen');
         await page.pdf({
             path: 'resume.pdf',
             format: 'A4',
-            margin: { top: '50px', right: '50px', bottom: '50px', left: '50px' },
+            margin: { top: '10px', right: '10px', bottom: '10px', left: '10px' },
             printBackground: true
         });
         await browser.close();

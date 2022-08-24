@@ -4,14 +4,12 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Document, Page} from 'react-pdf/build/entry.webpack'
 import styled from 'styled-components'
 import {Toolbar, LoadingBar} from '.'
 import {downloadSource} from '../actions'
 import {Loader} from '../../../common/components'
 import {sizes} from '../../../common/theme'
 import type {State as ReduxState} from '../../../app/types'
-import BlankPDF from '../assets/blank.pdf'
 import TemplateComponent from "./TemplateComponent";
 import {generatePDF} from "../../../app/services/generatePdfService";
 
@@ -21,22 +19,12 @@ const Wrapper = styled.div`
   overflow-y: auto;
   padding-bottom: 25px;
   text-align: center;
+  height: auto;
 
   @media screen and (max-width: 850px) {
     ${props => props.hideOnMobile && 'display: none;'} width: 100%;
     overflow: visible;
     margin-bottom: calc(${sizes.footer} + 25px);
-  }
-`
-
-const ResumePage = styled(Page)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  canvas {
-    max-width: 95% !important;
-    height: auto !important;
   }
 `
 
@@ -141,6 +129,17 @@ class Preview extends Component<Props, State> {
             <Wrapper hideOnMobile={hideOnMobile}>
                 <button onClick={this.downloadPdfResume}>Download Pdf</button>
                 <LoadingBar status={status}/>
+                <Toolbar
+                    resumeURL={resumeURL || BlankPDF}
+                    jsonURL={jsonURL}
+                    downloadSource={downloadSource}
+                    currPage={currPage}
+                    prevPage={this.prevPage}
+                    nextPage={this.nextPage}
+                    print={this.print}
+                    zoomIn={this.zoomIn}
+                    zoomOut={this.zoomOut}
+                />
                 <TemplateComponent json={json}></TemplateComponent>
             </Wrapper>
         )
