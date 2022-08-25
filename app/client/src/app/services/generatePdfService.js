@@ -11,5 +11,4 @@ export const generatePDF = async (html) => {
         body: JSON.stringify({html: htmlWrapper})
     }
     const response = await fetch('/api/htmltopdf', request);
-    console.log("Response after generating pdf: ", response);
 }

@@ -14,7 +14,7 @@ export const SectionTitleAndListComponent = ({title, list}) => {
                         list.map((elem, i) => {
                             return (
                                 <ListElement extraStyle={{marginBottom: layout.marginSmallRight}}
-                                             key={elem}>{elem}</ListElement>
+                                             key={elem+i}>{elem}</ListElement>
                             )
                         })
                     }

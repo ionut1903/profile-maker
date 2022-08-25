@@ -60,11 +60,6 @@ function uploadFileAndGenerateResume(file: File): AsyncAction {
   return async (dispatch, getState) => {
     await dispatch(uploadJSON(file))
     const resumeData = getState().form.resume.values
-
-    console.log('Resume after changing on server');
-    console.log(resumeData);
-
-
     const sections = getState().progress.sections
     await dispatch(generateResume({ ...resumeData, sections }))
   }

@@ -272,12 +272,10 @@ class Home extends Component<Props> {
       const [options, postData] = setAndGetOptionsForJSONResumeRequest(event.target.result, modifiedDate)
 
       const createJsonFileAndUpload = (resume) => {
-        console.log("createJsonFileAndUpload");
         const newJsonFile = new Blob([JSON.stringify(resume, null, 2)], {type: 'text/json'});
 
         const resolveAfter2Seconds = async (file) => {
           await uploadFileAndGenerateResume(file);
-          console.log("response received - moving forward to redirect ");
           const {jsonUpload, history} = this.props
           if (jsonUpload.status === 'success') {
             history.push('/generator')

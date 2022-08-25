@@ -44,7 +44,7 @@ export const AddressElement = ({value, icon}) => {
             <SpanElementWithMarginRight>
                 <Icon type={icon}></Icon>
             </SpanElementWithMarginRight>
-            <span>{value}</span>
+            <span style={{wordBreak:'break-word'}}>{value}</span>
         </FlexContainer>
     )
 }
@@ -55,7 +55,7 @@ export const AddressLabelElement = ({title, value}) => {
             <SpanElementWithMarginRight extraStyle={{marginBottom: layout.marginSmallRight}}>
                 <label><strong>{title}</strong></label>
             </SpanElementWithMarginRight>
-            <p style={{margin: '0px'}}>{value}</p>
+            <p style={{margin: '0px',wordBreak: 'break-word'}}>{value}</p>
         </FlexColumnBetweenContainer>
     )
 }
