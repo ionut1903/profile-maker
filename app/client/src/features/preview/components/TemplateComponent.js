@@ -26,12 +26,10 @@ class TemplateComponent extends Component<Props> {
         if(!json){
             json = basicJson;
         }
-        const {countryCode, postalCode, address, city} = json.basics.location;
-        const fullAddress = `${countryCode}; ${city}; ${address}; ${postalCode}`;
-        const dateOfBirth = 'Not in sovren JSON';
+        const fullAddress = json.basics.fullAddress;
+        const dateOfBirth = 'Not in sovren JSON?';
         const phoneNumber = json.basics.phone
 
-        // todo - make type the same everywhere
         let email = '';
         if (typeof json.basics.email === 'string') {
             email = json.basics.email;
@@ -45,7 +43,7 @@ class TemplateComponent extends Component<Props> {
 
         const workList = json.work;
 
-        const coreCompetencies = []
+        const coreCompetencies = json.skills.map(skill=> skill.name);
         const description = json.basics.summary;
         return {
             fullAddress,
@@ -72,8 +70,7 @@ class TemplateComponent extends Component<Props> {
             coreCompetencies,
             description
         } = this.mapJsonResumeToTemplate();
-        const coreComp = ['DWH / BI', 'SAP BO test', 'Anforderungs-/Prozessanalyse', 'Modellierung Dimensionen & KPI',
-        'Oracle RDBMS', 'Daten-Management, Daten-Integration, Datenqualität', 'Konzeption/Design DWHs']
+
         return (
             <div id="componentToPrint">
                 <TemplateContainer>
@@ -89,7 +86,7 @@ class TemplateComponent extends Component<Props> {
                     </section>
                     <section>
                         <SectionTitleAndFlexListComponent title={'Core Competencies'}
-                                                          list={coreComp}/>
+                                                          list={coreCompetencies}/>
                     </section>
                     <section>
                         <SectionTitleAndListComponent title={'Certificates'}

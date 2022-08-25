@@ -1,4 +1,6 @@
-export const getWorkExperience = (positions) => {
+import {getResumeObject} from "./ResumeObject";
+
+const getWorkExperience = (positions) => {
     const work = [];
     for (let pos in positions) {
         const position = positions[pos];
@@ -17,32 +19,31 @@ export const getWorkExperience = (positions) => {
     }
     return work;
 }
-
-export const getSkills = (skillsData) => {
-    const skills = [];
-    for (let skill in skillsData) {
-        for (let taxonomie in skillsData[skill].Taxonomies) {
-            var Keywords = {
-                keywords: []
-            };
-            for (let c in skillsData[skill].Taxonomies[taxonomie].SubTaxonomies) {
-                var item = skillsData[skill].Taxonomies[taxonomie].SubTaxonomies[c];
-                Keywords.keywords.push(
-                    item.SubTaxonomyName
-                );
+// todo : Add type to resumeObject !!! future improvement after the first version
+const getSkills = (skillsData) => {
+    const skillsMap = new Map();
+    skillsData.forEach((skill) => {
+        let frequencyOfSkill = 0;
+        const skillFrequencyList = skill.FoundIn;
+        skillFrequencyList.forEach((section) => {
+            if (section.SectionType == 'WORK HISTORY') {
+                frequencyOfSkill++;
             }
-            var item = skillsData[skill].Taxonomies[taxonomie];
-            skills.push({
-                "name": item.Name,
+        });
+        if (frequencyOfSkill > 3 && !skillsMap.has(skill.Name)) {
+            console.log("Add Skill: ", skill.Name);
+            skillsMap.set(skill.Name, {
+                "name": skill.Name,
                 "level": "",
-                "keywords": Keywords.keywords
+                "keywords": []
             });
         }
-    }
+    });
+    const skills = Array.from(skillsMap.values());
     return skills;
 }
 
-export const getLanguages = (langCompetencies) => {
+const getLanguages = (langCompetencies) => {
     const languages = [];
     for (var i in langCompetencies) {
         var item = langCompetencies[i];
@@ -54,7 +55,7 @@ export const getLanguages = (langCompetencies) => {
     return languages;
 }
 
-export const getEducation = (education) => {
+const getEducation = (education) => {
     const educationList = [];
     if (education) {
         for (var i in education.EducationDetails) {
@@ -76,7 +77,7 @@ export const getEducation = (education) => {
     return educationList;
 }
 
-export const getCertification = (educationList, certifications) => {
+const getCertification = (educationList, certifications) => {
     for (let i in certifications) {
         let item = certifications[i];
         educationList.push({
@@ -95,7 +96,7 @@ export const getCertification = (educationList, certifications) => {
     return educationList;
 }
 
-export const getLocation = (locationObj) => {
+const getLocation = (locationObj) => {
     if (!locationObj) {
         return {
             address: '',
@@ -114,7 +115,7 @@ export const getLocation = (locationObj) => {
     }
 }
 
-export const getAdditionalData = (resume) => {
+const getAdditionalData = (resume) => {
     const languages = getLanguages(resume.LanguageCompetencies);
     // const technologies =
 
@@ -135,3 +136,38 @@ export const getAdditionalData = (resume) => {
 //         }
 //     }
 // }
+
+const getEducationAndCertifications = (resumeData) => {
+    let education = getEducation(resumeData.Education);
+    if (resumeData.Education) {
+        education = getEducation(resumeData.Education);
+    }
+    if (resumeData.Certifications) {
+        education = getCertification(education, resumeData.Certifications);
+    }
+    return education;
+}
+
+const getFullAddress = (location) => {
+    const {countryCode, postalCode, address, city} = location;
+    return `${countryCode}; ${city}; ${address}; ${postalCode}`;
+}
+
+export const getMappedResumeData = (resumeData) => {
+    const finalResume = getResumeObject(resumeData);
+    const location = getLocation(resumeData.ContactInformation.Location);
+    const languages = getLanguages(resumeData.LanguageCompetencies);
+    const fullAddress = getFullAddress(location);
+    const skills = getSkills(resumeData.Skills.Raw);
+    const education = getEducationAndCertifications(resumeData)
+    const work = getWorkExperience(resumeData.EmploymentHistory.Positions);
+    // const additionalData = getAdditionalData(resumeData);
+
+    finalResume.basics.location = location;
+    finalResume.basics.fullAddress = fullAddress;
+    finalResume.skills = skills;
+    finalResume.languages = languages;
+    finalResume.work = work;
+    finalResume.education = education;
+    return finalResume;
+}

@@ -1,7 +1,4 @@
 import React from 'react'
-import {FlexBetweenContainer} from "./common/TemplateFlexComponents";
-import {SectionHeader} from "./common/SectionHeader";
-import {SectionParagraph} from "./common/SectionParagraph";
 
 export const colors = {
     white: '#fff',
