@@ -130,7 +130,7 @@ class Preview extends Component<Props, State> {
                 <button onClick={this.downloadPdfResume}>Download Pdf</button>
                 <LoadingBar status={status}/>
                 <Toolbar
-                    resumeURL={resumeURL || BlankPDF}
+                    resumeURL={resumeURL}
                     jsonURL={jsonURL}
                     downloadSource={downloadSource}
                     currPage={currPage}

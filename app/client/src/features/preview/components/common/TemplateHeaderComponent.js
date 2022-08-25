@@ -15,7 +15,7 @@ export const LogoContainer = ({fullName, shortDescription, img}) => {
             <LogoImgContainer></LogoImgContainer>
             <div>
                 <HeaderTitle extraStyle={{marginBottom: layout.marginSmallRight}}>{fullName}</HeaderTitle>
-                <HeaderSubTitle extraStyle={{}}>
+                <HeaderSubTitle extraStyle={{letterSpacing:'-1px'}}>
                     {shortDescription}
                 </HeaderSubTitle>
             </div>

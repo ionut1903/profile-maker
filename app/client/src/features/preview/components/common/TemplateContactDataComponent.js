@@ -1,12 +1,11 @@
 import React from 'react'
 import {
     colors,
-    FlexColumnBetweenContainer,
-    FlexContainer,
     layout
 } from "../TemplateCommonComponents";
 import {HeaderElement} from "./TemplateHeaderComponent";
 import {Icon} from "../../../../common/components";
+import {FlexColumnBetweenContainer, FlexContainer} from "./TemplateFlexComponents";
 
 export const TemplateContactDataComponent = ({phoneNumber, email, fullAddress, dateOfBirth}) => {
     return (

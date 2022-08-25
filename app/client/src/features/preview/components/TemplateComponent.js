@@ -2,17 +2,18 @@ import React, {Component} from 'react'
 import jsonResume from '../../../../../../test_json.json'
 import basicJson from '../../../../../basic.json'
 import {
-    FlexBetweenContainer,
-
-    SectionTitleAndDescriptionComponent,
-    SectionTitleAndFlexListComponent,
-    SectionTitleAndListComponent,
+    layout,
     TemplateContainer,
-    WorkExperienceSection
+    colors
 } from "./TemplateCommonComponents";
 import {LogoContainer} from "./common/TemplateHeaderComponent";
 import {TemplateContactDataComponent} from "./common/TemplateContactDataComponent";
 import {TemplateProfilePhotoComponent} from "./common/TemplateProfilePhotoComponent";
+import {FlexBetweenContainer} from "./common/TemplateFlexComponents";
+import {WorkExperienceSection} from "./common/TemplateWorkExperienceComponent";
+import {SectionTitleAndFlexListComponent} from "./common/TemplateSectionAndFlexListComponent";
+import {SectionTitleAndDescriptionComponent} from "./common/SectionTitleAndDescriptionComponent";
+import {SectionTitleAndListComponent} from "./common/SectionTitleAndListComponent";
 
 type Props = {
     json?: any
@@ -21,7 +22,10 @@ type Props = {
 class TemplateComponent extends Component<Props> {
 
     mapJsonResumeToTemplate = () => {
-        const {json} = this.props;
+        let {json} = this.props;
+        if(!json){
+            json = basicJson;
+        }
         const {countryCode, postalCode, address, city} = json.basics.location;
         const fullAddress = `${countryCode}; ${city}; ${address}; ${postalCode}`;
         const dateOfBirth = 'Not in sovren JSON';
@@ -68,12 +72,12 @@ class TemplateComponent extends Component<Props> {
             coreCompetencies,
             description
         } = this.mapJsonResumeToTemplate();
-        const coreComp = ['DWH / BI', 'SAP BO', 'Anforderungs-/Prozessanalyse', 'Modellierung Dimensionen & KPI',
+        const coreComp = ['DWH / BI', 'SAP BO test', 'Anforderungs-/Prozessanalyse', 'Modellierung Dimensionen & KPI',
         'Oracle RDBMS', 'Daten-Management, Daten-Integration, Datenqualität', 'Konzeption/Design DWHs']
         return (
             <div id="componentToPrint">
                 <TemplateContainer>
-                    <FlexBetweenContainer extraStyle={{marginBottom: '10px', height: "180px"}}>
+                    <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: "180px"}}>
                         <LogoContainer fullName={fullName} shortDescription={'SAP BO/BI Berater / Data Warehouse Architekt / SAP Data Services'}/>
                         <TemplateProfilePhotoComponent/>
                         <TemplateContactDataComponent email={email} phoneNumber={phoneNumber} dateOfBirth={dateOfBirth}
@@ -91,7 +95,7 @@ class TemplateComponent extends Component<Props> {
                         <SectionTitleAndListComponent title={'Certificates'}
                                                       list={certifications}/>
                     </section>
-                    <section style={{background: 'white'}}>
+                    <section style={{background: colors.white}}>
                         {
                             workList.map(work => {
                                 return <WorkExperienceSection key={work.startDate + work.endDate}
