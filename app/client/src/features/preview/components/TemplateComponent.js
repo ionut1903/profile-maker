@@ -24,20 +24,21 @@ class TemplateComponent extends Component<Props> {
     getEmail = (email) => {
         if (typeof email === 'string') {
             return email;
+        } else if(!email) {
+            return 'No email found'
         } else {
             return email[0];
         }
     }
 
     mapJsonResumeToTemplate = () => {
-
         let {json} = this.props;
         if(!json) {
             json = basicJson;
         }
         const fullAddress = json.basics.fullAddress;
         const dateOfBirth = 'Not in sovren JSON?';
-        const phoneNumber = json.basics.phone
+        const phoneNumber = json.basics.phone? json.basics.phone: 'No phone found'
         const email = this.getEmail(json.basics.email);
         const fullName = json.basics.name;
         // console.log("6.EDUCATION BASIC TO MAP ON TEMPLATE: ",json.education);
@@ -80,7 +81,7 @@ class TemplateComponent extends Component<Props> {
                 <TemplateContainer>
                     <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: "180px"}}>
                         <LogoContainer fullName={fullName}
-                                       shortDescription={'SAP BO/BI Berater / Data Warehouse Architekt / SAP Data Services'}/>
+                                       shortDescription={'Please add short description?'}/>
                         <TemplateProfilePhotoComponent/>
                         <TemplateContactDataComponent email={email} phoneNumber={phoneNumber} dateOfBirth={dateOfBirth}
                                                       fullAddress={fullAddress}/>
@@ -105,7 +106,7 @@ class TemplateComponent extends Component<Props> {
                         }}>{'WORK EXPERIENCE'}</SectionHeader>
                         {
                             workList.map((work, i) => {
-                                return <WorkExperienceSection key={work.startDate + work.endDate}
+                                return <WorkExperienceSection key={work.startDate + work.endDate + work.name}
                                                               work={work}></WorkExperienceSection>
                             })
                         }

@@ -80,7 +80,7 @@ const getEducation = (education) => {
     const educationList = [];
     education.EducationDetails.forEach((edDetail) => {
         educationList.push({
-            institution: edDetail.SchoolName.Normalized,
+            institution: edDetail.SchoolName? edDetail.SchoolName.Normalized : 'NOT FOUND',
             url: '',
             area: edDetail.Text,
             studyType: edDetail.Degree.Name ? edDetail.Degree.Name.Raw : '',
@@ -95,9 +95,8 @@ const getEducation = (education) => {
 }
 
 const setCertification = (educationList, certifications) => {
-    debugger
     // console.log("3.SOVREN CERTIFICATION: ", certifications);
-    certifications.forEach((cert)=>{
+    certifications.forEach((cert) => {
         educationList.push({
             institution: '',
             url: '',
@@ -155,7 +154,6 @@ const getAdditionalData = (resume) => {
 
 const getEducationAndCertifications = (resumeData) => {
     let education = [];
-    debugger;
     if (resumeData.Education) {
         education = getEducation(resumeData.Education);
     }
@@ -172,6 +170,9 @@ const getFullAddress = (location) => {
     fullAddress += postalCode ? postalCode + ';' : '';
     fullAddress += address ? address + ';' : '';
     fullAddress += city ? city + ';' : '';
+    if (!fullAddress) {
+        fullAddress += 'No address found'
+    }
     return fullAddress;
 }
 
