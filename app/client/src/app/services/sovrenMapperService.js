@@ -19,6 +19,13 @@ const getWorkExperience = (positions) => {
     const positionIdList = [];
     positions.forEach(pos => {
         positionIdList.push(pos.Id);
+        // let employer = '';
+        // if(pos.Employer) {
+        //     let letters = pos.Employer.Name.Raw.split();
+        //     letters[0] = letters[0].toUpperCase();
+        //     letters = ;
+        //     employer = letters.join()
+        // }
         workMap.set(pos.Id, {
             id: pos.Id,
             name: (pos.Employer ? pos.Employer.Name.Raw : ''),

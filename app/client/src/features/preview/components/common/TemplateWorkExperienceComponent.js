@@ -37,8 +37,9 @@ const HighlightedTitle = ({children}) => {
 }
 
 export const WorkExperienceSection = ({work}) => {
-
-    const date = `${work.startDate} - ${work.endDate}`
+    const startDate = work.startDate.split('-');
+    const endDate = work.endDate.split('-');
+    const date = `${startDate[1]}/${startDate[0]} - ${endDate[1]}/${endDate[0]}`
     const {name, summary} = work;
     let summaryData = summary.split('\n');
 

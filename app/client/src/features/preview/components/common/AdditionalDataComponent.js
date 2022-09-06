@@ -10,10 +10,10 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
         <MainColorContainer>
             <FlexBetweenContainer>
                 <SectionHeader>{'Additional Data'}</SectionHeader>
-                <div>
+                <div style={{width: layout.articleWidth}}>
                     {
                         additionalData.map((additional, i) => {
-                            return <div>
+                            return <div style={{paddingLeft: '30px'}}>
                                 <TitleSmallSection>{additional.name}</TitleSmallSection>
                                 {
                                     additional.name === 'Tech skills' ?

@@ -16,6 +16,7 @@ import {SectionTitleAndDescriptionComponent} from "./common/SectionTitleAndDescr
 import {SectionTitleAndListComponent} from "./common/SectionTitleAndListComponent";
 import {SectionHeader} from "./common/SectionHeader";
 import {AdditionalDataComponent} from "./common/AdditionalDataComponent";
+import {FooterResume} from "../FooterResume";
 // todo - investigate where is the email set as a string and not as an array?
 type Props = {
     json?: any
@@ -116,6 +117,7 @@ class TemplateComponent extends Component<Props> {
                             })
                         }
                     </section>
+                    <FooterResume/>
                 </TemplateContainer>
 
             </div>
