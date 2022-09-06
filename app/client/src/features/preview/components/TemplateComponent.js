@@ -15,6 +15,7 @@ import {SectionTitleAndFlexListComponent} from "./common/TemplateSectionAndFlexL
 import {SectionTitleAndDescriptionComponent} from "./common/SectionTitleAndDescriptionComponent";
 import {SectionTitleAndListComponent} from "./common/SectionTitleAndListComponent";
 import {SectionHeader} from "./common/SectionHeader";
+import {AdditionalDataComponent} from "./common/AdditionalDataComponent";
 // todo - investigate where is the email set as a string and not as an array?
 type Props = {
     json?: any
@@ -24,7 +25,7 @@ class TemplateComponent extends Component<Props> {
     getEmail = (email) => {
         if (typeof email === 'string') {
             return email;
-        } else if(!email) {
+        } else if (!email) {
             return 'No email found'
         } else {
             return email[0];
@@ -33,24 +34,24 @@ class TemplateComponent extends Component<Props> {
 
     mapJsonResumeToTemplate = () => {
         let {json} = this.props;
-        if(!json) {
+        if (!json) {
             json = basicJson;
         }
         const fullAddress = json.basics.fullAddress;
-        const dateOfBirth = 'Not in sovren JSON?';
-        const phoneNumber = json.basics.phone? json.basics.phone: 'No phone found'
+        const dateOfBirth = 'NOT FOUND - Not in SOVREN JSON?';
+        const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);
         const fullName = json.basics.name;
-        // console.log("6.EDUCATION BASIC TO MAP ON TEMPLATE: ",json.education);
         const certifications = json.education.map(edu => {
             return edu.area;
         });
-
+        const additionalData = json.additionalData;
         const workList = json.work;
 
         const coreCompetencies = json.skills.map(skill => skill.name);
         const description = json.basics.summary;
         return {
+            additionalData,
             fullAddress,
             dateOfBirth,
             phoneNumber,
@@ -65,6 +66,7 @@ class TemplateComponent extends Component<Props> {
 
     render() {
         const {
+            additionalData,
             fullAddress,
             dateOfBirth,
             phoneNumber,
@@ -81,7 +83,7 @@ class TemplateComponent extends Component<Props> {
                 <TemplateContainer>
                     <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: "180px"}}>
                         <LogoContainer fullName={fullName}
-                                       shortDescription={'Please add short description?'}/>
+                                       shortDescription={'NOT FOUND - SHORT DESCRIPTION?'}/>
                         <TemplateProfilePhotoComponent/>
                         <TemplateContactDataComponent email={email} phoneNumber={phoneNumber} dateOfBirth={dateOfBirth}
                                                       fullAddress={fullAddress}/>
@@ -97,6 +99,9 @@ class TemplateComponent extends Component<Props> {
                     <section>
                         <SectionTitleAndListComponent title={'Education & Certificates'}
                                                       list={certifications}/>
+                    </section>
+                    <section>
+                        <AdditionalDataComponent additionalData={additionalData}></AdditionalDataComponent>
                     </section>
                     <section style={{background: colors.white}}>
                         <SectionHeader extraStyles={{

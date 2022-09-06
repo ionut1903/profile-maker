@@ -30,7 +30,6 @@ export const setAndGetOptionsForJSONResumeRequest = (payload, modifiedDate) => {
 }
 
 const makeRequestForJSONResume = (options, callback) => {
-    console.log("SOVREN: REQUEST");
     const resumeParsingRequest = http.request(options, (response) => {
         response.setEncoding('utf8');
         let responseAsString = '';
@@ -40,7 +39,7 @@ const makeRequestForJSONResume = (options, callback) => {
         response.on('end', () => {
             const responseAsJson = JSON.parse(responseAsString);
             const resumeData = responseAsJson.Value.ResumeData;
-            console.log("SOVREN: ", resumeData);
+            console.log("SOVREN json: ", resumeData);
             const resume = getMappedResumeData(resumeData)
 
             callback(resume);

@@ -1,6 +1,4 @@
 import {getResumeObject} from "./ResumeObject";
-// todo : what if no end date found?
-// todo : Add type to resumeObject !!! future improvement after the first version
 
 const sortListOfPositions = (list) => {
     return list.sort((a, b) => {
@@ -39,9 +37,12 @@ const getWorkExperience = (positions) => {
     positionIdList.forEach(id => {
         work.push(workMap.get(id));
     });
+    if (work.length === 0) {
+        return ['NOT FOUND - WORK HISTORY'];
+    }
     return work;
 }
-const getSkills = (skillsData) => {
+const getCoreCompetencies = (skillsData) => {
     const skillsMap = new Map();
     skillsData.forEach((skill) => {
         let frequencyOfSkill = 0;
@@ -59,28 +60,49 @@ const getSkills = (skillsData) => {
             });
         }
     });
+    if (skillsMap.size === 0) {
+        return ['NOT FOUND - CORE COMPETENCIES'];
+    }
     const skills = Array.from(skillsMap.values());
     return skills;
+}
+
+const getAllTechSkills = (skillsData) => {
+    const skillsSet = new Set();
+    const lowerCaseSkillsSet = new Set();
+    skillsData.forEach((skill) => {
+        if (!lowerCaseSkillsSet.has(skill.Name.trim().toLowerCase())) {
+            skillsSet.add(skill.Name);
+            lowerCaseSkillsSet.add(skill.Name.trim().toLowerCase());
+        }
+    });
+
+    console.log(skillsSet);
+    console.log(lowerCaseSkillsSet);
+    if (skillsSet.size === 0) {
+        return ['NOT FOUND - SKILLS'];
+    }
+    return Array.from(skillsSet);
 }
 
 const getLanguages = (langCompetencies) => {
     const languages = [];
     for (var i in langCompetencies) {
         var item = langCompetencies[i];
-        languages.push({
-            language: item.Language,
-            "fluency": ''
-        });
+        languages.push(item.Language);
+    }
+
+    if (languages.length === 0) {
+        return ['NOT FOUND - LANGUAGES']
     }
     return languages;
 }
 
 const getEducation = (education) => {
-    // console.log("1. SOVREN EDUCATION:", education);
     const educationList = [];
     education.EducationDetails.forEach((edDetail) => {
         educationList.push({
-            institution: edDetail.SchoolName? edDetail.SchoolName.Normalized : 'NOT FOUND',
+            institution: edDetail.SchoolName ? edDetail.SchoolName.Normalized : 'NOT FOUND',
             url: '',
             area: edDetail.Text,
             studyType: edDetail.Degree.Name ? edDetail.Degree.Name.Raw : '',
@@ -90,12 +112,10 @@ const getEducation = (education) => {
             courses: [edDetail.Text],
         });
     })
-    // console.log("2.MAPPED EDUCATION: ", educationList)
     return educationList;
 }
 
 const setCertification = (educationList, certifications) => {
-    // console.log("3.SOVREN CERTIFICATION: ", certifications);
     certifications.forEach((cert) => {
         educationList.push({
             institution: '',
@@ -107,7 +127,10 @@ const setCertification = (educationList, certifications) => {
             score: '',
             courses: []
         });
-    })
+    });
+    if (educationList.length === 0) {
+        return [{area: 'NOT FOUND - EDUCATION AND CERTIFICATION'}]
+    }
     return educationList;
 }
 
@@ -130,28 +153,6 @@ const getLocation = (locationObj) => {
     }
 }
 
-const getAdditionalData = (resume) => {
-    const languages = getLanguages(resume.LanguageCompetencies);
-    // const technologies =
-
-}
-
-// const getLanguages=(languageCompetencies)=>{
-//     if (!languageCompetencies) {
-//         return {};
-//     }
-//     const languageList = languageCompetencies.map((langObj) => {
-//         return langObj.Language;
-//     })
-//     return {
-//         languages: {
-//             type: 'list',
-//             name: 'Languages',
-//             languageList
-//         }
-//     }
-// }
-
 const getEducationAndCertifications = (resumeData) => {
     let education = [];
     if (resumeData.Education) {
@@ -167,11 +168,11 @@ const getFullAddress = (location) => {
     const {countryCode, postalCode, address, city} = location;
     let fullAddress = '';
     fullAddress += countryCode ? countryCode + ';' : '';
-    fullAddress += postalCode ? postalCode + ';' : '';
-    fullAddress += address ? address + ';' : '';
     fullAddress += city ? city + ';' : '';
+    fullAddress += address ? address + ';' : '';
+    fullAddress += postalCode ? postalCode + ';' : '';
     if (!fullAddress) {
-        fullAddress += 'No address found'
+        fullAddress += 'NOT FOUND - ADDRESS'
     }
     return fullAddress;
 }
@@ -181,18 +182,19 @@ export const getMappedResumeData = (resumeData) => {
     const location = getLocation(resumeData.ContactInformation.Location);
     const languages = getLanguages(resumeData.LanguageCompetencies);
     const fullAddress = getFullAddress(location);
-    const skills = getSkills(resumeData.Skills.Raw);
+    const competencies = getCoreCompetencies(resumeData.Skills.Raw);
+    const allSkills = getAllTechSkills(resumeData.Skills.Raw);
     const education = getEducationAndCertifications(resumeData)
-    console.log("4.EDUCATION WITH CERTIFICATION: ", education);
     const work = getWorkExperience(resumeData.EmploymentHistory.Positions);
-    // const additionalData = getAdditionalData(resumeData);
+    const additionalData = [{name: 'Languages', value: languages}, {name: 'Tech skills', value: allSkills}]
 
     finalResume.basics.location = location;
     finalResume.basics.fullAddress = fullAddress;
-    finalResume.skills = skills;
+    finalResume.skills = competencies;
     finalResume.languages = languages;
     finalResume.work = work;
     finalResume.education = education;
+    finalResume.additionalData = additionalData;
     console.log("FINAL RESUME:", finalResume);
     return finalResume;
 }
