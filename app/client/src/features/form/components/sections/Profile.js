@@ -39,6 +39,11 @@ function Profile({
                 placeholder="New York, NY"
             />
             <LabeledInput
+                name="basics.summary"
+                label="Professional profile description"
+                placeholder="Senior Software Developer"
+            />
+            <LabeledInput
                 name="basics.shortDescription"
                 label="Short description"
                 placeholder="Senior Software Developer"

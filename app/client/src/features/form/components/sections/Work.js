@@ -6,7 +6,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Section from './Section'
 import { Button, Divider } from '../../../../common/components'
-import LabeledInput from '../fragments/LabeledInput'
 import { Job } from '..'
 import {
   addJob,
@@ -36,17 +35,11 @@ function Work({
 }: Props) {
   return (
     <Section heading="Your Work Experience">
-      <LabeledInput
-        name="headings.work"
-        label="Section Heading"
-        placeholder="Work Experience"
-      />
-      <Divider />
       {work.map((job, i) => (
         <Job
           key={i}
           index={i}
-          highlights={job.highlights}
+          job={job}
           addHighlight={addJobHighlight}
           removeHighlight={removeJobHighlight}
         />

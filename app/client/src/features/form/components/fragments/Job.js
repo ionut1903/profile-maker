@@ -5,7 +5,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Divider, RoundButton, Icon} from '../../../../common/components'
-import LabeledInput, {Label, TextArea} from './LabeledInput'
+import LabeledInput, {Label, TextArea, TextareaComp} from './LabeledInput'
 
 const Row = styled.div`
   display: flex;
@@ -20,28 +20,19 @@ const ButtonRow = styled.div`
   ${props => props.hidden && 'opacity: 0;'} transition: none;
 `
 
-const MiniInput = TextArea.extend`
-  height: 120px;
-  background: #202530;
-
-  @media screen and (max-width: 850px) {
-    width: 65%;
-  }
-`
-
 type Props = {
-    highlights: Array<?string>,
+    job: any,
     index: number,
     addHighlight: (index: number) => void,
     removeHighlight: (index: number) => void
 }
 
-function Job({highlights, index, addHighlight, removeHighlight}: Props) {
+function Job({job, index, addHighlight, removeHighlight}: Props) {
     return (
         <div>
             {index > 0 ? <Divider/> : null}
             <LabeledInput
-                name={`work[${index}].company`}
+                name={`work[${index}].name`}
                 label="Company Name"
                 placeholder="Google"
             />
@@ -49,11 +40,6 @@ function Job({highlights, index, addHighlight, removeHighlight}: Props) {
                 name={`work[${index}].position`}
                 label="Job Title"
                 placeholder="Software Engineer"
-            />
-            <LabeledInput
-                name={`work[${index}].location`}
-                label="Job Location"
-                placeholder="Mountain View, CA"
             />
             <LabeledInput
                 name={`work[${index}].startDate`}
@@ -65,35 +51,12 @@ function Job({highlights, index, addHighlight, removeHighlight}: Props) {
                 label="End Date"
                 placeholder="May 2017 / Present / Etc."
             />
-            <Label>Job Responsibilities</Label>
-            {highlights.map((highlight, i) => (
-                <Row key={i}>
-                    <MiniInput
-                        type="text"
-                        placeholder="Did cool stuff at company"
-                        component="input"
-                    >{highlight}</MiniInput>
-
-                    {/*<ButtonRow hidden={i !== highlights.length - 1}>*/}
-                    {/*    <RoundButton*/}
-                    {/*        inverted*/}
-                    {/*        disabled={i !== highlights.length - 1}*/}
-                    {/*        type="button"*/}
-                    {/*        onClick={() => addHighlight(index)}*/}
-                    {/*    >*/}
-                    {/*        <Icon type="add"/>*/}
-                    {/*    </RoundButton>*/}
-                    {/*    <RoundButton*/}
-                    {/*        inverted*/}
-                    {/*        disabled={highlights.length === 1}*/}
-                    {/*        type="button"*/}
-                    {/*        onClick={() => removeHighlight(index)}*/}
-                    {/*    >*/}
-                    {/*        <Icon type="remove"/>*/}
-                    {/*    </RoundButton>*/}
-                    {/*</ButtonRow>*/}
-                </Row>
-            ))}
+            <TextareaComp
+                label="Job Responsibilities"
+                name={`work[${index}].summary`}
+                defaultValue={job.summary}
+                placeholder="Did cool stuff at company"
+            ></TextareaComp>
         </div>
     )
 }

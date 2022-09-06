@@ -21,12 +21,6 @@ type Props = {
 function Education({ education, addSchool, removeSchool }: Props) {
   return (
     <Section heading="Your Educational Background">
-      <LabeledInput
-        name="headings.education"
-        label="Section Heading"
-        placeholder="Education"
-      />
-      <Divider />
       {education.map((school, i) => <School key={i} index={i} />)}
       <Button onClick={addSchool} type="button">
         Add School

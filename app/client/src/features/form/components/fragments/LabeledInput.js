@@ -16,8 +16,10 @@ const Label = styled.label`
   font-weight: 300;
 `
 
-const TextArea = styled.textarea`
+const TextArea = styled(Field)`
+  height: 120px;
   width: 100%;
+  background: #202530;
   padding: 10px 0;
   appearance: none;
   outline: 0;
@@ -27,7 +29,6 @@ const TextArea = styled.textarea`
   border-bottom: 1px solid ${colors.borders};
   color: ${colors.foreground};
   transition: all 0.4s;
-  background: transparent;
   outline: none;
   border-radius: 0;
 
@@ -135,5 +136,19 @@ function LabeledInput({ label, name, placeholder, type = 'text' }: Props) {
   )
 }
 
-export { Label, Input, TextArea }
+function TextareaComp({ label, name, placeholder, type = 'text' }: Props) {
+    return (
+        <div>
+            <Label>{label}</Label>
+            <TextArea
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                component="textarea"
+            />
+        </div>
+    )
+}
+
+export { Label, Input, TextArea, TextareaComp }
 export default LabeledInput

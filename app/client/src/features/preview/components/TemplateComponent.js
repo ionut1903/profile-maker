@@ -44,8 +44,11 @@ class TemplateComponent extends Component<Props> {
         const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);
         const fullName = json.basics.name;
-        const certifications = json.education.map(edu => {
-            return edu.area;
+        const certifications = [];
+        json.education.forEach(edu => {
+            if(edu.area) {
+                certifications.push(edu.area);
+            }
         });
         const additionalData = json.additionalData;
         const workList = json.work;
@@ -114,7 +117,7 @@ class TemplateComponent extends Component<Props> {
                             padding: '20px 20px 0'
                         }}>{'WORK EXPERIENCE'}</SectionHeader>
                         {
-                            workList.map((work, i) => {
+                            workList.map((work) => {
                                 return <WorkExperienceSection key={work.startDate + work.endDate + work.name}
                                                               work={work}></WorkExperienceSection>
                             })
