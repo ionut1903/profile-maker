@@ -178,9 +178,6 @@ const getFullAddress = (location) => {
     fullAddress += city ? city + ';' : '';
     fullAddress += address ? address + ';' : '';
     fullAddress += postalCode ? postalCode + ';' : '';
-    if (!fullAddress) {
-        fullAddress += 'NOT FOUND - ADDRESS'
-    }
     return fullAddress;
 }
 

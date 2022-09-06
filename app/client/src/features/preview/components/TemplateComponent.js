@@ -38,8 +38,9 @@ class TemplateComponent extends Component<Props> {
         if (!json) {
             json = basicJson;
         }
-        const fullAddress = json.basics.fullAddress;
-        const dateOfBirth = 'NOT FOUND - Not in SOVREN JSON?';
+        const fullAddress = json.basics.fullAddress? json.basics.fullAddress: 'NOT FOUND - ADD ADDRESS';
+        const dateOfBirth = json.basics.year? json.basics.year :  'NOT FOUND - Not in SOVREN JSON?';
+        const shortDescription = json.basics.shortDescription? json.basics.shortDescription :  'NOT FOUND - SHORT DESCRIPTION?';
         const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);
         const fullName = json.basics.name;
@@ -61,7 +62,8 @@ class TemplateComponent extends Component<Props> {
             certifications,
             workList,
             coreCompetencies,
-            description
+            description,
+            shortDescription
         };
     }
 
@@ -76,7 +78,8 @@ class TemplateComponent extends Component<Props> {
             certifications,
             workList,
             coreCompetencies,
-            description
+            description,
+            shortDescription
         } = this.mapJsonResumeToTemplate();
 
         return (
@@ -84,7 +87,7 @@ class TemplateComponent extends Component<Props> {
                 <TemplateContainer>
                     <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: "180px"}}>
                         <LogoContainer fullName={fullName}
-                                       shortDescription={'NOT FOUND - SHORT DESCRIPTION?'}/>
+                                       shortDescription={shortDescription}/>
                         <TemplateProfilePhotoComponent/>
                         <TemplateContactDataComponent email={email} phoneNumber={phoneNumber} dateOfBirth={dateOfBirth}
                                                       fullAddress={fullAddress}/>
