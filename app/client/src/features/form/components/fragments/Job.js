@@ -5,7 +5,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Divider, RoundButton, Icon} from '../../../../common/components'
-import LabeledInput, {Label, Input} from './LabeledInput'
+import LabeledInput, {Label, TextArea} from './LabeledInput'
 
 const Row = styled.div`
   display: flex;
@@ -20,16 +20,10 @@ const ButtonRow = styled.div`
   ${props => props.hidden && 'opacity: 0;'} transition: none;
 `
 
-const MiniInput = Input.extend`
-  width: 65%;
+const MiniInput = TextArea.extend`
+  height: 120px;
+  background: #202530;
 
-  @media screen and (max-width: 850px) {
-    width: 65%;
-  }
-`
-
-const TextArea = styled.textarea`
-  width: 65%;
   @media screen and (max-width: 850px) {
     width: 65%;
   }
@@ -74,36 +68,30 @@ function Job({highlights, index, addHighlight, removeHighlight}: Props) {
             <Label>Job Responsibilities</Label>
             {highlights.map((highlight, i) => (
                 <Row key={i}>
-            {/*<textarea name={`work[${index}].highlights[${i}]`}*/}
-            {/*          cols="30"*/}
-            {/*          rows="20"*/}
-            {/*          value={`work[${index}].highlights[${i}]`}*/}
-            {/*          placeholder="Did cool stuff at company"*/}
-            {/*></textarea>*/}
                     <MiniInput
                         type="text"
-                        name={`work[${index}].highlights[${i}]`}
                         placeholder="Did cool stuff at company"
                         component="input"
-                    />
-                    <ButtonRow hidden={i !== highlights.length - 1}>
-                        <RoundButton
-                            inverted
-                            disabled={i !== highlights.length - 1}
-                            type="button"
-                            onClick={() => addHighlight(index)}
-                        >
-                            <Icon type="add"/>
-                        </RoundButton>
-                        <RoundButton
-                            inverted
-                            disabled={highlights.length === 1}
-                            type="button"
-                            onClick={() => removeHighlight(index)}
-                        >
-                            <Icon type="remove"/>
-                        </RoundButton>
-                    </ButtonRow>
+                    >{highlight}</MiniInput>
+
+                    {/*<ButtonRow hidden={i !== highlights.length - 1}>*/}
+                    {/*    <RoundButton*/}
+                    {/*        inverted*/}
+                    {/*        disabled={i !== highlights.length - 1}*/}
+                    {/*        type="button"*/}
+                    {/*        onClick={() => addHighlight(index)}*/}
+                    {/*    >*/}
+                    {/*        <Icon type="add"/>*/}
+                    {/*    </RoundButton>*/}
+                    {/*    <RoundButton*/}
+                    {/*        inverted*/}
+                    {/*        disabled={highlights.length === 1}*/}
+                    {/*        type="button"*/}
+                    {/*        onClick={() => removeHighlight(index)}*/}
+                    {/*    >*/}
+                    {/*        <Icon type="remove"/>*/}
+                    {/*    </RoundButton>*/}
+                    {/*</ButtonRow>*/}
                 </Row>
             ))}
         </div>

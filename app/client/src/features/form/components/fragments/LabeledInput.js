@@ -16,6 +16,55 @@ const Label = styled.label`
   font-weight: 300;
 `
 
+const TextArea = styled.textarea`
+  width: 100%;
+  padding: 10px 0;
+  appearance: none;
+  outline: 0;
+  font-size: 0.9em;
+  font-family: inherit;
+  border: none;
+  border-bottom: 1px solid ${colors.borders};
+  color: ${colors.foreground};
+  transition: all 0.4s;
+  background: transparent;
+  outline: none;
+  border-radius: 0;
+
+  &:focus {
+    color: ${colors.primary};
+    border-color: ${colors.primary};
+  }
+
+  &::placeholder {
+    color: #7e899b;
+    opacity: 0.4;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px ${colors.background} inset;
+    -webkit-text-fill-color: #ccc;
+
+    &:hover,
+    &:focus,
+    &:active {
+      -webkit-box-shadow: 0 0 0 50px ${colors.background} inset;
+      -webkit-text-fill-color: #ccc;
+    }
+
+    &:focus {
+      -webkit-text-fill-color: ${colors.primary};
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    font-size: 16px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+`
+
 const Input = styled(Field)`
   width: 100%;
   padding: 10px 0;
@@ -86,5 +135,5 @@ function LabeledInput({ label, name, placeholder, type = 'text' }: Props) {
   )
 }
 
-export { Label, Input }
+export { Label, Input, TextArea }
 export default LabeledInput
