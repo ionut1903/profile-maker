@@ -45,7 +45,6 @@ function getValidJSON(json: Object): Object {
     const {
         selectedTemplate = 1,
         headings = {},
-        languages = [],
         basics = {},
         education = [],
         additionalData = [],
@@ -58,7 +57,6 @@ function getValidJSON(json: Object): Object {
     const validJSON = {
         selectedTemplate,
         headings,
-        languages,
         basics,
         education,
         work,

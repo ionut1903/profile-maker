@@ -62,6 +62,8 @@ type Award = {
 }
 
 type FormValues = {
+  additionalData: Array<any>;
+  languages: any;
   selectedTemplate: number,
   headings: Headings,
   basics: Basics,

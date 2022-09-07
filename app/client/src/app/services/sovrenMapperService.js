@@ -195,7 +195,6 @@ export const getMappedResumeData = (resumeData) => {
     finalResume.basics.location = location;
     finalResume.basics.fullAddress = fullAddress;
     finalResume.skills = competencies;
-    finalResume.languages = languages;
     finalResume.work = work;
     finalResume.education = education;
     finalResume.additionalData = additionalData;

@@ -17,7 +17,7 @@ const Label = styled.label`
 `
 
 const TextArea = styled(Field)`
-  height: 120px;
+  height: 320px;
   width: 100%;
   background: #202530;
   padding: 10px 0;

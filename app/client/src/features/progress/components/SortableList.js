@@ -80,7 +80,7 @@ const Item = styled.div`
 const SortableItem = SortableElement(({ value }) => {
   return (
     <Item>
-      <DragHandle disabled={value === 'profile' || value === 'templates'} />
+      <DragHandle disabled={value === 'profile'} />
       <NavItem to={`/generator/${value}`}>{titleCase(value)}</NavItem>
     </Item>
   )
@@ -91,7 +91,7 @@ const SortableList = SortableContainer(({ items }) => {
     <List>
       {items.map((value, index) => (
         <SortableItem
-          disabled={value === 'profile' || value === 'templates'}
+          disabled={value === 'profile'}
           key={`item-${index}`}
           index={index}
           value={value}

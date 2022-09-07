@@ -8,15 +8,11 @@ import { connect } from 'react-redux'
 import { Switch, Route, Redirect, type Location } from 'react-router-dom'
 import styled from 'styled-components'
 import {
-  Templates,
   Profile,
   Education,
   Work,
   Skills,
-  Projects,
-  Awards
 } from '.'
-import Preview from '../../preview/components'
 import { ScrollToTop } from '../../../common/components'
 import { generateResume } from '../../preview/actions'
 import { setProgress } from '../../progress/actions'
@@ -24,6 +20,8 @@ import { colors } from '../../../common/theme'
 import type { FormValues } from '../types'
 import type { State } from '../../../app/types'
 import type { Section } from '../../../common/types'
+import AllSkills from "./sections/AllSkills";
+import Languages from "./sections/Languages";
 
 const StyledForm = styled.form`
   width: 40%;
@@ -105,10 +103,8 @@ class Form extends Component<Props> {
             <Route exact path="/generator/education" component={Education} />
             <Route exact path="/generator/work" component={Work} />
             <Route exact path="/generator/skills" component={Skills} />
-            <Route exact path="/generator/projects" component={Projects} />
-            <Route exact path="/generator/awards" component={Awards} />
-            <Route exact path="/generator/mobile-preview" component={Preview} />
-            <Route exact path="/generator/templates" component={Templates} />
+            <Route exact path="/generator/techSkills" component={AllSkills} />
+            <Route exact path="/generator/languages" component={Languages} />
             <Route path="*" render={() => <h1 style={{ margin: 0 }}>404</h1>} />
           </Switch>
         </ScrollToTop>

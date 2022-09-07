@@ -16,7 +16,7 @@ type Headings = {
   education?: string,
   skills?: string,
   projects?: string,
-  awards?: string
+  test?: string
 }
 
 type Basics = {
