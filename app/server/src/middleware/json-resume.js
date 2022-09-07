@@ -47,7 +47,7 @@ function getValidJSON(json: Object): Object {
         headings = {},
         basics = {},
         education = [],
-        additionalData = [],
+        additionalData = [{name: 'Languages', value: []}, {name: 'Tech skills', value: []}],
         work = [{highlights: ['']}],
         skills = [{keywords: ['']}],
         projects = [{keywords: ['']}],

@@ -4,7 +4,7 @@ import {FlexBetweenContainer} from "./TemplateFlexComponents";
 
 const WorkExperienceTextContainer = ({children}) => {
     return (
-        <div style={{width: layout.sidebarWidth}}>{children}</div>
+        <div style={{width: layout.sidebarWidth, wordBreak: 'break-word'}}>{children}</div>
     )
 }
 

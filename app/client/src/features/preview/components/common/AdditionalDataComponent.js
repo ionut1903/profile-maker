@@ -12,28 +12,37 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
                 <SectionHeader>{'Additional Data'}</SectionHeader>
                 <div style={{width: layout.articleWidth}}>
                     {
-                        additionalData.map((additional, i) => {
+                        additionalData.map((additional) => {
                             return <div style={{paddingLeft: '30px'}}>
                                 <TitleSmallSection>{additional.name.toUpperCase()}</TitleSmallSection>
                                 {
                                     additional.name === 'Tech skills' ?
-                                        <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-between'}}>
+                                        <ul style={{
+                                            display: 'flex',
+                                            flexWrap: "wrap",
+                                            justifyContent: 'space-between'
+                                        }}>
                                             {
                                                 additional.value.map((val) => {
-                                                    return <ListElement extraStyle={{marginBottom: layout.marginSmallRight, width: '40%', wordWrap: 'break-word'}}
+                                                    return <ListElement extraStyle={{
+                                                        marginBottom: layout.marginSmallRight,
+                                                        width: '40%',
+                                                        wordWrap: 'break-word'
+                                                    }}
                                                                         key={val}>{val}</ListElement>
                                                 })
                                             }
                                         </ul>
                                         :
-                                    <ul>
-                                        {
-                                            additional.value.map((val) => {
-                                                return <ListElement extraStyle={{marginBottom: layout.marginSmallRight}}
-                                                                    key={val}>{val}</ListElement>
-                                            })
-                                        }
-                                    </ul>
+                                        <ul>
+                                            {
+                                                additional.value.map((val) => {
+                                                    return <ListElement
+                                                        extraStyle={{marginBottom: layout.marginSmallRight}}
+                                                        key={val}>{val}</ListElement>
+                                                })
+                                            }
+                                        </ul>
                                 }
                             </div>
                         })
