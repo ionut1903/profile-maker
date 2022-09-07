@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `
 
 const ButtonGroup = styled.div`
-  width: calc(100% / 3);
+  width: calc(100% / 4.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,7 +93,7 @@ const ToolButton = Button.extend`
 `
 
 const Pagination = styled.div`
-  width: calc(100% / 3);
+  width: calc(100% / 4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,26 +166,26 @@ function Toolbar({
           <Icon type="file_download" /> JSON
         </ToolButton>
       </ButtonGroup>
-      <Pagination>
-        <PageButton onClick={prevPage}>
-          <Icon type="arrow_back" />
-        </PageButton>
-        <PageNumber>Page {currPage}</PageNumber>
-        <PageButton onClick={nextPage}>
-          <Icon type="arrow_forward" />
-        </PageButton>
-      </Pagination>
-      <ButtonGroup hideOnMobile>
-        <ToolButton onClick={zoomOut}>
-          <Icon type="zoom_out" />
-        </ToolButton>
-        <ToolButton onClick={zoomIn}>
-          <Icon type="zoom_in" />
-        </ToolButton>
-        <ToolButton onClick={() => print(resumeURL)}>
-          <Icon type="print" />
-        </ToolButton>
-      </ButtonGroup>
+      {/*<Pagination>*/}
+      {/*  <PageButton onClick={prevPage}>*/}
+      {/*    <Icon type="arrow_back" />*/}
+      {/*  </PageButton>*/}
+      {/*  <PageNumber>Page {currPage}</PageNumber>*/}
+      {/*  <PageButton onClick={nextPage}>*/}
+      {/*    <Icon type="arrow_forward" />*/}
+      {/*  </PageButton>*/}
+      {/*</Pagination>*/}
+      {/*<ButtonGroup hideOnMobile>*/}
+      {/*  <ToolButton onClick={zoomOut}>*/}
+      {/*    <Icon type="zoom_out" />*/}
+      {/*  </ToolButton>*/}
+      {/*  <ToolButton onClick={zoomIn}>*/}
+      {/*    <Icon type="zoom_in" />*/}
+      {/*  </ToolButton>*/}
+      {/*  <ToolButton onClick={() => print(resumeURL)}>*/}
+      {/*    <Icon type="print" />*/}
+      {/*  </ToolButton>*/}
+      {/*</ButtonGroup>*/}
     </Wrapper>
   )
 }

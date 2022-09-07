@@ -29,7 +29,7 @@ const getWorkExperience = (positions) => {
         workMap.set(pos.Id, {
             id: pos.Id,
             name: (pos.Employer ? pos.Employer.Name.Raw : ''),
-            position: (pos.JobTitle ? pos.JobTitle.Raw : ''),
+            position: (pos.JobTitle ? pos.JobTitle.Raw.toUpperCase() : ''),
             url: '',
             startDate: (pos.StartDate ? pos.StartDate.Date : ''),
             endDate: (pos.EndDate ? pos.EndDate.Date : ''),
@@ -174,10 +174,10 @@ const getEducationAndCertifications = (resumeData) => {
 const getFullAddress = (location) => {
     const {countryCode, postalCode, address, city} = location;
     let fullAddress = '';
-    fullAddress += countryCode ? countryCode + ';' : '';
-    fullAddress += city ? city + ';' : '';
-    fullAddress += address ? address + ';' : '';
-    fullAddress += postalCode ? postalCode + ';' : '';
+    fullAddress += countryCode ? countryCode + ',' : '';
+    fullAddress += city ? city + ',' : '';
+    fullAddress += address ? address + ',' : '';
+    fullAddress += postalCode ? postalCode + ',' : '';
     return fullAddress;
 }
 

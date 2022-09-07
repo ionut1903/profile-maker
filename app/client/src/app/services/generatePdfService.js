@@ -1,14 +1,11 @@
-export const generatePDF = async (html) => {
+export const generatePDF = async (pages) => {
     const { fetch } = window;
-    let htmlWrapper = "<html><head></head><body>"
-    htmlWrapper += html.innerHTML;
-    htmlWrapper += "</body></html>";
     const request = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({html: htmlWrapper})
+        body: JSON.stringify({html: pages})
     }
     const response = await fetch('/api/htmltopdf', request);
 }

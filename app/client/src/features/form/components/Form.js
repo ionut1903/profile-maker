@@ -20,7 +20,7 @@ import { colors } from '../../../common/theme'
 import type { FormValues } from '../types'
 import type { State } from '../../../app/types'
 import type { Section } from '../../../common/types'
-import AllSkills from "./sections/AllSkills";
+import AllSkills from "./sections/TechSkills";
 import Languages from "./sections/Languages";
 
 const StyledForm = styled.form`

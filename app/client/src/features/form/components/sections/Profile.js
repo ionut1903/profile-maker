@@ -5,7 +5,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Section from './Section'
-import LabeledInput from '../fragments/LabeledInput'
+import LabeledInput, {TextareaComp} from '../fragments/LabeledInput'
 import type {FormValues} from '../../types'
 import type {State} from '../../../../app/types'
 
@@ -38,11 +38,12 @@ function Profile({
                 label="Address"
                 placeholder="New York, NY"
             />
-            <LabeledInput
-                name="basics.summary"
+            <TextareaComp
                 label="Professional profile description"
+                name={`basics.summary`}
+                defaultValue={basics.summary}
                 placeholder="Senior Software Developer"
-            />
+            ></TextareaComp>
             <LabeledInput
                 name="basics.shortDescription"
                 label="Short description"

@@ -14,7 +14,7 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
                     {
                         additionalData.map((additional, i) => {
                             return <div style={{paddingLeft: '30px'}}>
-                                <TitleSmallSection>{additional.name}</TitleSmallSection>
+                                <TitleSmallSection>{additional.name.toUpperCase()}</TitleSmallSection>
                                 {
                                     additional.name === 'Tech skills' ?
                                         <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-between'}}>

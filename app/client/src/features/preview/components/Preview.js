@@ -53,34 +53,6 @@ class Preview extends Component<Props, State> {
         isPrinting: false
     }
 
-    setPageCount = ({numPages}) => {
-        this.setState({numPages})
-    }
-
-    nextPage = () => {
-        this.setState(prevState => ({
-            currPage: Math.min(prevState.currPage + 1, this.state.numPages)
-        }))
-    }
-
-    prevPage = () => {
-        this.setState(prevState => ({
-            currPage: Math.max(prevState.currPage - 1, 1)
-        }))
-    }
-
-    zoomIn = () => {
-        this.setState(prevState => ({
-            scale: Math.min(prevState.scale + 0.1, initialScale)
-        }))
-    }
-
-    zoomOut = () => {
-        this.setState(prevState => ({
-            scale: Math.max(prevState.scale - 0.1, 0.5)
-        }))
-    }
-
     print = (url: string) => {
         if (/Android/i.test(navigator.userAgent) || this.state.isPrinting) {
             return
@@ -109,9 +81,91 @@ class Preview extends Component<Props, State> {
         (document.body: any).appendChild(frame)
     }
 
+    getDimensionInMM = (dimensionInPX) => {
+        return dimensionInPX * 2.54 / 96;
+    }
+
+    getEmptyHtmlPageContainers = (htmlElem, templateContainer) => {
+        let newHtmlTemplate = htmlElem.cloneNode(true);
+        newHtmlTemplate.removeChild(newHtmlTemplate.children[0])
+        //create an empty page container
+        let newHtmlTemplateContainer = templateContainer.cloneNode(true)
+        while (newHtmlTemplateContainer.hasChildNodes()) {
+            newHtmlTemplateContainer.removeChild(newHtmlTemplateContainer.lastChild);
+        }
+
+        return [newHtmlTemplate, newHtmlTemplateContainer];
+    }
+    splitResumeToA4Pages = (htmlElem) => {
+        const targetPageHeight = 29.7;
+        const templateContainer = htmlElem.children[0];
+        const pageElements = [];
+        let listOfElemHeights = []
+
+        for (let elem of templateContainer.children) {
+            pageElements.push(elem.cloneNode(true));
+            listOfElemHeights.push(this.getDimensionInMM(elem.offsetHeight));
+        }
+
+        const footer = pageElements[6];
+        const footerHeight = listOfElemHeights[6];
+        footer.style.position = 'fixed'
+        footer.style.bottom = 0;
+        const pageList = [];
+        let childIndexToAppend = 0;
+
+        while (childIndexToAppend < 7) {
+            let currentPageHeight = 0;
+            let futurePageHeight = 0;
+            let [newHtmlTemplate, newHtmlTemplateContainer] = this.getEmptyHtmlPageContainers(htmlElem, templateContainer);
+
+            while (currentPageHeight < targetPageHeight) {
+                //create an empty container to add pages
+                // futurePageHeight += listOfElemHeights[childIndexToAppend];
+                // if(futurePageHeight > targetPageHeight) {
+                //     // logic to split the component in multiple parts and add footer at the end
+                //     // - at the end reset the height;
+                //
+                //     break;
+                // }
+
+                if(childIndexToAppend > 6) {
+                    // todo : refactor after display resume correctly
+                    break;
+                }
+
+                // if(pageElements[childIndexToAppend] > targe){}
+
+                newHtmlTemplateContainer.appendChild(pageElements[childIndexToAppend]);
+                currentPageHeight += listOfElemHeights[childIndexToAppend];
+                const currentHeightToFooter = Math.ceil(targetPageHeight - currentPageHeight);
+
+                if (currentHeightToFooter < 0) {
+                    newHtmlTemplateContainer.removeChild(newHtmlTemplateContainer.lastChild);
+                    currentPageHeight = 100;
+                    // todo: remove after testing! - index 3 > height got to index 4
+                    newHtmlTemplateContainer.appendChild(footer);
+                    childIndexToAppend++;
+                    break;
+                }
+
+                if (currentHeightToFooter > 0 && currentHeightToFooter < 2) {
+                    newHtmlTemplateContainer.appendChild(footer);
+                    currentPageHeight = 100;
+                }
+
+                childIndexToAppend++;
+            }
+            newHtmlTemplate.appendChild(newHtmlTemplateContainer);
+            pageList.push(newHtmlTemplate.cloneNode(true).innerHTML);
+        }
+        return pageList;
+    }
+
     downloadPdfResume = async () => {
         const node = await document.querySelector("#componentToPrint");
-        generatePDF(node);
+        const pages = this.splitResumeToA4Pages(node);
+        generatePDF(pages);
     }
 
     render() {
@@ -133,12 +187,12 @@ class Preview extends Component<Props, State> {
                     resumeURL={resumeURL}
                     jsonURL={jsonURL}
                     downloadSource={downloadSource}
-                    currPage={currPage}
-                    prevPage={this.prevPage}
-                    nextPage={this.nextPage}
+                    // currPage={currPage}
+                    // prevPage={this.prevPage}
+                    // nextPage={this.nextPage}
                     print={this.print}
-                    zoomIn={this.zoomIn}
-                    zoomOut={this.zoomOut}
+                    // zoomIn={this.zoomIn}
+                    // zoomOut={this.zoomOut}
                 />
                 <TemplateComponent json={json}></TemplateComponent>
             </Wrapper>

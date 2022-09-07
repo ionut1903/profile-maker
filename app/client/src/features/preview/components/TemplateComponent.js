@@ -38,22 +38,46 @@ class TemplateComponent extends Component<Props> {
         if (!json) {
             json = basicJson;
         }
-        const fullAddress = json.basics.fullAddress? json.basics.fullAddress: 'NOT FOUND - ADD ADDRESS';
-        const dateOfBirth = json.basics.year? json.basics.year :  'NOT FOUND - Not in SOVREN JSON?';
-        const shortDescription = json.basics.shortDescription? json.basics.shortDescription :  'NOT FOUND - SHORT DESCRIPTION?';
+        const fullAddress = json.basics.fullAddress ? json.basics.fullAddress : 'NOT FOUND - ADD ADDRESS';
+        const dateOfBirth = json.basics.year ? json.basics.year : 'NOT FOUND - Not in SOVREN JSON?';
+        const shortDescription = json.basics.shortDescription ? json.basics.shortDescription.toUpperCase() : 'NOT FOUND - SHORT DESCRIPTION?';
         const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);
-        const fullName = json.basics.name;
+        const fullName = json.basics.name.toUpperCase();
         const certifications = [];
         json.education.forEach(edu => {
-            if(edu.area) {
+            if (edu.area) {
                 certifications.push(edu.area);
             }
         });
         const additionalData = json.additionalData;
-        const workList = json.work;
+        const languages = [];
+        const techSkills = [];
+        if (json.additionalData && json.additionalData.length === 2) {
+            json.additionalData[0].value.forEach(val => {
+                if (val) {
+                    languages.push(val);
+                }
+            });
+            json.additionalData[0].value = languages;
+            json.additionalData[1].value.forEach(val => {
+                if (val) {
+                    techSkills.push(val);
+                }
+            });
+            json.additionalData[1].value = techSkills;
+        }
 
-        const coreCompetencies = json.skills.map(skill => skill.name);
+        const workList = json.work;
+        workList.forEach((w) => {
+            w.position = w.position.toUpperCase();
+        });
+        const coreCompetencies = [];
+        json.skills.forEach(skill => {
+            if (skill.name) {
+                coreCompetencies.push(skill.name);
+            }
+        });
         const description = json.basics.summary;
         return {
             additionalData,
@@ -104,11 +128,11 @@ class TemplateComponent extends Component<Props> {
                                                           list={coreCompetencies}/>
                     </section>
                     <section>
-                        <SectionTitleAndListComponent title={'Education & Certificates'}
-                                                      list={certifications}/>
+                        <AdditionalDataComponent additionalData={additionalData}></AdditionalDataComponent>
                     </section>
                     <section>
-                        <AdditionalDataComponent additionalData={additionalData}></AdditionalDataComponent>
+                        <SectionTitleAndListComponent title={'Education & Certificates'}
+                                                      list={certifications}/>
                     </section>
                     <section style={{background: colors.white}}>
                         <SectionHeader extraStyles={{
@@ -125,7 +149,6 @@ class TemplateComponent extends Component<Props> {
                     </section>
                     <FooterResume/>
                 </TemplateContainer>
-
             </div>
 
         )

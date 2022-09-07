@@ -6,8 +6,10 @@ import Router from 'koa-router'
 import formidable from 'koa2-formidable'
 import {generatePDF, generateSourceCode} from '../generator'
 import {sanitizer, jsonResume} from '../middleware'
+
 const pupeteer = require('puppeteer');
 const router = new Router({prefix: '/api'})
+const PDFMerger = require("pdf-merger-js")
 
 /**
  * Router middleware
@@ -51,19 +53,33 @@ router.post('/upload', async ({request, response}) => {
 router.post('/htmltopdf', async ({request, response}) => {
     try {
         const browser = await pupeteer.launch();
-        const page = await browser.newPage();
-        // const  website_url = 'https://www.robinwieruch.de/';
-        // await page.goto(website_url, { waitUntil: 'networkidle0' });
-        await page.setContent(request.body.html);
-        await page.emulateMediaType('screen');
-        await page.pdf({
-            path: 'resume.pdf',
-            format: 'A4',
-            margin: { top: '10px', right: '10px', bottom: '10px', left: '10px' },
-            printBackground: true
-        });
+        const pagePaths = []
+        for (let i = 0; i < request.body.html.length; i++) {
+            const page = await browser.newPage();
+            await page.setContent(request.body.html[i]);
+            await page.emulateMediaType('screen');
+            const path = `page${i}.pdf`;
+            await page.pdf({
+                path: path,
+                format: 'A4',
+                margin: {top: '10px', right: '10px', bottom: '10px', left: '10px'},
+                printBackground: true,
+            });
+
+            pagePaths.push(path);
+        }
+
         await browser.close();
+        console.log(pagePaths);
+        const merger = new PDFMerger();
+
+        for (let i=0; i< pagePaths.length; i++) {
+            console.log(pagePaths[i]);
+            await merger.add(pagePaths[i]);
+        }
+
         response.body = 'Success'
+        await merger.save('resume.pdf');
     } catch (error) {
         console.error(error);
     }

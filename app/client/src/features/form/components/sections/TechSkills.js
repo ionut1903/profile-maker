@@ -25,7 +25,7 @@ type Props = {
     removeSkillKeyword: (index: number) => void
 }
 
-function AllSkills({
+function TechSkills({
                        additionalData,
                        addSkill,
                        removeSkill,
@@ -73,4 +73,4 @@ const mapActions = {
     removeSkillKeyword
 }
 
-export default connect(mapState, mapActions)(AllSkills)
+export default connect(mapState, mapActions)(TechSkills)
