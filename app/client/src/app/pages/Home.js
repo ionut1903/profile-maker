@@ -326,7 +326,7 @@ class Home extends Component<Props> {
           <LeftSection>
             <Logo big />
             <PrimaryButton to="/generator" onClick={this.clearState}>
-              Profil manuell erstellen
+              Profile
             </PrimaryButton>
             {hasPrevSession && (
               <Button to="/generator" onClick={clearPreview}>
@@ -354,7 +354,7 @@ class Home extends Component<Props> {
               </HelpButton>
             </ImportRow>
             <ImportRow>
-              <Label htmlFor="import-PDF">Automatic Profile</Label>
+              <Label htmlFor="import-PDF">Import PDF resume</Label>
               <Input
                 id="import-PDF"
                 type="file"

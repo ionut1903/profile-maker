@@ -6,6 +6,8 @@ import {ListElement} from "./ListComponent";
 import {TitleSmallSection} from "./TitleSmallSection";
 
 export const AdditionalDataComponent = ({additionalData, children}) => {
+    additionalData = additionalData? additionalData : [];
+    // todo: see where it is set to undefined!!!
     return (
         <MainColorContainer>
             <FlexBetweenContainer>
