@@ -3,7 +3,9 @@ import {FlexBetweenContainer} from "./TemplateFlexComponents";
 import {layout, MainColorContainer} from "../TemplateCommonComponents";
 import {SectionHeader} from "./SectionHeader";
 import {ListComponent, ListElement} from "./ListComponent";
-
+const marginBottomZero = {
+    marginBottom: 0
+}
 export const SectionTitleAndFlexListComponent = ({title, list}) => {
     return (
         <MainColorContainer>
@@ -14,6 +16,7 @@ export const SectionTitleAndFlexListComponent = ({title, list}) => {
                     justifyContent: 'space-between',
                     width: layout.articleWidth,
                     flexWrap: 'wrap',
+                    ...marginBottomZero
                 }}>
                     {
                         list.map((elem: string) => {

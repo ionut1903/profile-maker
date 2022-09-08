@@ -32,7 +32,7 @@ const WorkExperienceContainer = ({children}) => {
 
 const HighlightedTitle = ({children}) => {
     return (
-        <h4 style={{fontStyle: 'italic', fontWeight: font.bold}}>{children}</h4>
+        <h4 style={{fontStyle: 'italic', fontWeight: font.bold, fontFamily: font.fontFamilyBold}}>{children}</h4>
     )
 }
 

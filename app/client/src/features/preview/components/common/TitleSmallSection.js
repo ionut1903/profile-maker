@@ -5,7 +5,8 @@ export const TitleSmallSection = ({children}) => {
     return (
         <h4 style={{
             margin: `0 0 ${layout.padContainer} 0`,
-            fontWeight: font.bold
+            fontWeight: font.bold,
+            fontFamily: font.fontFamilyBold
         }}>{children}</h4>
     )
 }

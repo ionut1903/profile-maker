@@ -16,7 +16,6 @@ const initialState = {
         'work',
         'skills',
         'languages',
-        'all skills'
     ]
 }
 

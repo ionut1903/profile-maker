@@ -7,7 +7,9 @@ export const colors = {
 };
 
 export const font = {
-    contentFontSize: '13px',
+    fontFamily: 'Century Gothic',
+    fontFamilyBold: 'Century Gothic Bold',
+    contentFontSize: '12px',
     titleFontSize: '25px',
     subTitleFontSize: '18px',
     bold: 700,
@@ -15,7 +17,7 @@ export const font = {
 };
 export const layout = {
     headerHeight: '200px',
-    padContainer: '10px',
+    padContainer: '8px',
     marginSmallRight: '5px',
     border: '1px solid lightgray',
     sidebarWidth: '25%',
@@ -26,7 +28,7 @@ export const TemplateContainer = (props) => {
     return (
         <div style={{
             fontSize: font.contentFontSize,
-            fontFamily: 'Roboto',
+            fontFamily: font.fontFamily,
             color: colors.white,
             height: 'auto',
             background: colors.white,

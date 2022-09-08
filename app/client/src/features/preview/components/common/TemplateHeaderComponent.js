@@ -49,6 +49,7 @@ export const HeaderTitle = ({extraStyle, children}) => {
         <h2 style={{
             margin: 0,
             fontWeight: font.bold,
+            fontFamily: font.fontFamilyBold,
             fontSize: font.titleFontSize,
             textAlign: 'end', ...extraStyle
         }}>{children}</h2>

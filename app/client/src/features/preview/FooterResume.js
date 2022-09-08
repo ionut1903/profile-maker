@@ -4,9 +4,15 @@ import {colors} from "./components/TemplateCommonComponents";
 const noMargin = {
     margin: 0
 }
+
+const footer = {
+    margin: '0 auto',
+    width: '88%'
+}
+
 export const FooterResume = () => {
     return (
-        <footer>
+        <footer style={footer}>
             <FlexBetweenContainer>
                 <div>
                     <img src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
