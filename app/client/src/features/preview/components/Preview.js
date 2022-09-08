@@ -93,40 +93,64 @@ class Preview extends Component<Props, State> {
         return htmlElemClone;
     }
 
-    createPage = () => {
-
-    }
-
     splitWorkComponents = (work, footer) => {
         const targetPageHeight = 29.7;
         const workPages = [];
-        if (work.offsetHeight < targetPageHeight) {
+        let currentPageHeight = 4;
+        const totalWorkPageHeight = this.getDimensionInMM(work.offsetHeight) + currentPageHeight;
+        let [pageElements, listOfElemHeights] = this.getHeightAndCloneOfElement(work.children);
+        const header = pageElements[0];
+        const workHeaderHeight = listOfElemHeights[0];
+
+        if (totalWorkPageHeight < targetPageHeight) {
             workPages.push(work);
             return workPages;
         }
+        let workEmptyContainer = this.getEmptyHtmlContainer(work);
+        let heightLeftFromPage = targetPageHeight - currentPageHeight;
 
-        let [pageElements, listOfElemHeights] = this.getHeightAndCloneOfElement(work.children);
-        const heightPortion = 22.5;
-        const currentPageHeight = 0;
-        const workEmptyContainer = this.getEmptyHtmlContainer(work);
-
-        let workHeader = null;
-        if (work && work.length > 0) {
-            workHeader = work[0];
-        }
-
-        if (workHeader && work.length > 1) {
-            if (workPages.length === 0) {
-                workEmptyContainer.appendChild(workHeader);
+        for (let i = 1; i < pageElements.length; i++) {
+            let currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
+            if (i === 1) {
+                workEmptyContainer.appendChild(header);
+                currentPageHeight += workHeaderHeight;
+                heightLeftFromPage = targetPageHeight - currentPageHeight;
             }
 
-            for (let i = 1; i < pageElements.length; i++) {
-                // take first elem and add it to the page
-                if (currentPageHeight < targetPageHeight) {
+            if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
+                console.log(`work component from index: ${i} is bigger than the page`);
+            }
 
-                }
+            currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
+
+            if (currentPageHeightAndNextComp < targetPageHeight && heightLeftFromPage > listOfElemHeights[i]) {
+                workEmptyContainer.appendChild(pageElements[i]);
+                currentPageHeight = currentPageHeightAndNextComp;
+                heightLeftFromPage = targetPageHeight - currentPageHeight;
+            }
+
+            // if no element left add footer to last page and break the loop
+            if (!pageElements[i + 1]) {
+                workEmptyContainer.appendChild(footer);
+                workPages.push(workEmptyContainer);
+                // workPages.push(currentPageHeight);
+                break;
+            }
+
+            //if there exists another element and it does not enters into the current page
+            // add footer to the current page and reset data to initial values and go again
+            if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
+                // add footer to the end of the page
+                workEmptyContainer.appendChild(footer);
+                workPages.push(workEmptyContainer.cloneNode(true));
+                // reset to initial values
+                workEmptyContainer = this.getEmptyHtmlContainer(work);
+                currentPageHeight = 4;
+                heightLeftFromPage = targetPageHeight - currentPageHeight
+                continue;
             }
         }
+        return workPages;
     }
 
     getHeightAndCloneOfElement = (elements) => {
@@ -144,28 +168,30 @@ class Preview extends Component<Props, State> {
         footer.style.bottom = 0;
     }
 
-    splitResumeToA4Pages = (htmlElem) => {
+    splitResumeToA4Pages = (htmlElem) =>
+    {
         const targetPageHeight = 29.7;
         const templateContainer = htmlElem.children[0];
+        const work = templateContainer.children[5];
         let [pageElements, listOfElemHeights] = this.getHeightAndCloneOfElement(templateContainer.children);
 
         const footer = pageElements[6];
-        const work = pageElements[5];
-        const footerHeight = listOfElemHeights[6];
         this.setFooterStyle(footer);
-        const pagesToPrint = [];
-        // this.splitWorkComponents(work);
-
+        let pagesToPrint = [];
 
         let newHtmlTemplate = this.getEmptyHtmlContainer(htmlElem);
         let newHtmlTemplateContainer = this.getEmptyHtmlContainer(templateContainer);
         let currentPageHeight = 4;
         let heightLeftFromPage = targetPageHeight - currentPageHeight;
         const pageHeights = [];
+        let workHistoryPages = [];
         for (let i = 0; i < pageElements.length - 1; i++) {
-
             if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
                 console.log(`component from index: ${i} needs to be split`);
+                if (i === 5) {
+                    //    work history
+                    workHistoryPages = this.splitWorkComponents(work, footer)
+                }
             }
 
             const currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
@@ -202,6 +228,14 @@ class Preview extends Component<Props, State> {
         }
         if (newHtmlTemplateContainer.children.length > 0) {
             pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
+        }
+
+        for(let elem of workHistoryPages) {
+            const newHtmlTemplate = this.getEmptyHtmlContainer(htmlElem);
+            const newHtmlTemplateContainer = this.getEmptyHtmlContainer(templateContainer);
+            newHtmlTemplateContainer.appendChild(elem);
+            newHtmlTemplate.appendChild(newHtmlTemplateContainer);
+            pagesToPrint.push(newHtmlTemplate.innerHTML);
         }
 
         return pagesToPrint;
