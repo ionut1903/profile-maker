@@ -10,6 +10,7 @@ import {sanitizer, jsonResume} from '../middleware'
 const pupeteer = require('puppeteer');
 const router = new Router({prefix: '/api'})
 const PDFMerger = require("pdf-merger-js")
+const fs = require('fs')
 
 /**
  * Router middleware
@@ -73,13 +74,16 @@ router.post('/htmltopdf', async ({request, response}) => {
         console.log(pagePaths);
         const merger = new PDFMerger();
 
-        for (let i=0; i< pagePaths.length; i++) {
+        for (let i = 0; i < pagePaths.length; i++) {
             console.log(pagePaths[i]);
             await merger.add(pagePaths[i]);
         }
 
-        response.body = 'Success'
         await merger.save('resume.pdf');
+        for (let i = 0; i < pagePaths.length; i++) {
+            fs.unlinkSync(pagePaths[i]);
+        }
+        response.body = 'Success'
     } catch (error) {
         console.error(error);
     }

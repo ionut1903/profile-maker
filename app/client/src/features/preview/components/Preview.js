@@ -168,11 +168,89 @@ class Preview extends Component<Props, State> {
         footer.style.bottom = 0;
     }
 
-    splitResumeToA4Pages = (htmlElem) =>
-    {
+    getAdditionalDataHtml = (additionalData, listOfElements, isFirstPage) => {
+        // the order of initialization matters!!
+        let additionalDataHtml = additionalData.cloneNode(true);
+        const additionalDataHeader = additionalDataHtml.children[0].children[0].children[0];
+        const additionalDataListsContainer = additionalData.children[0].children[0].children[1].cloneNode(true);
+
+        const additionalDataListsContainerEmpty = this.getEmptyHtmlContainer(additionalDataListsContainer);
+
+        const languageListContainer = additionalDataListsContainer.children[0];
+        const techSkillTitle = additionalDataListsContainer.children[1].children[0];
+        const ulEmpty = this.getEmptyHtmlContainer(additionalDataListsContainer.children[1].children[1]);
+        const techSkillEmptyListContainer = this.getEmptyHtmlContainer(additionalDataListsContainer.children[1]);
+
+        const additionalDataEmpty = this.getEmptyHtmlContainer(additionalDataHtml.children[0].children[0]);
+
+        if (isFirstPage) {
+            techSkillEmptyListContainer.appendChild(techSkillTitle);
+            additionalDataListsContainerEmpty.appendChild(languageListContainer);
+            additionalDataEmpty.appendChild(additionalDataHeader);
+        } else {
+            additionalDataEmpty.appendChild(document.createElement('h2'));
+        }
+
+        for (let elem of listOfElements) {
+            ulEmpty.appendChild(elem.cloneNode(true));
+        }
+
+        techSkillEmptyListContainer.appendChild(ulEmpty);
+        additionalDataListsContainerEmpty.appendChild(techSkillEmptyListContainer);
+        additionalDataEmpty.appendChild(additionalDataListsContainerEmpty);
+
+        const additionalDataContentEmpty = this.getEmptyHtmlContainer(additionalDataHtml.children[0].children[0]);
+        const additionalDataContainerEmpty = this.getEmptyHtmlContainer(additionalDataHtml.children[0]);
+        additionalDataContentEmpty.appendChild(additionalDataEmpty);
+        additionalDataContainerEmpty.appendChild(additionalDataContentEmpty);
+
+        return additionalDataContainerEmpty;
+    }
+
+    splitAdditionalData(additionalData, remainingPageHeight) {
+        let additionalDataHeight = this.getDimensionInMM(additionalData.offsetHeight);
+        // take heights of the list elements
+        const listElements = additionalData.children[0].children[0].children[1].children[1].children[1].children;
+        const [liElements, listOfElemHeights] = this.getHeightAndCloneOfElement(listElements)
+        //create clone of the html containers
+        const cloneOfAdditionalData = additionalData.cloneNode(true);
+
+        const elementsToAddToNextPage = [];
+        let index = liElements.length - 1;
+        let isOddNumberOfElem = false;
+        while (remainingPageHeight - 0.5 < additionalDataHeight) {
+            if (liElements.length % 2 === 0 || isOddNumberOfElem) {
+                //    take 2 elements at a time from the end of the array
+                elementsToAddToNextPage.push(liElements[index].cloneNode(true));
+                index--;
+                elementsToAddToNextPage.push(liElements[index].cloneNode(true));
+                index--;
+                additionalDataHeight = additionalDataHeight - listOfElemHeights[index];
+            } else {
+                // take one element at a time from
+                isOddNumberOfElem = true;
+                elementsToAddToNextPage.push(listElements[index].cloneNode(true));
+                index--;
+                additionalDataHeight = additionalDataHeight - listOfElemHeights[index];
+            }
+        }
+        const elementsToAddToCurrentPage = [];
+
+        for (let i = 0; i <= index; i++) {
+            elementsToAddToCurrentPage.push(listElements[i]);
+        }
+
+        const firstPageAdditionalData = this.getAdditionalDataHtml(cloneOfAdditionalData, elementsToAddToCurrentPage, true);
+        const secondPageAdditionalData = this.getAdditionalDataHtml(additionalData.cloneNode(true), elementsToAddToNextPage);
+        // set each part to html and return
+        return [firstPageAdditionalData, secondPageAdditionalData];
+    }
+
+    splitResumeToA4Pages = (htmlElem) => {
         const targetPageHeight = 29.7;
         const templateContainer = htmlElem.children[0];
         const work = templateContainer.children[5];
+        const additionalData = templateContainer.children[3];
         let [pageElements, listOfElemHeights] = this.getHeightAndCloneOfElement(templateContainer.children);
 
         const footer = pageElements[6];
@@ -185,7 +263,16 @@ class Preview extends Component<Props, State> {
         let heightLeftFromPage = targetPageHeight - currentPageHeight;
         const pageHeights = [];
         let workHistoryPages = [];
+        let componentOnSecondPage = null;
+
         for (let i = 0; i < pageElements.length - 1; i++) {
+            if(componentOnSecondPage) {
+                // add secondPage
+                newHtmlTemplateContainer.appendChild(componentOnSecondPage);
+                componentOnSecondPage = null;
+                continue;
+            }
+
             if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
                 console.log(`component from index: ${i} needs to be split`);
                 if (i === 5) {
@@ -213,6 +300,14 @@ class Preview extends Component<Props, State> {
             //if there exists another element and it does not enters into the current page
             // add footer to the current page and reset data to initial values and go again
             if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
+                // split additional data into 2 parts
+                if (i + 1 === 3) {
+                    const [firstPageAdditionalData, secondPageAdditionalData] = this.splitAdditionalData(additionalData, heightLeftFromPage);
+                    newHtmlTemplateContainer.appendChild(firstPageAdditionalData);
+                    componentOnSecondPage = secondPageAdditionalData;
+                    // return also the height of the remaining appData
+                }
+
                 // add footer to the end of the page
                 newHtmlTemplateContainer.appendChild(footer);
                 newHtmlTemplate.appendChild(newHtmlTemplateContainer);
@@ -230,7 +325,7 @@ class Preview extends Component<Props, State> {
             pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
         }
 
-        for(let elem of workHistoryPages) {
+        for (let elem of workHistoryPages) {
             const newHtmlTemplate = this.getEmptyHtmlContainer(htmlElem);
             const newHtmlTemplateContainer = this.getEmptyHtmlContainer(templateContainer);
             newHtmlTemplateContainer.appendChild(elem);
@@ -245,6 +340,7 @@ class Preview extends Component<Props, State> {
         const node = await document.querySelector("#componentToPrint");
         const pages = this.splitResumeToA4Pages(node);
         generatePDF(pages);
+        // todo return and url to download
     }
 
     render() {
@@ -256,7 +352,6 @@ class Preview extends Component<Props, State> {
             hideOnMobile,
             json
         } = this.props
-        const {currPage} = this.state
 
         return (
             <Wrapper hideOnMobile={hideOnMobile}>
