@@ -72,8 +72,6 @@ router.post('/htmltopdf', async ({request, response}) => {
         await browser.close();
         const merger = new PDFMerger();
 
-        const resumeName = 'resume.pdf';
-
         for (let i = 0; i < pagePaths.length; i++) {
             await merger.add(pagePaths[i]);
         }
