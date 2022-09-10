@@ -1,5 +1,5 @@
 export const generatePDF = async (pages) => {
-    const { fetch } = window;
+    const {fetch} = window;
     const request = {
         method: 'POST',
         headers: {
@@ -7,5 +7,16 @@ export const generatePDF = async (pages) => {
         },
         body: JSON.stringify({html: pages})
     }
-    const response = await fetch('/api/htmltopdf', request);
+    const pdfBuffer = await fetch('/api/htmltopdf', request);
+
+    pdfBuffer.blob().then(res => {
+        const fileURL = window.URL.createObjectURL(res);
+        let alink = document.createElement('a');
+        alink.href = fileURL;
+        alink.download = 'resume.pdf';
+        alink.click();
+    }).catch(err => {
+        console.error(err);
+    })
+
 }

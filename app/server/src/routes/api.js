@@ -66,16 +66,13 @@ router.post('/htmltopdf', async ({request, response}) => {
                 margin: {top: '10px', right: '10px', bottom: '10px', left: '10px'},
                 printBackground: true,
             });
-
             pagePaths.push(path);
         }
 
         await browser.close();
-        console.log(pagePaths);
         const merger = new PDFMerger();
 
         for (let i = 0; i < pagePaths.length; i++) {
-            console.log(pagePaths[i]);
             await merger.add(pagePaths[i]);
         }
 
@@ -83,10 +80,12 @@ router.post('/htmltopdf', async ({request, response}) => {
         for (let i = 0; i < pagePaths.length; i++) {
             fs.unlinkSync(pagePaths[i]);
         }
-        response.body = 'Success'
+        const src = fs.createReadStream('resume.pdf');
+        response.set("content-type", "application/pdf");
+        response.body = src;
+
     } catch (error) {
         console.error(error);
     }
-
 })
 export default router

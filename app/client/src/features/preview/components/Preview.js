@@ -50,7 +50,8 @@ class Preview extends Component<Props, State> {
         numPages: 1,
         currPage: 1,
         scale: initialScale,
-        isPrinting: false
+        isPrinting: false,
+        pdfUrl: ''
     }
 
     print = (url: string) => {
@@ -218,7 +219,8 @@ class Preview extends Component<Props, State> {
         const elementsToAddToNextPage = [];
         let index = liElements.length - 1;
         let isOddNumberOfElem = false;
-        while (remainingPageHeight - 0.5 < additionalDataHeight) {
+        let secondComponentHeight = additionalDataHeight;
+        while (remainingPageHeight < additionalDataHeight) {
             if (liElements.length % 2 === 0 || isOddNumberOfElem) {
                 //    take 2 elements at a time from the end of the array
                 elementsToAddToNextPage.push(liElements[index].cloneNode(true));
@@ -234,6 +236,7 @@ class Preview extends Component<Props, State> {
                 additionalDataHeight = additionalDataHeight - listOfElemHeights[index];
             }
         }
+        secondComponentHeight = secondComponentHeight - additionalDataHeight;
         const elementsToAddToCurrentPage = [];
 
         for (let i = 0; i <= index; i++) {
@@ -243,11 +246,11 @@ class Preview extends Component<Props, State> {
         const firstPageAdditionalData = this.getAdditionalDataHtml(cloneOfAdditionalData, elementsToAddToCurrentPage, true);
         const secondPageAdditionalData = this.getAdditionalDataHtml(additionalData.cloneNode(true), elementsToAddToNextPage);
         // set each part to html and return
-        return [firstPageAdditionalData, secondPageAdditionalData];
+        return [firstPageAdditionalData, secondPageAdditionalData, secondComponentHeight];
     }
 
     splitResumeToA4Pages = (htmlElem) => {
-        const targetPageHeight = 29.7;
+        const targetPageHeight = 28.9;
         const templateContainer = htmlElem.children[0];
         const work = templateContainer.children[5];
         const additionalData = templateContainer.children[3];
@@ -259,33 +262,35 @@ class Preview extends Component<Props, State> {
 
         let newHtmlTemplate = this.getEmptyHtmlContainer(htmlElem);
         let newHtmlTemplateContainer = this.getEmptyHtmlContainer(templateContainer);
-        let currentPageHeight = 4;
+        const initialCurrentPageHeight = 3.4;
+        let currentPageHeight = initialCurrentPageHeight;
         let heightLeftFromPage = targetPageHeight - currentPageHeight;
-        const pageHeights = [];
         let workHistoryPages = [];
         let componentOnSecondPage = null;
+        let secondComponentHeight = 0;
 
         for (let i = 0; i < pageElements.length - 1; i++) {
             if(componentOnSecondPage) {
                 // add secondPage
                 newHtmlTemplateContainer.appendChild(componentOnSecondPage);
                 componentOnSecondPage = null;
+                currentPageHeight = currentPageHeight + secondComponentHeight;
+                heightLeftFromPage = targetPageHeight - currentPageHeight;
                 continue;
             }
 
             if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
                 console.log(`component from index: ${i} needs to be split`);
                 if (i === 5) {
-                    //    work history
                     workHistoryPages = this.splitWorkComponents(work, footer)
                 }
             }
 
-            const currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
+            const currentPageHeightWithNextComp = currentPageHeight + listOfElemHeights[i];
 
-            if (currentPageHeightAndNextComp < targetPageHeight && heightLeftFromPage > listOfElemHeights[i]) {
+            if (currentPageHeightWithNextComp < targetPageHeight && heightLeftFromPage > listOfElemHeights[i]) {
                 newHtmlTemplateContainer.appendChild(pageElements[i]);
-                currentPageHeight = currentPageHeightAndNextComp;
+                currentPageHeight = currentPageHeightWithNextComp;
                 heightLeftFromPage = targetPageHeight - currentPageHeight;
             }
 
@@ -293,7 +298,6 @@ class Preview extends Component<Props, State> {
             if (!pageElements[i + 1]) {
                 newHtmlTemplateContainer.appendChild(footer);
                 newHtmlTemplate.appendChild(newHtmlTemplateContainer);
-                pageHeights.push(currentPageHeight);
                 break;
             }
 
@@ -301,22 +305,22 @@ class Preview extends Component<Props, State> {
             // add footer to the current page and reset data to initial values and go again
             if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
                 // split additional data into 2 parts
-                if (i + 1 === 3) {
-                    const [firstPageAdditionalData, secondPageAdditionalData] = this.splitAdditionalData(additionalData, heightLeftFromPage);
+                if (i + 1 === 3 && heightLeftFromPage < listOfElemHeights[i+1]) {
+                    const [firstPageAdditionalData, secondPageAdditionalData, secondCompHeight] = this.splitAdditionalData(additionalData, heightLeftFromPage);
                     newHtmlTemplateContainer.appendChild(firstPageAdditionalData);
                     componentOnSecondPage = secondPageAdditionalData;
-                    // return also the height of the remaining appData
+                    secondComponentHeight = secondCompHeight;
+                    currentPageHeight += heightLeftFromPage;
                 }
 
                 // add footer to the end of the page
                 newHtmlTemplateContainer.appendChild(footer);
                 newHtmlTemplate.appendChild(newHtmlTemplateContainer);
                 pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
-                pageHeights.push(currentPageHeight);
                 // reset to initial values
                 newHtmlTemplate = this.getEmptyHtmlContainer(htmlElem);
                 newHtmlTemplateContainer = this.getEmptyHtmlContainer(templateContainer);
-                currentPageHeight = 3.5;
+                currentPageHeight = initialCurrentPageHeight;
                 heightLeftFromPage = targetPageHeight - currentPageHeight
                 continue;
             }
@@ -339,13 +343,16 @@ class Preview extends Component<Props, State> {
     downloadPdfResume = async () => {
         const node = await document.querySelector("#componentToPrint");
         const pages = this.splitResumeToA4Pages(node);
-        generatePDF(pages);
+        const pdfURL = generatePDF(pages);
+        this.setState({
+            pdfURL: pdfURL
+        })
         // todo return and url to download
     }
 
     render() {
+        const {pdfUrl} = this.state;
         const {
-            resumeURL,
             jsonURL,
             status,
             downloadSource,
@@ -358,15 +365,10 @@ class Preview extends Component<Props, State> {
                 <button onClick={this.downloadPdfResume}>Download Pdf</button>
                 <LoadingBar status={status}/>
                 <Toolbar
-                    resumeURL={resumeURL}
+                    resumeURL={pdfUrl}
                     jsonURL={jsonURL}
                     downloadSource={downloadSource}
-                    // currPage={currPage}
-                    // prevPage={this.prevPage}
-                    // nextPage={this.nextPage}
                     print={this.print}
-                    // zoomIn={this.zoomIn}
-                    // zoomOut={this.zoomOut}
                 />
                 <TemplateComponent json={json}></TemplateComponent>
             </Wrapper>
