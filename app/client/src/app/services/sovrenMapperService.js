@@ -19,16 +19,10 @@ const getWorkExperience = (positions) => {
     const positionIdList = [];
     positions.forEach(pos => {
         positionIdList.push(pos.Id);
-        // let employer = '';
-        // if(pos.Employer) {
-        //     let letters = pos.Employer.Name.Raw.split();
-        //     letters[0] = letters[0].toUpperCase();
-        //     letters = ;
-        //     employer = letters.join()
-        // }
+        const companyName = pos.Employer ? (pos.Employer.Name ? pos.Employer.Name.Raw : '') : '';
         workMap.set(pos.Id, {
             id: pos.Id,
-            name: (pos.Employer ? pos.Employer.Name.Raw : ''),
+            name: companyName,
             position: (pos.JobTitle ? pos.JobTitle.Raw.toUpperCase() : ''),
             url: '',
             startDate: (pos.StartDate ? pos.StartDate.Date : ''),
@@ -37,7 +31,7 @@ const getWorkExperience = (positions) => {
             highlights: [
                 (pos.Description ? pos.Description : '')
             ],
-            company: (pos.Employer ? pos.Employer.Name.Raw : '')
+            company: companyName
         });
     });
     sortListOfPositions(positionIdList);
@@ -84,8 +78,6 @@ const getAllTechSkills = (skillsData) => {
         }
     });
 
-    console.log(skillsSet);
-    console.log(lowerCaseSkillsSet);
     if (skillsSet.size === 0) {
         return ['NOT FOUND - SKILLS'];
     }
@@ -108,11 +100,13 @@ const getLanguages = (langCompetencies) => {
 const getEducation = (education) => {
     const educationList = [];
     education.EducationDetails.forEach((edDetail) => {
+        const educationDegree = edDetail.Degree ? edDetail.Degree : null;
+        const studyType = educationDegree ? (edDetail.Degree.Name ? edDetail.Degree.Name.Raw : '') : '';
         educationList.push({
             institution: edDetail.SchoolName ? edDetail.SchoolName.Normalized : 'NOT FOUND',
             url: '',
             area: edDetail.Text,
-            studyType: edDetail.Degree.Name ? edDetail.Degree.Name.Raw : '',
+            studyType: studyType,
             startDate: '',
             endDate: edDetail.LastEducationDate ? edDetail.LastEducationDate.Date : '',
             score: '',
@@ -182,6 +176,12 @@ const getFullAddress = (location) => {
 }
 
 export const getMappedResumeData = (resumeData) => {
+    debugger
+    if (!resumeData) {
+        // show error
+        console.error("Could not parse resume, or resume was made with images");
+        return;
+    }
     const finalResume = getResumeObject(resumeData);
     const location = getLocation(resumeData.ContactInformation.Location);
     const languages = getLanguages(resumeData.LanguageCompetencies);
@@ -198,6 +198,5 @@ export const getMappedResumeData = (resumeData) => {
     finalResume.work = work;
     finalResume.education = education;
     finalResume.additionalData = additionalData;
-    console.log("FINAL RESUME:", finalResume);
     return finalResume;
 }

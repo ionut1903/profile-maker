@@ -1,9 +1,11 @@
-import {getCertification, getLanguages, getLocation, getWorkExperience} from "./sovrenMapperService";
+import {getLanguages, getLocation, getWorkExperience} from "./sovrenMapperService";
 
 export const getResumeObject = (resumeData) => {
+    const name = resumeData.ContactInformation.CandidateName ?
+        resumeData.ContactInformation.CandidateName.FormattedName : 'NOT FOUND - NAME';
     return {
         basics: {
-            name: resumeData.ContactInformation.CandidateName.FormattedName,
+            name: name,
             label: '',
             image: '',
             email: resumeData.ContactInformation.EmailAddresses,

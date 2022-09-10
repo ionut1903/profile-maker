@@ -39,7 +39,7 @@ class TemplateComponent extends Component<Props> {
             json = basicJson;
         }
         const fullAddress = json.basics.fullAddress ? json.basics.fullAddress : 'NOT FOUND - ADD ADDRESS';
-        const dateOfBirth = json.basics.year ? json.basics.year : 'NOT FOUND - Not in SOVREN JSON?';
+        const dateOfBirth = json.basics.year ? json.basics.year : 'NOT FOUND - YEAR?';
         const shortDescription = json.basics.shortDescription ? json.basics.shortDescription.toUpperCase() : 'NOT FOUND - SHORT DESCRIPTION?';
         const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);

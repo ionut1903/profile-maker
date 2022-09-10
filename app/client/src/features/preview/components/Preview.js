@@ -343,15 +343,10 @@ class Preview extends Component<Props, State> {
     downloadPdfResume = async () => {
         const node = await document.querySelector("#componentToPrint");
         const pages = this.splitResumeToA4Pages(node);
-        const pdfURL = generatePDF(pages);
-        this.setState({
-            pdfURL: pdfURL
-        })
-        // todo return and url to download
+        generatePDF(pages);
     }
 
     render() {
-        const {pdfUrl} = this.state;
         const {
             jsonURL,
             status,
@@ -365,7 +360,7 @@ class Preview extends Component<Props, State> {
                 <button onClick={this.downloadPdfResume}>Download Pdf</button>
                 <LoadingBar status={status}/>
                 <Toolbar
-                    resumeURL={pdfUrl}
+                    resumeURL={''}
                     jsonURL={jsonURL}
                     downloadSource={downloadSource}
                     print={this.print}
