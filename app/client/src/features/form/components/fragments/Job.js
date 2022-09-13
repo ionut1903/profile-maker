@@ -23,11 +23,9 @@ const ButtonRow = styled.div`
 type Props = {
     job: any,
     index: number,
-    addHighlight: (index: number) => void,
-    removeHighlight: (index: number) => void
 }
 
-function Job({job, index, addHighlight, removeHighlight}: Props) {
+function Job({job, index}: Props) {
     return (
         <div>
             {index > 0 ? <Divider/> : null}
@@ -44,12 +42,12 @@ function Job({job, index, addHighlight, removeHighlight}: Props) {
             <LabeledInput
                 name={`work[${index}].startDate`}
                 label="Start Date"
-                placeholder="May 2015"
+                placeholder="YYYY-MM-DD"
             />
             <LabeledInput
                 name={`work[${index}].endDate`}
                 label="End Date"
-                placeholder="May 2017 / Present / Etc."
+                placeholder="YYYY-MM-DD"
             />
             <TextareaComp
                 label="Job Responsibilities"

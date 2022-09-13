@@ -66,7 +66,7 @@ class Form extends Component<Props> {
   }
 
   onSubmit = (values: FormValues) => {
-    const { sections, generateResume } = this.props
+    const { sections, generateResume } = this.props;
     generateResume({ ...values, sections })
   }
 
