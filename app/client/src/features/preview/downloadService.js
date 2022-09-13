@@ -46,8 +46,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
         }
 
         const currentPageHeightWithNextComp = currentPageHeight + listOfElemHeights[i];
-        // console.log(`Component height on index: ${i}, is: ${listOfElemHeights[i]}`);
-        // console.log(`Page height with next component: ${currentPageHeightWithNextComp}`);
 
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(
             currentPageHeightWithNextComp,
@@ -59,12 +57,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
 
         currentPageHeight = changeHeights[0] ? changeHeights[0] : currentPageHeight;
         heightLeftFromPage = changeHeights[1] ? changeHeights[1] : heightLeftFromPage;
-
-        // if no element left add footer to last page and break the loop
-        const isFooterLastElement = isFooterLastElementToBeAdded(pageElements[i + 1], newHtmlTemplateContainer, newHtmlTemplate, footer)
-        if (isFooterLastElement) {
-            break;
-        }
 
         //if there exists another element, and it does not enter into the current page
         // add footer to the current page and reset data to initial values and go again

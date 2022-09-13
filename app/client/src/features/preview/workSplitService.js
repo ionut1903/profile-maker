@@ -4,10 +4,12 @@ import {
     getHeightAndCloneOfElement
 } from "./splitTemplateUtils";
 
+const targetPageHeight = 28.9;
+
 export const splitWorkComponents = (work, footer) => {
-    const targetPageHeight = 28.9;
     const workPages = [];
-    let currentPageHeight = 3.4;
+    let initialCurrentPageHeight = 3.4;
+    let currentPageHeight = initialCurrentPageHeight;
     let [pageElements, listOfElemHeights] = getHeightAndCloneOfElement(work.children);
 
     let workEmptyContainer = getEmptyHtmlContainer(work);
@@ -48,7 +50,7 @@ export const splitWorkComponents = (work, footer) => {
             workPages.push(workEmptyContainer.cloneNode(true));
             // reset to initial values
             workEmptyContainer = getEmptyHtmlContainer(work);
-            currentPageHeight = 3.4;
+            currentPageHeight = initialCurrentPageHeight;
             heightLeftFromPage = targetPageHeight - currentPageHeight
         }
     }
@@ -56,7 +58,6 @@ export const splitWorkComponents = (work, footer) => {
 }
 
 const appendWorkPageHeaderAndGetUpdatedPageHeight = (index, workEmptyContainer, listOfElemHeights, pageElements, currentPageHeight, heightLeftFromPage) => {
-    const targetPageHeight = 28.9;
     const workHeaderHeight = listOfElemHeights[0];
     const header = pageElements[0];
     // at first work history elem append header before the element
