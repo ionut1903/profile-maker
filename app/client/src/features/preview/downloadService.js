@@ -10,15 +10,17 @@ export const splitResumeToA4Pages = (htmlElem) => {
     const pdfPadding = getDimensionInMM(20);
     const targetPageHeight = 28.9 - pdfPadding;
     const templateContainer = htmlElem.children[0];
+    let pagesToPrint = [];
     let workIndex = 5;
     const work = templateContainer.children[workIndex];
     const additionalDataIndex = 3;
     const additionalData = templateContainer.children[additionalDataIndex];
+
     let [pageElements, listOfElemHeights] = getHeightAndCloneOfElement(templateContainer.children);
-    // todo refactor to remove all references of components!
     const footer = pageElements.pop();
     setFooterStyle(footer);
-    let pagesToPrint = [];
+    // todo refactor to remove all references of components!
+
 
     let newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
     let newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
@@ -27,18 +29,25 @@ export const splitResumeToA4Pages = (htmlElem) => {
     let heightLeftFromPage = targetPageHeight - currentPageHeight;
     let workHistoryPages = [];
     let isAdditionalComponentSplit = false;
+    let isWorkSplit = false;
 
     for (let i = 0; i < pageElements.length; i++) {
         if (i === additionalDataIndex && isAdditionalComponentSplit) {
             continue;
         }
 
-        if (listOfElemHeights[i] + currentPageHeight > targetPageHeight && i === workIndex) {
-            //     workHistoryPages = splitWorkComponents(work, footer)
+        if (isWorkSplit) {
+            continue;
         }
+
+        if (listOfElemHeights[i] + currentPageHeight > targetPageHeight && i === workIndex) {
+            workHistoryPages = splitWorkComponents(work, footer);
+            isWorkSplit = true;
+        }
+
         const currentPageHeightWithNextComp = currentPageHeight + listOfElemHeights[i];
-        console.log(`Component height on index: ${i}, is: ${listOfElemHeights[i]}`);
-        console.log(`Page height with next component: ${currentPageHeightWithNextComp}`);
+        // console.log(`Component height on index: ${i}, is: ${listOfElemHeights[i]}`);
+        // console.log(`Page height with next component: ${currentPageHeightWithNextComp}`);
 
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(
             currentPageHeightWithNextComp,
@@ -99,6 +108,14 @@ export const splitResumeToA4Pages = (htmlElem) => {
         pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
     }
 
+    const workPages = getWorkHistoryPages(workHistoryPages, htmlElem, templateContainer);
+    pagesToPrint = pagesToPrint.concat(workPages);
+    return pagesToPrint;
+}
+
+const getWorkHistoryPages = (workHistoryPages, htmlElem, templateContainer) => {
+    const pagesToPrint = [];
+    console.log('Work pages to print: ', workHistoryPages.length);
     for (let elem of workHistoryPages) {
         const newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
         const newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
@@ -106,7 +123,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
         newHtmlTemplate.appendChild(newHtmlTemplateContainer);
         pagesToPrint.push(newHtmlTemplate.innerHTML);
     }
-
     return pagesToPrint;
 }
 
