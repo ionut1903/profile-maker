@@ -11,7 +11,7 @@ const WorkExperienceTextContainer = ({children}) => {
 const WorkExperienceTitleSubtitle = ({title, subtitle}) => {
     return (
         <WorkExperienceTextContainer>
-            <h3><strong>{title}</strong></h3>
+            <h3><strong style={{wordBreak: 'break-word'}}>{title}</strong></h3>
             <p>{subtitle}</p>
         </WorkExperienceTextContainer>
     )
@@ -32,7 +32,7 @@ const WorkExperienceContainer = ({children}) => {
 
 const HighlightedTitle = ({children}) => {
     return (
-        <h4 style={{fontStyle: 'italic', fontWeight: font.bold, fontFamily: font.fontFamilyBold}}>{children}</h4>
+        <h4 style={{fontWeight: font.bold, fontFamily: font.fontFamilyBold}}>{children}</h4>
     )
 }
 
@@ -53,7 +53,7 @@ export const WorkExperienceSection = ({work}) => {
                         if(!s) {
                             return <p key={i} style={{margin: 0, height: layout.marginSmallRight}}></p>
                         }
-                        return <p key={i}>{s}<br/></p>
+                        return  <p style={{margin: 0, padding: `${layout.padContainer} 0`}} key={i}>{s}<br/></p>
                     })}
                 </div>
             </FlexBetweenContainer>
