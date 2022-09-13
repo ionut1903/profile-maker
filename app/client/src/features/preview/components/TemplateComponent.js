@@ -127,9 +127,7 @@ class TemplateComponent extends Component<Props> {
                         <SectionTitleAndFlexListComponent title={'Core Competencies'}
                                                           list={coreCompetencies}/>
                     </section>
-                    <section>
                         <AdditionalDataComponent additionalData={additionalData}></AdditionalDataComponent>
-                    </section>
                     <section>
                         <SectionTitleAndListComponent title={'Education & Certificates'}
                                                       list={certifications}/>

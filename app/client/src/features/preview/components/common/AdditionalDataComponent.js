@@ -30,7 +30,7 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
                                             {
                                                 additional.value.map((val) => {
                                                     return <ListElement extraStyle={{
-                                                        marginBottom: layout.marginSmallRight,
+                                                        paddingBottom: layout.marginSmallRight,
                                                         width: '40%',
                                                         wordWrap: 'break-word'
                                                     }}
@@ -43,7 +43,7 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
                                             {
                                                 additional.value.map((val) => {
                                                     return <ListElement
-                                                        extraStyle={{marginBottom: layout.marginSmallRight}}
+                                                        extraStyle={{paddingBottom: layout.marginSmallRight}}
                                                         key={val}>{val}</ListElement>
                                                 })
                                             }

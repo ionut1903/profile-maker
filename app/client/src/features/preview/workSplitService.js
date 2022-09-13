@@ -2,7 +2,7 @@ import {
     appendToPageIfComponentFitsAndReturnNewHeights,
     getDimensionInMM,
     getEmptyHtmlContainer,
-    getHeightAndCloneOfElement, isFooterLastElementToBeAdded
+    getHeightAndCloneOfElement
 } from "./splitTemplateUtils";
 
 export const splitWorkComponents = (work, footer) => {
@@ -62,4 +62,12 @@ export const splitWorkComponents = (work, footer) => {
         }
     }
     return workPages;
+}
+
+export const isFooterLastElementToBeAdded = (elem, content, container, footer) => {
+    if (!elem) {
+        content.appendChild(footer);
+        return true;
+    }
+    return false;
 }

@@ -38,7 +38,7 @@ export const getHeightAndCloneOfElement = (elements) => {
 
 
 export const appendToPageIfComponentFitsAndReturnNewHeights = (currentPageHeightWithNextComp, targetPageHeight, heightLeftFromPage, elemHeight, container, elem) => {
-    if (currentPageHeightWithNextComp < targetPageHeight && heightLeftFromPage > elemHeight) {
+    if (currentPageHeightWithNextComp <= targetPageHeight && heightLeftFromPage >= elemHeight) {
         container.appendChild(elem);
         const currentPageHeight = currentPageHeightWithNextComp;
         const heightLeft = targetPageHeight - currentPageHeight;

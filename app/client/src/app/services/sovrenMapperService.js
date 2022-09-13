@@ -176,7 +176,6 @@ const getFullAddress = (location) => {
 }
 
 export const getMappedResumeData = (resumeData) => {
-    debugger
     if (!resumeData) {
         // show error
         console.error("Could not parse resume, or resume was made with images");
