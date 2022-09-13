@@ -1,5 +1,5 @@
 import {
-    appendToPageIfComponentFitsAndReturnNewHeights,
+    appendToPageIfComponentFitsAndReturnNewHeights, getDimensionInMM,
     getEmptyHtmlContainer,
     getHeightAndCloneOfElement, isFooterLastElementToBeAdded
 } from "./splitTemplateUtils";
@@ -7,15 +7,16 @@ import {splitAdditionalData} from "./additionalDataSplitService";
 import {splitWorkComponents} from "./workSplitService";
 
 export const splitResumeToA4Pages = (htmlElem) => {
-    const targetPageHeight = 28.9;
+    const pdfPadding = getDimensionInMM(20);
+    const targetPageHeight = 28.9 - pdfPadding;
     const templateContainer = htmlElem.children[0];
-    const work = templateContainer.children[5];
     let workIndex = 5;
+    const work = templateContainer.children[workIndex];
     const additionalDataIndex = 3;
-    const additionalData = templateContainer.children[3];
+    const additionalData = templateContainer.children[additionalDataIndex];
     let [pageElements, listOfElemHeights] = getHeightAndCloneOfElement(templateContainer.children);
     // todo refactor to remove all references of components!
-    const footer = pageElements[6];
+    const footer = pageElements.pop();
     setFooterStyle(footer);
     let pagesToPrint = [];
 
@@ -27,15 +28,17 @@ export const splitResumeToA4Pages = (htmlElem) => {
     let workHistoryPages = [];
     let isAdditionalComponentSplit = false;
 
-    for (let i = 0; i < pageElements.length - 1; i++) {
+    for (let i = 0; i < pageElements.length; i++) {
         if (i === additionalDataIndex && isAdditionalComponentSplit) {
             continue;
         }
+
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight && i === workIndex) {
-            console.log('work index:', workIndex);
             //     workHistoryPages = splitWorkComponents(work, footer)
         }
         const currentPageHeightWithNextComp = currentPageHeight + listOfElemHeights[i];
+        console.log(`Component height on index: ${i}, is: ${listOfElemHeights[i]}`);
+        console.log(`Page height with next component: ${currentPageHeightWithNextComp}`);
 
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(
             currentPageHeightWithNextComp,
@@ -49,8 +52,10 @@ export const splitResumeToA4Pages = (htmlElem) => {
         heightLeftFromPage = changeHeights[1] ? changeHeights[1] : heightLeftFromPage;
 
         // if no element left add footer to last page and break the loop
-        const isElementLeft = isFooterLastElementToBeAdded(pageElements[i + 1], newHtmlTemplateContainer, newHtmlTemplate, footer)
-        if (isElementLeft) break;
+        const isFooterLastElement = isFooterLastElementToBeAdded(pageElements[i + 1], newHtmlTemplateContainer, newHtmlTemplate, footer)
+        if (isFooterLastElement) {
+            break;
+        }
 
         //if there exists another element, and it does not enter into the current page
         // add footer to the current page and reset data to initial values and go again
@@ -110,12 +115,11 @@ const setNewElementsToPageElements = (index, additionalComponents, listOfElemHei
         return [pageElements, listOfElemHeights];
     }
 
-    const nextIndex = index +1;
+    const nextIndex = index + 1;
     let currentParsedElements = [];
     let elementsThatNeedToBeParsed = [];
     let elementsHeightsThatNeedToBeParsed = [];
     let currentParsedElementHeights = [];
-    console.log('Add a number of add data elem: ', additionalComponents.length);
     currentParsedElements = pageElements.slice(0, nextIndex);
     currentParsedElementHeights = listOfElemHeights.slice(0, nextIndex);
     elementsThatNeedToBeParsed = pageElements.slice(nextIndex);
@@ -128,7 +132,6 @@ const setNewElementsToPageElements = (index, additionalComponents, listOfElemHei
 
     pageElements = currentParsedElements.concat(elementsThatNeedToBeParsed);
     listOfElemHeights = currentParsedElementHeights.concat(elementsHeightsThatNeedToBeParsed);
-    console.log('Number of elements and heights after adding add data components: ', pageElements.length + "-" + listOfElemHeights.length);
     return [pageElements, listOfElemHeights];
 }
 

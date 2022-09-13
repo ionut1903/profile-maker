@@ -19,12 +19,11 @@ export const splitAdditionalData = (additionalData, remainingPageHeight, pageTar
     let numberOfItems = liElements.length;
     let index = numberOfItems - 1;
     let isEvenNumberOfElem = liElements.length % 2 === 0;
-    let nextComponentHeight = additionalDataHeight - additionalDataLangSectionHeight;
     let currentPageHeight = 0;
 
     while (remainingPageHeight < additionalDataHeight) {
         if (isEvenNumberOfElem) {
-            //    take 2 elements at a time from the end of the array
+            //  take 2 elements at a time from the end of the array
             elementsToAddToNextPage.push(liElements[index].cloneNode(true));
             additionalDataHeight = additionalDataHeight - listOfElemHeights[index];
             currentPageHeight += listOfElemHeights[index];
@@ -40,24 +39,32 @@ export const splitAdditionalData = (additionalData, remainingPageHeight, pageTar
             numberOfItems--;
         }
     }
-    nextComponentHeight = nextComponentHeight - additionalDataHeight;
 
-    // what is about this one?
-    const elementsToAddToCurrentPage = [];
 
-    // add to first page
-    for (let i = 0; i <= index; i++) {
-        elementsToAddToCurrentPage.push(listElements[i]);
-    }
-    const firstPageAdditionalData = getAdditionalDataHtml(cloneOfAdditionalData, elementsToAddToCurrentPage, true);
+    const firstPageAdditionalData = getFirstPageOfAdditionalData(listElements, index, cloneOfAdditionalData, listOfElemHeights);
 
     elementsToAddToNextPage.reverse();
     listOfElemHeights.reverse();
-    const additionalDataPagesAndHeights = getNextAdditionalComponents(elementsToAddToNextPage, pageTargetHeight, nextComponentHeight, additionalData, listOfElemHeights);
+    const additionalDataPagesAndHeights = getNextAdditionalComponents(elementsToAddToNextPage, pageTargetHeight, additionalData, listOfElemHeights);
+
     return {
         firstPageAdditionalData: firstPageAdditionalData,
         additionalDataPagesAndHeights: additionalDataPagesAndHeights,
     }
+}
+
+const getFirstPageOfAdditionalData = (listElements, index, cloneOfAdditionalData, listOfElemHeights) => {
+    const elementsToAddToCurrentPage = [];
+
+    // add to first page
+    let f = 0;
+    for (let i = 0; i <= index; i++) {
+        elementsToAddToCurrentPage.push(listElements[i]);
+        f += listOfElemHeights[i]
+    }
+    const firstPageAdditionalData = getAdditionalDataHtml(cloneOfAdditionalData, elementsToAddToCurrentPage, true);
+
+    return firstPageAdditionalData;
 }
 
 {/**
@@ -66,34 +73,41 @@ export const splitAdditionalData = (additionalData, remainingPageHeight, pageTar
  returns a Tuple with component and its height
  */
 }
-const getNextAdditionalComponents = (elements, pageTargetHeight, nextComponentHeight, additionalData, listElementsHeights) => {
+const getNextAdditionalComponents = (elements, pageTargetHeight, additionalData, listElementsHeights) => {
     const nextAdditionalComponentsAndHeights = [];
     let currentPageElements = [];
-    let currentHeight = 0;
-    let remainingElement = null;
+    let remainingElements = [];
+
+    const additionalDataContainerPadding = getDimensionInMM(20);
+    let currentHeight = additionalDataContainerPadding;
+
     elements.forEach((elem, index) => {
         currentPageElements.push(elem);
-        currentHeight += listElementsHeights[index];
+        if (index % 2 === 0) {
+            currentHeight += listElementsHeights[index];
+        }
 
         if (currentHeight > pageTargetHeight) {
-            remainingElement = currentPageElements.pop();
+            remainingElements.push(currentPageElements.pop());
+            remainingElements.push(currentPageElements.pop());
+
             const componentToBeAdded = getAdditionalDataHtml(additionalData, currentPageElements);
-            const componentHeight = currentHeight - listElementsHeights[index];
+            const componentHeight = currentHeight - listElementsHeights[index]
             nextAdditionalComponentsAndHeights.push([componentToBeAdded, componentHeight]);
             currentPageElements = [];
             currentHeight = 0;
-            console.log('Adding extra add page number: ', nextAdditionalComponentsAndHeights.length);
+            console.log('New additional comp height: ', nextAdditionalComponentsAndHeights.length + ' and length: ' + componentHeight);
         }
 
-        if (remainingElement) {
-            currentPageElements.push(remainingElement);
-            remainingElement = null;
+        if (remainingElements.length > 0) {
+            currentPageElements = currentPageElements.concat(remainingElements);
+            remainingElements = [];
         }
     });
 
     const componentToBeAdded = getAdditionalDataHtml(additionalData, currentPageElements);
     nextAdditionalComponentsAndHeights.push([componentToBeAdded, currentHeight]);
-    console.log('Adding extra add page number: ', nextAdditionalComponentsAndHeights.length);
+    console.log('Adding extra add page number: ', nextAdditionalComponentsAndHeights.length + 'and length: ' + currentHeight);
 
     return nextAdditionalComponentsAndHeights;
 }
