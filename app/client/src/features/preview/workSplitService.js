@@ -24,20 +24,20 @@ export const splitWorkComponents = (work, footer) => {
         currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
             console.log(`work component from index: ${i} is bigger than the page`);
-            const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
-            console.log('Elements BEFORE adding large component: ', pageElements.length);
-            console.log('heights BEFORE adding large component: ', listOfElemHeights.length);
-            const {
-                newPageElements,
-                newListOfElemHeights
-            } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
-
-            pageElements = newPageElements;
-            listOfElemHeights = newListOfElemHeights;
-            currentPageHeightAndNextComp = listOfElemHeights[i];
-
-            console.log('Elements AFTER adding large component: ', pageElements.length);
-            console.log('Heights AFTER adding large component: ', listOfElemHeights.length);
+            // const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
+            // console.log('Elements BEFORE adding large component: ', pageElements.length);
+            // console.log('heights BEFORE adding large component: ', listOfElemHeights.length);
+            // const {
+            //     newPageElements,
+            //     newListOfElemHeights
+            // } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
+            //
+            // pageElements = newPageElements;
+            // listOfElemHeights = newListOfElemHeights;
+            // currentPageHeightAndNextComp = listOfElemHeights[i];
+            //
+            // console.log('Elements AFTER adding large component: ', pageElements.length);
+            // console.log('Heights AFTER adding large component: ', listOfElemHeights.length);
         }
 
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(currentPageHeightAndNextComp,
