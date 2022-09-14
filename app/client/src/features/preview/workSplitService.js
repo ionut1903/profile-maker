@@ -24,20 +24,15 @@ export const splitWorkComponents = (work, footer) => {
         currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
             console.log(`work component from index: ${i} is bigger than the page`);
-            const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
-            console.log('Elements BEFORE adding large component: ', pageElements.length);
-            console.log('heights BEFORE adding large component: ', listOfElemHeights.length);
-            const {
-                newPageElements,
-                newListOfElemHeights
-            } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
-
-            pageElements = newPageElements;
-            listOfElemHeights = newListOfElemHeights;
-            currentPageHeightAndNextComp = listOfElemHeights[i];
-
-            console.log('Elements AFTER adding large component: ', pageElements.length);
-            console.log('Heights AFTER adding large component: ', listOfElemHeights.length);
+            // const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
+            // const {
+            //     newPageElements,
+            //     newListOfElemHeights
+            // } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
+            //
+            // pageElements = newPageElements;
+            // listOfElemHeights = newListOfElemHeights;
+            // currentPageHeightAndNextComp = listOfElemHeights[i];
         }
 
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(currentPageHeightAndNextComp,
@@ -97,6 +92,10 @@ const appendWorkPageHeaderAndGetUpdatedPageHeight = (index, workEmptyContainer, 
     return [currentPageHeight, heightLeftFromPage];
 }
 
+{/**
+ gets work description elements split in multiple pages
+ */
+}
 const splitDescriptionAndGetComponents = (componentToSplit, heightLeftOnPage) => {
     const destructuredWorkComponents = destructureWorkComponentAndGetDOMEElements(componentToSplit);
 
@@ -115,7 +114,6 @@ const splitDescriptionAndGetComponents = (componentToSplit, heightLeftOnPage) =>
 
 {/**
     gets work description elements split in multiple pages
-
  */
 }
 const getDescriptionPages = ({
@@ -130,7 +128,6 @@ const getDescriptionPages = ({
     let pages = [];
     let nextPageElement = null;
     if (workDateAndPositionContainerHeight < heightLeftOnPage) {
-        console.log('First part of the component will have the height of: ', heightLeftOnPage);
         targetPageHeight = heightLeftOnPage;
     }
 
@@ -145,7 +142,6 @@ const getDescriptionPages = ({
         currentPageHeight += descriptionElementsHeights[i];
 
         if (currentPageHeight > targetPageHeight) {
-            debugger;
             nextPageElement = nextPage.pop();
             currentPageHeight = currentPageHeight - descriptionElementsHeights[i]
             pages.push([nextPage, currentPageHeight]);

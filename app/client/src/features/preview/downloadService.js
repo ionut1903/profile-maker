@@ -107,7 +107,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
 
 const getWorkHistoryPages = (workHistoryPages, htmlElem, templateContainer) => {
     const pagesToPrint = [];
-    console.log('Work pages to print: ', workHistoryPages.length);
     for (let elem of workHistoryPages) {
         const newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
         const newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);

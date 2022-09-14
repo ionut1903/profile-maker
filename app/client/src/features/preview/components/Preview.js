@@ -83,9 +83,10 @@ class Preview extends Component<Props, State> {
     }
 
     downloadPdfResume = async () => {
+        const {json} = this.props
         const node = await document.querySelector("#componentToPrint");
         const pages = splitResumeToA4Pages(node);
-        generatePDF(pages);
+        generatePDF(pages, json.basics.name.toUpperCase());
     }
 
     render() {
