@@ -11,8 +11,10 @@ const WorkExperienceTextContainer = ({children}) => {
 const WorkExperienceTitleSubtitle = ({title, subtitle}) => {
     return (
         <WorkExperienceTextContainer>
-            <h3><strong style={{wordBreak: 'break-word'}}>{title}</strong></h3>
-            <p>{subtitle}</p>
+            <h3 style={{margin: 0, padding: `15px 0`}}>
+                <strong style={{wordBreak: 'break-word'}}>{title}</strong>
+            </h3>
+            <p style={{margin: 0, padding: `${layout.marginSmallRight} 0`}}>{subtitle}</p>
         </WorkExperienceTextContainer>
     )
 }
@@ -50,10 +52,10 @@ export const WorkExperienceSection = ({work}) => {
                 <div style={{width: layout.articleWidth}}>
                     <HighlightedTitle><strong>{name}</strong></HighlightedTitle>
                     {summaryData.map((s, i) => {
-                        if(!s) {
+                        if (!s) {
                             return <p key={i} style={{margin: 0, height: layout.marginSmallRight}}></p>
                         }
-                        return  <p style={{margin: 0, padding: `${layout.padContainer} 0`}} key={i}>{s}<br/></p>
+                        return <p style={{margin: 0, padding: `${layout.padContainer} 0`}} key={i}>{s}<br/></p>
                     })}
                 </div>
             </FlexBetweenContainer>
