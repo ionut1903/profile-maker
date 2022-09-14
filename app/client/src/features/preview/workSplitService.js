@@ -4,7 +4,8 @@ import {
     getHeightAndCloneOfElement
 } from "./splitTemplateUtils";
 
-const targetPageHeight = 28.9;
+let targetPageHeight = 28.9;
+const initialTargetPageHeight = 28.9;
 const initialCurrentPageHeight = 3.4;
 
 export const splitWorkComponents = (work, footer) => {
@@ -22,10 +23,23 @@ export const splitWorkComponents = (work, footer) => {
 
         currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
-            const splitComponentParts = splitDescription(work.children[i]);
-            // append new component to the page
             console.log(`work component from index: ${i} is bigger than the page`);
+            const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
+            console.log('Elements BEFORE adding large component: ', pageElements.length);
+            console.log('heights BEFORE adding large component: ', listOfElemHeights.length);
+            const {
+                newPageElements,
+                newListOfElemHeights
+            } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
+
+            pageElements = newPageElements;
+            listOfElemHeights = newListOfElemHeights;
+            currentPageHeightAndNextComp = listOfElemHeights[i];
+
+            console.log('Elements AFTER adding large component: ', pageElements.length);
+            console.log('Heights AFTER adding large component: ', listOfElemHeights.length);
         }
+
         const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(currentPageHeightAndNextComp,
             targetPageHeight,
             heightLeftFromPage,
@@ -40,6 +54,7 @@ export const splitWorkComponents = (work, footer) => {
         if (!pageElements[i + 1]) {
             workEmptyContainer.appendChild(pageElements[i])
             workEmptyContainer.appendChild(footer);
+            debugger;
             workPages.push(workEmptyContainer.cloneNode(true));
             break
         }
@@ -59,6 +74,18 @@ export const splitWorkComponents = (work, footer) => {
     return workPages;
 }
 
+const addSplitComponentToCurrentWorkComponentList = (pageElements, listOfElemHeights, index, splitComponents) => {
+    let parsedComponents = pageElements.slice(0, index);
+    const componentsThatNeedToBeParsed = pageElements.slice(index + 1, pageElements.length);
+    let parsedHeights = listOfElemHeights.slice(0, index);
+    const heightsThatNeedToBeAdded = listOfElemHeights.slice(index + 1, listOfElemHeights.length);
+    parsedComponents = parsedComponents.concat(splitComponents[0]);
+    parsedComponents = parsedComponents.concat(componentsThatNeedToBeParsed);
+    parsedHeights = parsedHeights.concat(splitComponents[1]);
+    parsedHeights = parsedHeights.concat(heightsThatNeedToBeAdded);
+    return {newPageElements: parsedComponents, newListOfElemHeights: parsedHeights};
+}
+
 const appendWorkPageHeaderAndGetUpdatedPageHeight = (index, workEmptyContainer, listOfElemHeights, pageElements, currentPageHeight, heightLeftFromPage) => {
     const workHeaderHeight = listOfElemHeights[0];
     const header = pageElements[0];
@@ -71,26 +98,32 @@ const appendWorkPageHeaderAndGetUpdatedPageHeight = (index, workEmptyContainer, 
     return [currentPageHeight, heightLeftFromPage];
 }
 
-const splitDescription = (componentToSplit) => {
-    const {
-        descriptionCloneElements,
-        descriptionElementsHeights
-    } = destructureWorkComponentAndGetDOMEElements(componentToSplit);
-    const pages = getDescriptionPages(descriptionCloneElements, descriptionElementsHeights);
-    const workComponentsAndHeights = [];
+const splitDescriptionAndGetComponents = (componentToSplit, heightLeftOnPage) => {
+    const destructuredWorkComponents = destructureWorkComponentAndGetDOMEElements(componentToSplit);
+
+    const pages = getDescriptionPages(destructuredWorkComponents, heightLeftOnPage);
+    const workComponents = [];
+    const componentHeights = [];
 
     pages.forEach((page, i) => {
-        workComponentsAndHeights.push(constructAndGetWorkComponentAndHeight(page, i, componentToSplit));
+        const splitComponent = constructAndGetWorkComponentAndHeight(page, i, destructuredWorkComponents);
+        workComponents.push(splitComponent[0]);
+        componentHeights.push(splitComponent[1])
     });
 
-    return workComponentsAndHeights;
+    return [workComponents, componentHeights];
 }
 
-const getDescriptionPages = (descriptionCloneElements, descriptionElementsHeights) => {
+const getDescriptionPages = ({descriptionCloneElements, descriptionElementsHeights, workDateAndPositionContainerHeight}, heightLeftOnPage) => {
     let currentPageHeight = initialCurrentPageHeight;
     let nextPage = [];
     let pages = [];
     let nextPageElement = null;
+
+    if (workDateAndPositionContainerHeight < heightLeftOnPage) {
+        console.log('First part of the component will have the height of: ', heightLeftOnPage);
+        targetPageHeight = heightLeftOnPage;
+    }
 
     descriptionCloneElements.forEach((elem, i) => {
         if (nextPageElement) {
@@ -98,17 +131,22 @@ const getDescriptionPages = (descriptionCloneElements, descriptionElementsHeight
             currentPageHeight += descriptionElementsHeights[i];
             nextPageElement = null;
         }
+
         nextPage.push(elem);
         currentPageHeight += descriptionElementsHeights[i];
+
         if (currentPageHeight > targetPageHeight) {
             nextPageElement = nextPage.pop();
             currentPageHeight = currentPageHeight - descriptionElementsHeights[i]
             pages.push([nextPage, currentPageHeight]);
             currentPageHeight = initialCurrentPageHeight;
+            console.log('Added description components ', nextPage.length);
             nextPage = [];
+            targetPageHeight = initialTargetPageHeight;
         }
     });
     if (nextPage.length > 0) {
+        console.log('Last page to split will have a number of components: ', nextPage.length);
         pages.push([nextPage, currentPageHeight]);
     }
     return pages;
@@ -127,6 +165,7 @@ const constructWorkPositionHeader = (isFirstPage, componentElements) => {
     } else {
         componentElements.workDateAndPositionContainerEmpty.appendChild(componentElements.positionTitleEmpty);
         componentElements.workDateAndPositionContainerEmpty.appendChild(componentElements.positionDateEmpty);
+        componentElements.componentContentEmpty = getEmptyHtmlContainer(componentElements.componentContentEmpty)
         componentElements.componentContentEmpty.appendChild(componentElements.workDateAndPositionContainerEmpty);
     }
     return false;
@@ -138,8 +177,8 @@ const constructDescription = (elements, {workDescriptionContainerEmpty}) => {
     });
 }
 
-const constructAndGetWorkComponentAndHeight = (page, index, componentToSplit) => {
-    const workComponents = destructureWorkComponentAndGetDOMEElements(componentToSplit);
+const constructAndGetWorkComponentAndHeight = (page, index, workComponents) => {
+    debugger;
     if (index === 0) {
         constructWorkPositionHeader(true, workComponents);
     }
@@ -156,6 +195,7 @@ const destructureWorkComponentAndGetDOMEElements = (component) => {
     // the order of initialization matters!
     const componentHeight = component.offsetHeight;
     const componentContent = component.children[0];
+    const workDateAndPositionContainerHeight = componentContent.children[0].offsetHeight;
     const workDateAndPositionContainer = componentContent.children[0].cloneNode(true);
     const positionTitleEmpty = getEmptyHtmlContainer(workDateAndPositionContainer.children[0]);
     const positionDateEmpty = getEmptyHtmlContainer(workDateAndPositionContainer.children[1]);
@@ -178,6 +218,7 @@ const destructureWorkComponentAndGetDOMEElements = (component) => {
         positionDateEmpty,
         workDateAndPositionContainer,
         workDateAndPositionContainerEmpty,
+        workDateAndPositionContainerHeight,
         workDescriptionContainerEmpty
     }
 }

@@ -96,7 +96,7 @@ const getNextAdditionalComponents = (elements, pageTargetHeight, additionalData,
             nextAdditionalComponentsAndHeights.push([componentToBeAdded, componentHeight]);
             currentPageElements = [];
             currentHeight = 0;
-            console.log('New additional comp height: ', nextAdditionalComponentsAndHeights.length + ' and length: ' + componentHeight);
+            // console.log('New additional comp height: ', nextAdditionalComponentsAndHeights.length + ' and length: ' + componentHeight);
         }
 
         if (remainingElements.length > 0) {
@@ -107,7 +107,7 @@ const getNextAdditionalComponents = (elements, pageTargetHeight, additionalData,
 
     const componentToBeAdded = getAdditionalDataHtml(additionalData, currentPageElements);
     nextAdditionalComponentsAndHeights.push([componentToBeAdded, currentHeight]);
-    console.log('Adding extra add page number: ', nextAdditionalComponentsAndHeights.length + 'and length: ' + currentHeight);
+    // console.log('Adding extra add page number: ', nextAdditionalComponentsAndHeights.length + 'and length: ' + currentHeight);
 
     return nextAdditionalComponentsAndHeights;
 }
