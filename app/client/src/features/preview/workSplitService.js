@@ -123,7 +123,6 @@ const getDescriptionPages = ({
     let nextPage = [];
     let pages = [];
     let nextPageElement = null;
-    debugger
     if (workDateAndPositionContainerHeight < heightLeftOnPage) {
         console.log('First part of the component will have the height of: ', heightLeftOnPage);
         targetPageHeight = heightLeftOnPage;
@@ -186,7 +185,6 @@ const constructAndGetWorkComponentAndHeight = (page, index, componentToSplit) =>
 
     if (index === 0) {
         constructWorkPositionHeader(true, workComponents);
-        debugger;
     } else {
         constructWorkPositionHeader(false, workComponents);
     }
