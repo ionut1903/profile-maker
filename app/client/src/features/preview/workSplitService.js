@@ -112,6 +112,12 @@ const splitDescriptionAndGetComponents = (componentToSplit, heightLeftOnPage) =>
     return [workComponents, componentHeights];
 }
 
+
+{/**
+    gets work description elements split in multiple pages
+
+ */
+}
 const getDescriptionPages = ({
                                  descriptionCloneElements,
                                  descriptionElementsHeights,
@@ -130,7 +136,7 @@ const getDescriptionPages = ({
 
     descriptionCloneElements.forEach((elem, i) => {
         if (nextPageElement) {
-            nextPage.push(elem);
+            nextPage.push(nextPageElement);
             currentPageHeight += descriptionElementsHeights[i];
             nextPageElement = null;
         }
@@ -139,17 +145,16 @@ const getDescriptionPages = ({
         currentPageHeight += descriptionElementsHeights[i];
 
         if (currentPageHeight > targetPageHeight) {
+            debugger;
             nextPageElement = nextPage.pop();
             currentPageHeight = currentPageHeight - descriptionElementsHeights[i]
             pages.push([nextPage, currentPageHeight]);
             currentPageHeight = initialCurrentPageHeight;
-            console.log('Added description components ', nextPage.length);
             nextPage = [];
             targetPageHeight = initialTargetPageHeight;
         }
     });
     if (nextPage.length > 0) {
-        console.log('Last page to split will have a number of components: ', nextPage.length);
         pages.push([nextPage, currentPageHeight]);
     }
     return pages;
