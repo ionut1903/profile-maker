@@ -11,7 +11,7 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
     additionalData = additionalData? additionalData : [];
     // todo: see where it is set to undefined!!!
     return (
-        <MainColorContainer>
+        <MainColorContainer extraStyle={{padding: '0 8px'}}>
             <FlexBetweenContainer>
                 <SectionHeader>{'Additional Data'}</SectionHeader>
                 <div style={{width: layout.articleWidth, margin: '13px 0'}}>

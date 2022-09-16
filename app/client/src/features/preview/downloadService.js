@@ -68,7 +68,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
                     firstPageAdditionalData,
                     additionalDataPagesAndHeights,
                 } = splitAdditionalData(additionalData, heightLeftFromPage, targetPageHeight - initialCurrentPageHeight);
-
                 newHtmlTemplateContainer.appendChild(firstPageAdditionalData);
                 currentPageHeight += heightLeftFromPage;
                 isAdditionalComponentSplit = true;
@@ -97,6 +96,8 @@ export const splitResumeToA4Pages = (htmlElem) => {
     }
 
     if (newHtmlTemplateContainer.children.length > 0) {
+        newHtmlTemplateContainer.appendChild(footer);
+        newHtmlTemplate.appendChild(newHtmlTemplateContainer);
         pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
     }
 
