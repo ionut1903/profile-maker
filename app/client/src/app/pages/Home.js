@@ -278,6 +278,7 @@ class Home extends Component<Props> {
           await uploadFileAndGenerateResume(file);
           const {jsonUpload, history} = this.props
           if (jsonUpload.status === 'success') {
+            console.log('SOVREN JSON:', file);
             history.push('/generator')
           } else if (jsonUpload.status === 'failure') {
             toast.error(jsonUpload.errMessage, {position: toast.POSITION.TOP_LEFT})
