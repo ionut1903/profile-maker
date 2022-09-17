@@ -12,61 +12,84 @@ export const splitWorkComponents = (work, footer) => {
     const workPages = [];
     let currentPageHeight = initialCurrentPageHeight;
     let [pageElements, listOfElemHeights] = getHeightAndCloneOfElement(work.children);
-
     let workEmptyContainer = getEmptyHtmlContainer(work);
     let heightLeftFromPage = targetPageHeight - currentPageHeight;
+    const [currentHeight, leftHeight] = appendWorkPageHeaderAndGetUpdatedPageHeight(workEmptyContainer, listOfElemHeights[0], pageElements[0], currentPageHeight, heightLeftFromPage);
+    currentPageHeight = currentHeight;
+    heightLeftFromPage = leftHeight;
+
     for (let i = 1; i < pageElements.length; i++) {
-        let currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
-        const [currentHeight, leftHeight] = appendWorkPageHeaderAndGetUpdatedPageHeight(i, workEmptyContainer, listOfElemHeights, pageElements, currentPageHeight, heightLeftFromPage)
-        currentPageHeight = currentHeight;
-        heightLeftFromPage = leftHeight;
+        let currentPageWithNextCompHeight = currentPageHeight + listOfElemHeights[i];
+        debugger;
 
-        currentPageHeightAndNextComp = currentPageHeight + listOfElemHeights[i];
-        if (listOfElemHeights[i] + currentPageHeight > targetPageHeight) {
-            console.log(`work component from index: ${i} is bigger than the page`);
-            // const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
-            // const {
-            //     newPageElements,
-            //     newListOfElemHeights
-            // } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
-            //
-            // pageElements = newPageElements;
-            // listOfElemHeights = newListOfElemHeights;
-            // currentPageHeightAndNextComp = listOfElemHeights[i];
-        }
-
-        const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(currentPageHeightAndNextComp,
+        // adds component that fits the page
+        const changeHeights = appendToPageIfComponentFitsAndReturnNewHeights(currentPageWithNextCompHeight,
             targetPageHeight,
             heightLeftFromPage,
             listOfElemHeights[i],
             workEmptyContainer,
             pageElements[i]);
 
-        currentPageHeight = changeHeights[0] ? changeHeights[0] : currentPageHeight;
-        heightLeftFromPage = changeHeights[1] ? changeHeights[1] : heightLeftFromPage;
-
-        // if no element left add footer to last page and break the loop
-        if (!pageElements[i + 1]) {
-            workEmptyContainer.appendChild(pageElements[i])
-            workEmptyContainer.appendChild(footer);
-            workPages.push(workEmptyContainer.cloneNode(true));
-            break
+        // if we added a component we go to the next one!
+        if (changeHeights[0]) {
+            debugger;
+            currentPageHeight = changeHeights[0];
+            heightLeftFromPage = changeHeights[1];
+            continue;
         }
 
-        //if there exists another element, and it does not enter into the current page
-        // add footer to the current page and reset data to initial values and go again
-        if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
-            // add footer to the end of the page
-            workEmptyContainer.appendChild(footer);
-            workPages.push(workEmptyContainer.cloneNode(true));
-            // reset to initial values
-            workEmptyContainer = getEmptyHtmlContainer(work);
-            currentPageHeight = initialCurrentPageHeight;
-            heightLeftFromPage = targetPageHeight - currentPageHeight
+        // if current component does not fit the remaining height from page
+        if (listOfElemHeights[i] > heightLeftFromPage) {
+            const headerHeight = getPositionHeaderHeight(work.children[i]);
+            // if the header of the work component fits the page we add the split component to
+            if (headerHeight < heightLeftFromPage) {
+                debugger
+                console.log('Header less than height left => split component from page for index is: ', i);
+
+                // split component by remaining height
+                // and add comp to current page
+                // add next components to pageElements!
+                continue;
+            }
+            i--;
+            console.log('Reset index to: ', i);
+
+            // we will decrease the index with one? and continue
+            // reset values
+            // if component header > heightLeftFromPage we create a new page and reset the values component will be moved one index further
+            // or, we will decrease the index with one?
+
+
+            // workEmptyContainer.appendChild(footer);
+            // workPages.push(workEmptyContainer.cloneNode(true));
+            // // reset to initial values
+            // workEmptyContainer = getEmptyHtmlContainer(work);
+            // currentPageHeight = initialCurrentPageHeight;
+            // heightLeftFromPage = targetPageHeight - currentPageHeight
+            console.log('Split component that is bigger than the page on index: ', i);
         }
+
     }
     return workPages;
 }
+
+// if (work.children[i]) {
+//             //     console.log(`work component from index: ${i} is bigger than the page`);
+//             //
+//             //     const splitComponentAndHeights = splitDescriptionAndGetComponents(work.children[i], heightLeftFromPage);
+//             //     const {
+//             //         newPageElements,
+//             //         newListOfElemHeights
+//             //     } = addSplitComponentToCurrentWorkComponentList(pageElements, listOfElemHeights, i, splitComponentAndHeights);
+//             //
+//             //     pageElements = newPageElements;
+//             //     console.log('New pageElements length: ', newPageElements.length);
+//             //     console.log('New pageElements: ', newPageElements);
+//             //     listOfElemHeights = newListOfElemHeights;
+//             //     currentPageHeightAndNextComp = listOfElemHeights[i];
+//             // } else {
+//             //     console.log('Work component on index is undefined - why? : ', i);
+//             // }
 
 const addSplitComponentToCurrentWorkComponentList = (pageElements, listOfElemHeights, index, splitComponents) => {
     let parsedComponents = pageElements.slice(0, index);
@@ -80,15 +103,10 @@ const addSplitComponentToCurrentWorkComponentList = (pageElements, listOfElemHei
     return {newPageElements: parsedComponents, newListOfElemHeights: parsedHeights};
 }
 
-const appendWorkPageHeaderAndGetUpdatedPageHeight = (index, workEmptyContainer, listOfElemHeights, pageElements, currentPageHeight, heightLeftFromPage) => {
-    const workHeaderHeight = listOfElemHeights[0];
-    const header = pageElements[0];
-    // at first work history elem append header before the element
-    if (index === 1) {
-        workEmptyContainer.appendChild(header);
-        currentPageHeight += workHeaderHeight;
-        heightLeftFromPage = targetPageHeight - currentPageHeight;
-    }
+const appendWorkPageHeaderAndGetUpdatedPageHeight = (workEmptyContainer, workHeaderHeight, header, currentPageHeight, heightLeftFromPage) => {
+    workEmptyContainer.appendChild(header);
+    currentPageHeight += workHeaderHeight;
+    heightLeftFromPage = targetPageHeight - currentPageHeight;
     return [currentPageHeight, heightLeftFromPage];
 }
 
@@ -113,7 +131,7 @@ const splitDescriptionAndGetComponents = (componentToSplit, heightLeftOnPage) =>
 
 
 {/**
-    gets work description elements split in multiple pages
+ gets work description elements split in multiple pages
  */
 }
 const getDescriptionPages = ({
@@ -230,4 +248,22 @@ const destructureWorkComponentAndGetDOMEElements = (component) => {
         workDateAndPositionContainerHeight,
         workDescriptionContainerEmpty
     }
+}
+
+
+{/**
+ @defaultWorkDateAndPositionContainerHeight - default value in mm for 2 rows of data
+ gets the position header height
+ */
+}
+const getPositionHeaderHeight = (component) => {
+    let defaultWorkDateAndPositionContainerHeight = 1.5;
+    const componentContent = component.children[0]
+    let positionHeaderHeight = componentContent.children[0].children[0].offsetHeight;
+    const dateHeaderHeight = componentContent.children[0].children[1].offsetHeight;
+    let workDateAndPositionContainerHeight = getDimensionInMM(positionHeaderHeight + dateHeaderHeight);
+    if (defaultWorkDateAndPositionContainerHeight > workDateAndPositionContainerHeight) {
+        workDateAndPositionContainerHeight = defaultWorkDateAndPositionContainerHeight;
+    }
+    return workDateAndPositionContainerHeight;
 }
