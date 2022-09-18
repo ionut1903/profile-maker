@@ -219,6 +219,7 @@ const constructAndGetWorkComponentAndHeight = (page, index, componentToSplit) =>
 const destructureWorkComponentAndGetDOMEElements = (component) => {
     // the order of initialization matters!
     const componentHeight = getDimensionInMM(component.offsetHeight);
+    debugger;
     const componentContent = component.children[0]
     const positionHeaderHeight = componentContent.children[0].children[0].offsetHeight;
     const dateHeaderHeight = componentContent.children[0].children[1].offsetHeight;
@@ -231,6 +232,8 @@ const destructureWorkComponentAndGetDOMEElements = (component) => {
     const descriptionElements = workDescriptionContainer.children;
     const workDescriptionContainerEmpty = getEmptyHtmlContainer(workDescriptionContainer);
     const componentEmpty = getEmptyHtmlContainer(component);
+    const componentEmptyWithNoBorderBottom = getEmptyHtmlContainer(component);
+    componentEmptyWithNoBorderBottom.style.borderBottom = 'none';
     const componentContentEmpty = getEmptyHtmlContainer(componentContent);
     const [descriptionCloneElements, descriptionElementsHeights] = getHeightAndCloneOfElement(descriptionElements);
 
@@ -238,6 +241,7 @@ const destructureWorkComponentAndGetDOMEElements = (component) => {
         componentContent,
         componentContentEmpty,
         componentEmpty,
+        componentEmptyWithNoBorderBottom,
         componentHeight,
         descriptionCloneElements,
         descriptionElementsHeights,
