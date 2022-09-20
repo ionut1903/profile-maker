@@ -3,7 +3,7 @@
  */
 }
 
-export const getDimensionInMM = (dimensionInPX) => {
+export const getDimensionInCM = (dimensionInPX) => {
     return dimensionInPX * 2.54 / 96;
 }
 
@@ -31,7 +31,7 @@ export const getHeightAndCloneOfElement = (elements) => {
     let listOfElemHeights = []
     for (let elem of elements) {
         pageElements.push(elem.cloneNode(true));
-        listOfElemHeights.push(getDimensionInMM(elem.offsetHeight));
+        listOfElemHeights.push(getDimensionInCM(elem.offsetHeight));
     }
     return [pageElements, listOfElemHeights];
 }

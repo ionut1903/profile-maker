@@ -1,4 +1,4 @@
-import {getDimensionInMM, getEmptyHtmlContainer, getHeightAndCloneOfElement} from "./splitTemplateUtils";
+import {getDimensionInCM, getEmptyHtmlContainer, getHeightAndCloneOfElement} from "./splitTemplateUtils";
 
 {/**
  deconstructs and reconstructs the additional data html component
@@ -9,8 +9,8 @@ import {getDimensionInMM, getEmptyHtmlContainer, getHeightAndCloneOfElement} fro
 }
 
 export const splitAdditionalData = (additionalData, remainingPageHeight, pageTargetHeight) => {
-    let additionalDataHeight = getDimensionInMM(additionalData.offsetHeight);
-    let additionalDataLangSectionHeight = getDimensionInMM(additionalData.children[0].children[1].children[0].offsetHeight);
+    let additionalDataHeight = getDimensionInCM(additionalData.offsetHeight);
+    let additionalDataLangSectionHeight = getDimensionInCM(additionalData.children[0].children[1].children[0].offsetHeight);
     const listElements = additionalData.children[0].children[1].children[1].children[1].children;
     let [liElements, listOfElemHeights] = getHeightAndCloneOfElement(listElements)
     const cloneOfAdditionalData = additionalData.cloneNode(true);
@@ -78,7 +78,7 @@ const getNextAdditionalComponents = (elements, pageTargetHeight, additionalData,
     let currentPageElements = [];
     let remainingElements = [];
 
-    const additionalDataContainerPadding = getDimensionInMM(20);
+    const additionalDataContainerPadding = getDimensionInCM(20);
     let currentHeight = additionalDataContainerPadding;
 
     elements.forEach((elem, index) => {

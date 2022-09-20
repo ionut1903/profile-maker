@@ -1,5 +1,5 @@
 import {
-    appendToPageIfComponentFitsAndReturnNewHeights, getDimensionInMM,
+    appendToPageIfComponentFitsAndReturnNewHeights, getDimensionInCM,
     getEmptyHtmlContainer,
     getHeightAndCloneOfElement, isFooterLastElementToBeAdded
 } from "./splitTemplateUtils";
@@ -7,7 +7,7 @@ import {splitAdditionalData} from "./additionalDataSplitService";
 import {splitWorkComponents} from "./workSplitService";
 
 export const splitResumeToA4Pages = (htmlElem) => {
-    const pdfPadding = getDimensionInMM(20);
+    const pdfPadding = getDimensionInCM(20);
     const targetPageHeight = 28.9 - pdfPadding;
     const templateContainer = htmlElem.children[0];
     let pagesToPrint = [];
@@ -40,6 +40,7 @@ export const splitResumeToA4Pages = (htmlElem) => {
             continue;
         }
 
+        // Todo what happens if  the condition listOfElemHeights[i] + currentPageHeight > targetPageHeight is not met
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight && i === workIndex) {
             workHistoryPages = splitWorkComponents(work, footer);
             isWorkSplit = true;
