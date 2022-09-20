@@ -132,7 +132,7 @@ class TemplateComponent extends Component<Props> {
                         <SectionTitleAndListComponent title={'Education & Certificates'}
                                                       list={certifications}/>
                     </section>
-                    <section style={{background: colors.white, backgroundColor: 'pink'}}>
+                    <section style={{background: colors.white}}>
                         <SectionHeader extraStyles={{
                             color: colors.black,
                             width: '100%',
