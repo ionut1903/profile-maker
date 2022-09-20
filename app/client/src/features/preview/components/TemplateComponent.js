@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import jsonResume from '../../../../../../test_json.json'
 import basicJson from '../../../../../basic.json'
 import {
     layout,
@@ -51,23 +50,6 @@ class TemplateComponent extends Component<Props> {
             }
         });
         const additionalData = json.additionalData;
-        const languages = [];
-        const techSkills = [];
-        if (json.additionalData && json.additionalData.length === 2) {
-            json.additionalData[0].value.forEach(val => {
-                if (val) {
-                    languages.push(val);
-                }
-            });
-            json.additionalData[0].value = languages;
-            json.additionalData[1].value.forEach(val => {
-                if (val) {
-                    techSkills.push(val);
-                }
-            });
-            json.additionalData[1].value = techSkills;
-        }
-
         const workList = json.work;
         workList.forEach((w) => {
             w.position = w.position.toUpperCase();

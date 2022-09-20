@@ -166,12 +166,10 @@ const getEducationAndCertifications = (resumeData) => {
 }
 
 const getFullAddress = (location) => {
-    const {countryCode, postalCode, address, city} = location;
+    const {countryCode, city} = location;
     let fullAddress = '';
     fullAddress += countryCode ? countryCode + ',' : '';
     fullAddress += city ? city + ',' : '';
-    fullAddress += address ? address + ',' : '';
-    fullAddress += postalCode ? postalCode + ',' : '';
     return fullAddress;
 }
 

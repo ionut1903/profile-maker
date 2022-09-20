@@ -36,7 +36,7 @@ export const HeaderElement = (props) => {
 
 const LogoImgContainer = () => {
     return (
-        <div style={{height: "32%"}}>
+        <div style={{height: "58px"}}>
             <img style={{height: '100%'}}
                  src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
                  alt="Mertus consulting logo"/>

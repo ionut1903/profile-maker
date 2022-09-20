@@ -13,17 +13,16 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
     return (
         <MainColorContainer extraStyle={{padding: '0 8px'}}>
             <FlexBetweenContainer>
-                <SectionHeader>{'Additional Data'}</SectionHeader>
+                <SectionHeader>{'Additional'}</SectionHeader>
                 <div style={{width: layout.articleWidth, margin: '13px 0'}}>
                     {
                         additionalData.map((additional, i) => {
-                            return <div key={i} style={{paddingLeft: '30px'}}>
-                                <TitleSmallSection>{additional.name.toUpperCase()}</TitleSmallSection>
-                                {
-                                    additional.name === 'Tech skills' ?
+                            return <div key={i} style={{paddingLeft: '19px'}}>
+                                <TitleSmallSection >{additional.name.toUpperCase()}</TitleSmallSection>
                                         <ul style={{
                                             display: 'flex',
                                             flexWrap: "wrap",
+                                            paddingLeft: '11px',
                                             justifyContent: 'space-between',
                                             ...marginBottomZero
                                         }}>
@@ -38,17 +37,6 @@ export const AdditionalDataComponent = ({additionalData, children}) => {
                                                 })
                                             }
                                         </ul>
-                                        :
-                                        <ul>
-                                            {
-                                                additional.value.map((val) => {
-                                                    return <ListElement
-                                                        extraStyle={{paddingBottom: layout.marginSmallRight}}
-                                                        key={val}>{val}</ListElement>
-                                                })
-                                            }
-                                        </ul>
-                                }
                             </div>
                         })
                     }

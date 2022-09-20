@@ -17,16 +17,16 @@ export const TemplateContactDataComponent = ({phoneNumber, email, fullAddress, d
             padding: layout.padContainer,
             height: 'auto'
         }}>
-            <div style={{
-                borderBottom: layout.border,
-                marginBottom: layout.marginSmallRight,
-            }}>
-                <AddressElement value={phoneNumber} icon="phone"/>
-                <AddressElement value={email} icon="email"/>
-            </div>
+            {/*<div style={{*/}
+            {/*    borderBottom: layout.border,*/}
+            {/*    marginBottom: layout.marginSmallRight,*/}
+            {/*// }}>*/}
+                {/*<AddressElement value={phoneNumber} icon="phone"/>*/}
+                {/*<AddressElement value={email} icon="email"/>*/}
+            {/*</div>*/}
             <div>
                 <AddressLabelElement title='Address: ' value={fullAddress}/>
-                <AddressLabelElement title='Year: ' value={dateOfBirth}/>
+                <AddressLabelElement title='Year of birth: ' value={dateOfBirth}/>
             </div>
         </HeaderElement>
     )
