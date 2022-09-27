@@ -187,13 +187,13 @@ export const getMappedResumeData = (resumeData) => {
     const allSkills = getAllTechSkills(resumeData.Skills.Raw);
     const education = getEducationAndCertifications(resumeData)
     const work = getWorkExperience(resumeData.EmploymentHistory.Positions);
-    const additionalData = [{name: 'Languages', value: languages}, {name: 'Tech skills', value: allSkills}]
 
     finalResume.basics.location = location;
     finalResume.basics.fullAddress = fullAddress;
     finalResume.skills = competencies;
     finalResume.work = work;
     finalResume.education = education;
-    finalResume.additionalData = additionalData;
+    finalResume.languages = languages;
+    finalResume.allSkills = allSkills;
     return finalResume;
 }

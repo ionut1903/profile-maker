@@ -11,17 +11,17 @@ type Props = {
     parentIndex: number,
 }
 
-function AdditionalDataFragment({ index }: Props) {
+function LanguageFragment({ index }: Props) {
     return (
         <div>
             {index > 0 ? <Divider /> : null}
             <LabeledInput
-                name={`allSkills[${index}]`}
-                label="Skill Name"
-                placeholder="Programming Languages"
+                name={`languages[${index}]`}
+                label="Language"
+                placeholder="Language"
             />
         </div>
     )
 }
 
-export default AdditionalDataFragment
+export default LanguageFragment

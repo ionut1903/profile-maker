@@ -49,7 +49,6 @@ class TemplateComponent extends Component<Props> {
                 certifications.push(edu.area);
             }
         });
-        const additionalData = json.additionalData;
         const workList = json.work;
         workList.forEach((w) => {
             w.position = w.position.toUpperCase();
@@ -61,8 +60,11 @@ class TemplateComponent extends Component<Props> {
             }
         });
         const description = json.basics.summary;
+        const languages = json.languages;
+        const allSkills = json.allSkills;
         return {
-            additionalData,
+            languages,
+            allSkills,
             fullAddress,
             dateOfBirth,
             phoneNumber,
@@ -78,11 +80,10 @@ class TemplateComponent extends Component<Props> {
 
     render() {
         const {
-            additionalData,
+            languages,
+            allSkills,
             fullAddress,
             dateOfBirth,
-            phoneNumber,
-            email,
             fullName,
             certifications,
             workList,
@@ -98,8 +99,9 @@ class TemplateComponent extends Component<Props> {
                         <LogoContainer fullName={fullName}
                                        shortDescription={shortDescription}/>
                         <TemplateProfilePhotoComponent/>
-                        <TemplateContactDataComponent email={email} phoneNumber={phoneNumber} dateOfBirth={dateOfBirth}
-                                                      fullAddress={fullAddress}/>
+                        <TemplateContactDataComponent dateOfBirth={dateOfBirth}
+                                                      fullAddress={fullAddress}
+                                                      languages={languages}/>
                     </FlexBetweenContainer>
                     <section>
                         <SectionTitleAndDescriptionComponent title={'Profesional Profile'}
@@ -109,7 +111,7 @@ class TemplateComponent extends Component<Props> {
                         <SectionTitleAndFlexListComponent title={'Core Competencies'}
                                                           list={coreCompetencies}/>
                     </section>
-                    <AdditionalDataComponent additionalData={additionalData}></AdditionalDataComponent>
+                    <AdditionalDataComponent allSkills={allSkills}></AdditionalDataComponent>
                     <section>
                         <SectionTitleAndListComponent title={'Education & Certificates'}
                                                       list={certifications}/>

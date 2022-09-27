@@ -40,7 +40,6 @@ export const splitResumeToA4Pages = (htmlElem) => {
             continue;
         }
 
-        // Todo what happens if  the condition listOfElemHeights[i] + currentPageHeight > targetPageHeight is not met
         if (listOfElemHeights[i] + currentPageHeight > targetPageHeight && i === workIndex) {
             workHistoryPages = splitWorkComponents(work, footer);
             isWorkSplit = true;

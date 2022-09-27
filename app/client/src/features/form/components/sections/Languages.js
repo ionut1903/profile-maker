@@ -6,36 +6,32 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Section from './Section'
 import {Button} from '../../../../common/components'
-import {
-    addSkillKeyword,
-    removeSkillKeyword, addLanguage, removeLanguage
+import {addLanguage, removeLanguage
 } from '../../actions'
 import type {FormValues} from '../../types'
 import type {State} from '../../../../app/types'
-import AdditionalDataFragment from "../fragments/AdditionalDataFragment";
+import LanguageFragment from "../fragments/LanguageFragment";
 
 type Props = {
-    additionalData: $PropertyType<FormValues, 'additionalData'>,
+    languages: $PropertyType<FormValues, 'languages'>,
     addLanguage: () => void,
     removeLanguage: () => void,
 }
 
 function Languages({
-                       additionalData,
+                       languages,
                        addLanguage,
                        removeLanguage,
                    }: Props) {
-    const parentIndex = 0;
-    const {value} = additionalData.length > 1 ? additionalData[parentIndex] : {value: []};
+    const lang = languages.length > 0 ? languages : languages;
 
     return (
         <Section heading="LANGUAGES">
-            {value.map((skill, i) => (
-                <AdditionalDataFragment
+            {lang.map((lang, i) => (
+                <LanguageFragment
                     key={i}
                     index={i}
-                    parentIndex={parentIndex}
-                    keywords={skill}
+                    keywords={lang}
                 />
             ))}
             <Button onClick={addLanguage} type="button">
@@ -43,7 +39,7 @@ function Languages({
             </Button>
             <Button
                 onClick={removeLanguage}
-                disabled={value.length === 1}
+                disabled={lang.length === 1}
                 type="button"
             >
                 Remove Language
@@ -54,7 +50,7 @@ function Languages({
 
 function mapState(state: State) {
     return {
-        additionalData: state.form.resume.values.additionalData
+        languages: state.form.resume.values.languages
     }
 }
 

@@ -243,33 +243,24 @@ function form(state: FormState = initialState, action: Action): FormState {
         }
 
         case 'ADD_LANGUAGE': {
+            debugger
             return {
                 ...state,
                 values: {
                     ...state.values,
-                    additionalData: [
-                        {
-                            name: 'Languages',
-                            value: [...state.values.additionalData[0].value, '']
-                        },
-                        ...state.values.additionalData.slice(1),
-                    ]
+                    languages: [...state.values.languages, '']
                 }
             }
         }
 
         case 'REMOVE_LANGUAGE': {
+            const langs = [...state.values.languages];
+            langs.pop();
             return {
                 ...state,
                 values: {
                     ...state.values,
-                    additionalData: [
-                        {
-                            name: 'Languages',
-                            value: [...state.values.additionalData[0].value.slice(0, -1)]
-                        },
-                        ...state.values.additionalData.slice(1),
-                    ]
+                    languages: langs
                 }
             }
         }
@@ -279,29 +270,19 @@ function form(state: FormState = initialState, action: Action): FormState {
                 ...state,
                 values: {
                     ...state.values,
-                    additionalData: [
-                        ...state.values.additionalData.slice(0, 1),
-                        {
-                            name: 'Tech skills',
-                            value: [...state.values.additionalData[1].value, '']
-                        },
-                    ]
+                    allSkills: [...state.values.allSkills, '']
                 }
             }
         }
 
         case 'REMOVE_TECH_SKILL': {
+            const techSkills = [...state.values.allSkills];
+            techSkills.pop();
             return {
                 ...state,
                 values: {
                     ...state.values,
-                    additionalData: [
-                        ...state.values.additionalData.slice(0, 1),
-                        {
-                            name: 'Tech skills',
-                            value: [...state.values.additionalData[1].value.slice(0, -1)]
-                        },
-                    ]
+                    allSkills: techSkills
                 }
             }
         }

@@ -7,7 +7,7 @@ import {HeaderElement} from "./TemplateHeaderComponent";
 import {Icon} from "../../../../common/components";
 import {FlexColumnBetweenContainer, FlexContainer} from "./TemplateFlexComponents";
 
-export const TemplateContactDataComponent = ({phoneNumber, email, fullAddress, dateOfBirth}) => {
+export const TemplateContactDataComponent = ({fullAddress, dateOfBirth, languages}) => {
     return (
         <HeaderElement extraStyle={{
             background: colors.mainColor,
@@ -17,16 +17,12 @@ export const TemplateContactDataComponent = ({phoneNumber, email, fullAddress, d
             padding: layout.padContainer,
             height: 'auto'
         }}>
-            {/*<div style={{*/}
-            {/*    borderBottom: layout.border,*/}
-            {/*    marginBottom: layout.marginSmallRight,*/}
-            {/*// }}>*/}
-                {/*<AddressElement value={phoneNumber} icon="phone"/>*/}
-                {/*<AddressElement value={email} icon="email"/>*/}
-            {/*</div>*/}
             <div>
                 <AddressLabelElement title='Address: ' value={fullAddress}/>
                 <AddressLabelElement title='Year of birth: ' value={dateOfBirth}/>
+            </div>
+            <div>
+                <LanguageElements title='Languages' values={languages}></LanguageElements>
             </div>
         </HeaderElement>
     )
@@ -56,6 +52,21 @@ export const AddressLabelElement = ({title, value}) => {
                 <label><strong>{title}</strong></label>
             </SpanElementWithMarginRight>
             <p style={{margin: '0px',wordBreak: 'break-word'}}>{value}</p>
+        </FlexColumnBetweenContainer>
+    )
+}
+
+export const LanguageElements = ({title, values}) => {
+    return (
+        <FlexColumnBetweenContainer extraStyle={{marginBottom: layout.padContainer}}>
+            <SpanElementWithMarginRight extraStyle={{marginBottom: layout.marginSmallRight}}>
+                <label><strong>{title}</strong></label>
+            </SpanElementWithMarginRight>
+            {
+                values.map((val)=>{
+                    return <p key={val} style={{margin: '0px',wordBreak: 'break-word'}}>{val}</p>
+                })
+            }
         </FlexColumnBetweenContainer>
     )
 }

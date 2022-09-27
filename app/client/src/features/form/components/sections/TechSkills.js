@@ -12,25 +12,24 @@ import type {State} from '../../../../app/types'
 import AdditionalDataFragment from "../fragments/AdditionalDataFragment";
 
 type Props = {
-    additionalData: $PropertyType<FormValues, 'additionalData'>,
+    allSkills: $PropertyType<FormValues, 'allSkills'>,
     addTechSkill: () => void,
     removeTechSkill: () => void,
 }
 
 function TechSkills({
-                        additionalData,
+                        allSkills,
                         addTechSkill,
                         removeTechSkill
                     }: Props) {
     const parentIndex = 1;
-    const {value} = additionalData.length > 1 ? additionalData[parentIndex] : {value: []};
+    const skills = allSkills.length > 0 ? allSkills : [];
     return (
-        <Section heading="TECH SKILLS">
-            {value.map((skill, i) => (
+        <Section heading="ALL TECH SKILLS">
+            {skills.map((skill, i) => (
                 <AdditionalDataFragment
                     key={i}
                     index={i}
-                    parentIndex={parentIndex}
                     keywords={skill}
                 />
             ))}
@@ -39,7 +38,7 @@ function TechSkills({
             </Button>
             <Button
                 onClick={removeTechSkill}
-                disabled={value.length === 1}
+                disabled={skills.length === 1}
                 type="button"
             >
                 Remove Skill
@@ -50,7 +49,7 @@ function TechSkills({
 
 function mapState(state: State) {
     return {
-        additionalData: state.form.resume.values.additionalData
+        allSkills: state.form.resume.values.allSkills
     }
 }
 
