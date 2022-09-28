@@ -3,12 +3,14 @@ import {FlexBetweenContainer} from "./components/common/TemplateFlexComponents";
 import {colors, font} from "./components/TemplateCommonComponents";
 
 const noMargin = {
-    margin: 0
+    margin: 0,
+    fontSize: '10px!important',
+    lineHeight: 1
 }
 
 const footer = {
     margin: '0 auto',
-    width: '88.5%'
+    width: '88.5%',
 }
 
 export const FooterResume = () => {
@@ -21,7 +23,7 @@ export const FooterResume = () => {
                          alt="Mertus logo"/>
                 </div>
                 <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 5px', width: '80%'}}>
-                    <div style={{width: '48%'}}>
+                    <div style={{width: '57%'}}>
                         {/*todo: create a list with all this data*/}
                         <h5 style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting UG (haftungsbeschränkt)</h5>
                         <p style={noMargin}>Neumühlen 42</p>
@@ -29,7 +31,7 @@ export const FooterResume = () => {
                         <p style={{padding: '8px 0', ...noMargin}}>www.mertus-consulting.com</p>
                         <p style={noMargin}>Vertraulicher Inhalt – keine unbefugte Weitergabe an Dritte.</p>
                     </div>
-                    <div style={{width: '48%'}}>
+                    <div style={{width: '42%'}}>
                         <h5 style={{fontSize: font.contentFontSize, ...noMargin}}>Ihr Ansprechpartner:</h5>
                         <p style={{padding:'0 0 8px 0', ...noMargin}}>Herr Hans-Justus Daase</p>
                         <p style={noMargin}>+49 (0)173 43 91 430</p>

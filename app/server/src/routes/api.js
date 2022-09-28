@@ -57,15 +57,15 @@ router.post('/htmltopdf', async ({request, response}) => {
         const pagePaths = [];
         for (let i = 0; i < request.body.html.length; i++) {
             const page = await browser.newPage();
-            await page.setContent(request.body.html[i]);
-            await page.emulateMediaType('screen');
             const path = `page${i}.pdf`;
+            await page.setContent(request.body.html[i], { waitUntil: 'networkidle2' });
+            await page.emulateMediaType('screen');
             await page.pdf({
                 path: path,
-                format: 'A4',
-                margin: {top: '10px', right: '5px', bottom: '10px', left: '5px'},
-                printBackground: true,
-            });
+                    format: 'A4',
+                    margin: {top: '10px', right: '5px', bottom: '10px', left: '5px'},
+                    printBackground: true,
+            })
             pagePaths.push(path);
         }
 

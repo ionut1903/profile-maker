@@ -9,14 +9,14 @@ export const colors = {
 export const font = {
     fontFamily: 'Open Sans',
     fontFamilyBold: 'Open Sans Bold',
-    contentFontSize: '10px',
+    contentFontSize: '11px',
     titleFontSize: '25px',
     subTitleFontSize: '18px',
     bold: 700,
     lineHeight: 1.2
 };
 export const layout = {
-    headerHeight: '155px',
+    headerHeight: '160px',
     padContainer: '8px',
     marginSmallRight: '5px',
     border: '1px solid lightgray',
