@@ -7,21 +7,22 @@ export const colors = {
 };
 
 export const font = {
-    fontFamily: 'Century Gothic',
-    fontFamilyBold: 'Century Gothic Bold',
-    contentFontSize: '12px',
+    fontFamily: 'Open Sans',
+    fontFamilyBold: 'Open Sans Bold',
+    contentFontSize: '10px',
     titleFontSize: '25px',
     subTitleFontSize: '18px',
     bold: 700,
-    lineHeight: 1.1
+    lineHeight: 1.2
 };
 export const layout = {
-    headerHeight: '200px',
+    headerHeight: '155px',
     padContainer: '8px',
     marginSmallRight: '5px',
     border: '1px solid lightgray',
     sidebarWidth: '25%',
-    articleWidth: '67%',
+    articleWidth: '72%',
+    listPaddingLeft: '18px'
 };
 
 export const TemplateContainer = (props) => {
@@ -33,7 +34,7 @@ export const TemplateContainer = (props) => {
             height: 'auto',
             background: colors.white,
             lineHeight: font.lineHeight,
-            letterSpacing: '1px',
+            letterSpacing: '1.2px',
             textAlign: 'initial',
             width: '90%',
             margin: '0 auto',

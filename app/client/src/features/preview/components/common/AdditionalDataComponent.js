@@ -19,7 +19,7 @@ export const AdditionalDataComponent = ({allSkills, children}) => {
                         <ul style={{
                             display: 'flex',
                             flexWrap: "wrap",
-                            paddingLeft: '30px',
+                            paddingLeft: layout.listPaddingLeft,
                             paddingTop: '12px',
                             marginTop: 0,
                             justifyContent: 'space-between',

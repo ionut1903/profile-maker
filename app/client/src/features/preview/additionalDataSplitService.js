@@ -8,7 +8,7 @@ import {getDimensionInCM, getEmptyHtmlContainer, getHeightAndCloneOfElement} fro
  */
 }
 
-export const splitAdditionalData = (skillsElem, remainingPageHeight) => {
+export const splitSkillsData = (skillsElem, remainingPageHeight) => {
     const listElements = skillsElem.children[0].children[1].children[0].children;
     let [liElements, listOfElemHeights] = getHeightAndCloneOfElement(listElements);
     const pagesWithElements = getSkillsPages(liElements, listOfElemHeights, remainingPageHeight);
@@ -48,7 +48,7 @@ const getSkillsPages = (listOfElements, listOfElementsHeights, remainingPageHeig
             elementsToAddToNextPage.push(listOfElements[i + 1]);
         }
 
-        if (currentPageHeight > pageTargetHeight) {
+        if (currentPageHeight > pageTargetHeight - 0.8) {
             elementsToAddToNextPage.pop();
             currentPageHeight = currentPageHeight - listOfElementsHeights[i];
             i--;

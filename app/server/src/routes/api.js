@@ -63,7 +63,7 @@ router.post('/htmltopdf', async ({request, response}) => {
             await page.pdf({
                 path: path,
                 format: 'A4',
-                margin: {top: '10px', right: '10px', bottom: '10px', left: '10px'},
+                margin: {top: '10px', right: '5px', bottom: '10px', left: '5px'},
                 printBackground: true,
             });
             pagePaths.push(path);

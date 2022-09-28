@@ -95,7 +95,7 @@ class TemplateComponent extends Component<Props> {
         return (
             <div id="componentToPrint">
                 <TemplateContainer>
-                    <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: "180px"}}>
+                    <FlexBetweenContainer extraStyle={{marginBottom: layout.padContainer, height: layout.headerHeight}}>
                         <LogoContainer fullName={fullName}
                                        shortDescription={shortDescription}/>
                         <TemplateProfilePhotoComponent/>

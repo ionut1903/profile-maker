@@ -243,7 +243,6 @@ function form(state: FormState = initialState, action: Action): FormState {
         }
 
         case 'ADD_LANGUAGE': {
-            debugger
             return {
                 ...state,
                 values: {

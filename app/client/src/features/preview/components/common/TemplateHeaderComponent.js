@@ -7,7 +7,7 @@ export const LogoContainer = ({fullName, shortDescription, img}) => {
             extraStyle={{
                 width: "44%",
                 color: colors.black,
-                height: "180px",
+                height: layout.headerHeight,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between'
@@ -15,7 +15,7 @@ export const LogoContainer = ({fullName, shortDescription, img}) => {
             <LogoImgContainer></LogoImgContainer>
             <div>
                 <HeaderTitle extraStyle={{marginBottom: layout.marginSmallRight}}>{fullName}</HeaderTitle>
-                <HeaderSubTitle extraStyle={{letterSpacing:'-1px', textAlign: 'end'}}>
+                <HeaderSubTitle extraStyle={{letterSpacing: '-1px', textAlign: 'end'}}>
                     {shortDescription}
                 </HeaderSubTitle>
             </div>

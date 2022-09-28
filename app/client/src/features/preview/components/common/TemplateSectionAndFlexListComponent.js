@@ -16,6 +16,7 @@ export const SectionTitleAndFlexListComponent = ({title, list}) => {
                     justifyContent: 'space-between',
                     width: layout.articleWidth,
                     flexWrap: 'wrap',
+                    paddingLeft: layout.listPaddingLeft,
                     ...marginBottomZero
                 }}>
                     {

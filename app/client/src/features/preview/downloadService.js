@@ -1,9 +1,9 @@
 import {
     appendToPageIfComponentFitsAndReturnNewHeights, getDimensionInCM,
     getEmptyHtmlContainer,
-    getHeightAndCloneOfElement, isFooterLastElementToBeAdded
+    getHeightAndCloneOfElement
 } from "./splitTemplateUtils";
-import {splitAdditionalData} from "./additionalDataSplitService";
+import {splitSkillsData} from "./additionalDataSplitService";
 import {splitWorkComponents} from "./workSplitService";
 
 export const splitResumeToA4Pages = (htmlElem) => {
@@ -13,8 +13,8 @@ export const splitResumeToA4Pages = (htmlElem) => {
     let pagesToPrint = [];
     let workIndex = 5;
     const work = templateContainer.children[workIndex];
-    const additionalDataIndex = 3;
-    const additionalData = templateContainer.children[additionalDataIndex];
+    const skillsDataIndex = 3;
+    const skillsData = templateContainer.children[skillsDataIndex];
 
     let [pageElements, listOfElemHeights] = getHeightAndCloneOfElement(templateContainer.children);
     const footer = pageElements.pop();
@@ -32,7 +32,7 @@ export const splitResumeToA4Pages = (htmlElem) => {
     let isWorkSplit = false;
 
     for (let i = 0; i < pageElements.length; i++) {
-        if (i === additionalDataIndex && isAdditionalComponentSplit) {
+        if (i === skillsDataIndex && isAdditionalComponentSplit) {
             continue;
         }
 
@@ -63,8 +63,8 @@ export const splitResumeToA4Pages = (htmlElem) => {
         if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
             // split additional data into multiple parts
             let nextSkillsPagesAndHeights = null
-            if (i + 1 === additionalDataIndex && heightLeftFromPage < listOfElemHeights[i + 1]) {
-                const skillPages = splitAdditionalData(additionalData, heightLeftFromPage, targetPageHeight - initialCurrentPageHeight);
+            if (i + 1 === skillsDataIndex && heightLeftFromPage < listOfElemHeights[i + 1]) {
+                const skillPages = splitSkillsData(skillsData, heightLeftFromPage, targetPageHeight - initialCurrentPageHeight);
                 newHtmlTemplateContainer.appendChild(skillPages[0][0]);
                 currentPageHeight += heightLeftFromPage;
                 isAdditionalComponentSplit = true;
