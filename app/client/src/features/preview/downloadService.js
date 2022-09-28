@@ -87,9 +87,20 @@ export const splitResumeToA4Pages = (htmlElem) => {
                 nextSkillsPagesAndHeights.forEach((skillsAndHeights, i) => {
                     newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
                     newHtmlTemplateContainer.appendChild(skillsAndHeights[0]);
+
                     if (i === lastIndex) {
                         currentPageHeight = skillsAndHeights[1];
-                        heightLeftFromPage = targetPageHeight - currentPageHeight
+                        heightLeftFromPage = targetPageHeight - currentPageHeight;
+                        if (currentPageHeight + listOfElemHeights[i + 1] > targetPageHeight) {
+                            newHtmlTemplateContainer.appendChild(footer);
+                            newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
+                            newHtmlTemplate.appendChild(newHtmlTemplateContainer.cloneNode(true));
+                            pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
+                            newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
+                            newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
+                            currentPageHeight = initialCurrentPageHeight;
+                            heightLeftFromPage = targetPageHeight - currentPageHeight;
+                        }
                         return;
                     } else {
                         newHtmlTemplateContainer.appendChild(footer);

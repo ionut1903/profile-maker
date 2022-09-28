@@ -6,7 +6,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Toolbar, LoadingBar} from '.'
-import {downloadSource} from '../actions'
 import {sizes} from '../../../common/theme'
 import type {State as ReduxState} from '../../../app/types'
 import TemplateComponent from "./TemplateComponent";
