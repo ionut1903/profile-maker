@@ -13,7 +13,7 @@ export const getDimensionInCM = (dimensionInPX) => {
  */
 }
 export const getEmptyHtmlContainer = (htmlElem) => {
-    let htmlElemClone = htmlElem.cloneNode(true)
+    let htmlElemClone = htmlElem.cloneNode(true);
     while (htmlElemClone.hasChildNodes()) {
         htmlElemClone.removeChild(htmlElemClone.lastChild);
     }

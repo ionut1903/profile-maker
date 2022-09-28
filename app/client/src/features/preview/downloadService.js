@@ -62,35 +62,47 @@ export const splitResumeToA4Pages = (htmlElem) => {
         // add footer to the current page and reset data to initial values and go again
         if (pageElements[i + 1] && heightLeftFromPage < listOfElemHeights[i + 1]) {
             // split additional data into multiple parts
-            let nextAdditionalDataPagesAndHeights = null
+            let nextSkillsPagesAndHeights = null
             if (i + 1 === additionalDataIndex && heightLeftFromPage < listOfElemHeights[i + 1]) {
-                const {
-                    firstPageAdditionalData,
-                    additionalDataPagesAndHeights,
-                } = splitAdditionalData(additionalData, heightLeftFromPage, targetPageHeight - initialCurrentPageHeight);
-                newHtmlTemplateContainer.appendChild(firstPageAdditionalData);
+                const skillPages = splitAdditionalData(additionalData, heightLeftFromPage, targetPageHeight - initialCurrentPageHeight);
+                newHtmlTemplateContainer.appendChild(skillPages[0][0]);
                 currentPageHeight += heightLeftFromPage;
                 isAdditionalComponentSplit = true;
-                nextAdditionalDataPagesAndHeights = additionalDataPagesAndHeights && additionalDataPagesAndHeights.length > 0 ? additionalDataPagesAndHeights : [];
+                nextSkillsPagesAndHeights = skillPages.slice(1);
             }
 
             // add footer to the end of the page
             newHtmlTemplateContainer.appendChild(footer);
-            newHtmlTemplate.appendChild(newHtmlTemplateContainer);
+            newHtmlTemplate.appendChild(newHtmlTemplateContainer.cloneNode(true));
             pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
             // reset to initial values
+
             newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
             newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
             currentPageHeight = initialCurrentPageHeight;
             heightLeftFromPage = targetPageHeight - currentPageHeight
 
-            if (nextAdditionalDataPagesAndHeights && nextAdditionalDataPagesAndHeights.length > 0) {
-                // // add next elements to be parsed to pageElements list
-                const [newElemsList, newElemHeights] = setNewElementsToPageElements(additionalDataIndex, nextAdditionalDataPagesAndHeights, listOfElemHeights, pageElements);
-                pageElements = newElemsList;
-                listOfElemHeights = newElemHeights;
-                workIndex += nextAdditionalDataPagesAndHeights.length;
-                console.log('Work index moved to: ', workIndex);
+            if (nextSkillsPagesAndHeights && nextSkillsPagesAndHeights.length > 0) {
+                const lastIndex = nextSkillsPagesAndHeights.length - 1;
+                nextSkillsPagesAndHeights.forEach((skillsAndHeights, i) => {
+                    newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
+                    newHtmlTemplateContainer.appendChild(skillsAndHeights[0]);
+                    if (i === lastIndex) {
+                        currentPageHeight = skillsAndHeights[1];
+                        heightLeftFromPage = targetPageHeight - currentPageHeight
+                        return;
+                    } else {
+                        newHtmlTemplateContainer.appendChild(footer);
+                        currentPageHeight = initialCurrentPageHeight;
+                        heightLeftFromPage = targetPageHeight - currentPageHeight
+                    }
+
+                    newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
+                    newHtmlTemplate.appendChild(newHtmlTemplateContainer.cloneNode(true));
+                    pagesToPrint.push(newHtmlTemplate.cloneNode(true).innerHTML);
+                    newHtmlTemplateContainer = getEmptyHtmlContainer(templateContainer);
+                    newHtmlTemplate = getEmptyHtmlContainer(htmlElem);
+                });
             }
         }
     }
@@ -116,31 +128,6 @@ const getWorkHistoryPages = (workHistoryPages, htmlElem, templateContainer) => {
         pagesToPrint.push(newHtmlTemplate.innerHTML);
     }
     return pagesToPrint;
-}
-
-const setNewElementsToPageElements = (index, additionalComponents, listOfElemHeights, pageElements) => {
-    if (additionalComponents && additionalComponents.length === 0) {
-        return [pageElements, listOfElemHeights];
-    }
-
-    const nextIndex = index + 1;
-    let currentParsedElements = [];
-    let elementsThatNeedToBeParsed = [];
-    let elementsHeightsThatNeedToBeParsed = [];
-    let currentParsedElementHeights = [];
-    currentParsedElements = pageElements.slice(0, nextIndex);
-    currentParsedElementHeights = listOfElemHeights.slice(0, nextIndex);
-    elementsThatNeedToBeParsed = pageElements.slice(nextIndex);
-    elementsHeightsThatNeedToBeParsed = listOfElemHeights.slice(nextIndex);
-
-    additionalComponents.forEach(elem => {
-        currentParsedElements.push(elem[0]);
-        currentParsedElementHeights.push(elem[1]);
-    });
-
-    pageElements = currentParsedElements.concat(elementsThatNeedToBeParsed);
-    listOfElemHeights = currentParsedElementHeights.concat(elementsHeightsThatNeedToBeParsed);
-    return [pageElements, listOfElemHeights];
 }
 
 // to display footer always on the bottom of the page

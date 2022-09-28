@@ -14,29 +14,29 @@ export const AdditionalDataComponent = ({allSkills, children}) => {
         <MainColorContainer extraStyle={{padding: '0 8px'}}>
             <FlexBetweenContainer>
                 <SectionHeader>{'Skills'}</SectionHeader>
-                <div style={{width: layout.articleWidth, margin: '13px 0'}}>
+                <div style={{width: layout.articleWidth, padding: '13px 0'}}>
                     {
-                        <div style={{paddingLeft: '19px'}}>
-                            <ul style={{
-                                display: 'flex',
-                                flexWrap: "wrap",
-                                paddingLeft: '11px',
-                                justifyContent: 'space-between',
-                                ...marginBottomZero
-                            }}>
-                                {
-                                    allSkills.map((val) => {
-                                        return <ListElement extraStyle={{
-                                            paddingBottom: layout.marginSmallRight,
-                                            width: '40%',
-                                            wordWrap: 'break-word'
-                                        }} key={val}>
-                                            {val}
-                                        </ListElement>
-                                    })
-                                }
-                            </ul>
-                        </div>
+                        <ul style={{
+                            display: 'flex',
+                            flexWrap: "wrap",
+                            paddingLeft: '30px',
+                            paddingTop: '12px',
+                            marginTop: 0,
+                            justifyContent: 'space-between',
+                            ...marginBottomZero
+                        }}>
+                            {
+                                allSkills.map((val) => {
+                                    return <ListElement extraStyle={{
+                                        paddingBottom: layout.marginSmallRight,
+                                        width: '40%',
+                                        wordWrap: 'break-word'
+                                    }} key={val}>
+                                        {val}
+                                    </ListElement>
+                                })
+                            }
+                        </ul>
                     }
                 </div>
             </FlexBetweenContainer>
