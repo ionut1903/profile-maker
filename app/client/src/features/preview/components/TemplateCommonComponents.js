@@ -21,8 +21,10 @@ export const layout = {
     marginSmallRight: '5px',
     border: '1px solid lightgray',
     sidebarWidth: '25%',
-    articleWidth: '72%',
-    listPaddingLeft: '18px'
+    articleWidth: '74%',
+    profileWidth: '77%',
+    listPaddingLeft: '10px',
+    listWidth: '40%'
 };
 
 export const TemplateContainer = (props) => {

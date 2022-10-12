@@ -21,7 +21,7 @@ export const SectionTitleAndFlexListComponent = ({title, list}) => {
                 }}>
                     {
                         list.map((elem: string) => {
-                            return <ListElement extraStyle={{width: '45%', marginBottom: layout.marginSmallRight}}
+                            return <ListElement extraStyle={{width: layout.listWidth, marginBottom: layout.marginSmallRight}}
                                                 key={elem}>{elem}</ListElement>
                         })
                     }

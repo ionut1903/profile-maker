@@ -29,7 +29,7 @@ export const AdditionalDataComponent = ({allSkills, children}) => {
                                 allSkills.map((val) => {
                                     return <ListElement extraStyle={{
                                         paddingBottom: layout.marginSmallRight,
-                                        width: '40%',
+                                        width: layout.listWidth,
                                         wordWrap: 'break-word'
                                     }} key={val}>
                                         {val}
