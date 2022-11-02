@@ -9,7 +9,8 @@ export const SectionTitleAndListComponent = ({title, list}) => {
         <MainColorContainer>
             <FlexBetweenContainer>
                 <SectionHeader>{title}</SectionHeader>
-                <ul style={{width: layout.articleWidth, paddingLeft: layout.listPaddingLeft}}>
+                
+                <ul style={{width: layout.articleWidth, paddingLeft: layout.listPaddingLeft, paddingTop: layout.listPaddingLeft}}>
                     {
                         list?
                         list.map((elem, i) => {

@@ -16,6 +16,7 @@ export const font = {
     lineHeight: 1.2
 };
 export const layout = {
+    marginBottomSection: '13px',
     headerHeight: '160px',
     padContainer: '8px',
     marginSmallRight: '5px',
@@ -36,7 +37,6 @@ export const TemplateContainer = (props) => {
             height: 'auto',
             background: colors.white,
             lineHeight: font.lineHeight,
-            letterSpacing: '1.2px',
             textAlign: 'initial',
             width: '90%',
             margin: '0 auto',
@@ -48,7 +48,7 @@ export const TemplateContainer = (props) => {
 // Professional Profile
 export const MainColorContainer = ({extraStyle, children}) => {
     return (
-        <div style={{background: colors.mainColor, padding: layout.padContainer, marginBottom: layout.padContainer, ...extraStyle}}>{children}</div>
+        <div style={{background: colors.mainColor, padding: layout.padContainer, marginBottom: layout.marginBottomSection, ...extraStyle}}>{children}</div>
     )
 }
 

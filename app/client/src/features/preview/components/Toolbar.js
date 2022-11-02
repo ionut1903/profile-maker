@@ -137,7 +137,7 @@ type Props = {
   currPage: number,
   resumeURL: string,
   jsonURL?: string,
-  downloadSource: () => Promise<void>,
+  downloadSource: () => any,
   prevPage: () => void,
   nextPage: () => void,
   zoomIn: () => void,
@@ -159,7 +159,7 @@ function Toolbar({
   return (
     <Wrapper>
       <ButtonGroup>
-        <ToolButton href={resumeURL} download="resume.pdf">
+        <ToolButton onClick={downloadSource} >
           <Icon type="file_download" /> PDF
         </ToolButton>
         <ToolButton href={jsonURL} download="resume.json">

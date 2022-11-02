@@ -25,7 +25,7 @@ export const FooterResume = () => {
                 <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 5px', width: '71%'}}>
                     <div style={{width: '57%'}}>
                         {/*todo: create a list with all this data*/}
-                        <h5 style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting UG (haftungsbeschränkt)</h5>
+                        <p style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting UG (haftungsbeschränkt)</p>
                         <p style={noMargin}>Neumühlen 42</p>
                         <p style={noMargin}>D - 22763 Hamburg</p>
                         <p style={{paddingTop: '8px', ...noMargin}}>Vertraulicher Inhalt – keine unbefugte</p>
@@ -33,7 +33,7 @@ export const FooterResume = () => {
                         
                     </div>
                     <div style={{width: '47%'}}>
-                        <h5 style={{fontSize: font.contentFontSize, ...noMargin}}>Ihr Ansprechpartner:</h5>
+                        <p style={{fontSize: font.contentFontSize, ...noMargin}}>Ihr Ansprechpartner:</p>
                         <p style={{padding:'0 0 8px 0', ...noMargin}}>Herr Hans-Justus Daase</p>
                         <p style={noMargin}>+49 (0)173 43 91 430</p>
                         <p style={noMargin}>+49 (0)40 571 99 133</p>

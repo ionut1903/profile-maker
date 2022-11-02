@@ -99,12 +99,13 @@ class Preview extends Component<Props, State> {
 
         return (
             <Wrapper hideOnMobile={hideOnMobile}>
-                <button onClick={this.downloadPdfResume}>Download Pdf</button>
+                {/* <button onClick={this.downloadPdfResume}>Download Pdf</button> */}
                 <LoadingBar status={status}/>
                 <Toolbar
+                    
                     resumeURL={''}
                     jsonURL={jsonURL}
-                    downloadSource={downloadSource}
+                    downloadSource={this.downloadPdfResume}
                     print={this.print}
                 />
                 <TemplateComponent json={json}></TemplateComponent>
