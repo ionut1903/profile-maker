@@ -10,6 +10,7 @@ export const font = {
     fontFamily: "Open Sans",
     fontFamilyBold: 'Open Sans',
     contentFontSize: '11px',
+    footerFontSize: '5px!important',
     titleFontSize: '25px',
     subTitleFontSize: '18px',
     bold: 700,
