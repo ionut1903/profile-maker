@@ -22,7 +22,7 @@ export const FooterResume = () => {
                          src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
                          alt="Mertus logo"/>
                 </div>
-                <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 15px', width: '67%'}}>
+                <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 15px', width: '68%'}}>
                     <div style={{width: '57%'}}>
                         {/*todo: create a list with all this data*/}
                         <p style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting GmbH</p>
