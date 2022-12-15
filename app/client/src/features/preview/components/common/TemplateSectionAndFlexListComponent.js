@@ -10,14 +10,15 @@ export const SectionTitleAndFlexListComponent = ({title, list}) => {
     return (
         <MainColorContainer>
             <FlexBetweenContainer>
-                <SectionHeader>{title}</SectionHeader>
+                <SectionHeader extraStyles={{paddingTop: '0'}}>{title}</SectionHeader>
                 <ListComponent extraStyles={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     width: layout.articleWidth,
                     flexWrap: 'wrap',
                     paddingLeft: layout.listPaddingLeft,
-                    paddingTop: layout.listPaddingLeft,
+                    paddingTop: '4px',
+                    paddingBottom: layout.listPaddingLeft,
                     ...marginBottomZero
                 }}>
                     {

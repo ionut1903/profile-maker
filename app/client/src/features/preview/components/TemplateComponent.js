@@ -59,7 +59,6 @@ class TemplateComponent extends Component<Props> {
                 coreCompetencies.push(skill.name);
             }
         });
-        debugger;
         const description = json.basics.summary;
         const languages = json.languages;
         const allSkills = json.allSkills.filter(sk => sk);

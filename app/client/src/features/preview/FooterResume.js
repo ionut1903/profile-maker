@@ -22,12 +22,12 @@ export const FooterResume = () => {
                          src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
                          alt="Mertus logo"/>
                 </div>
-                <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 5px', width: '71%'}}>
+                <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 15px', width: '67%'}}>
                     <div style={{width: '57%'}}>
                         {/*todo: create a list with all this data*/}
-                        <p style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting UG (haftungsbeschränkt)</p>
-                        <p style={noMargin}>Neumühlen 42</p>
-                        <p style={noMargin}>D - 22763 Hamburg</p>
+                        <p style={{fontSize: font.contentFontSize, ...noMargin}}>Mertus Consulting GmbH</p>
+                        <p style={noMargin}>Simon-von-Utrecht-Str. 85A</p>
+                        <p style={noMargin}>D-20359 Hamburg</p>
                         <p style={{paddingTop: '8px', ...noMargin}}>Vertraulicher Inhalt – keine unbefugte</p>
                         <p style={noMargin}>Weitergabe an Dritte.</p>
                         

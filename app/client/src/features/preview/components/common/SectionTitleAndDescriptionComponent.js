@@ -8,8 +8,8 @@ export const SectionTitleAndDescriptionComponent = ({title, description}) => {
     return (
         <MainColorContainer>
             <FlexBetweenContainer>
-                <SectionHeader>{title}</SectionHeader>
-                <SectionParagraph>{description}</SectionParagraph>
+                <SectionHeader extraStyles={{paddingTop: '0'}}>{title}</SectionHeader>
+                <SectionParagraph extraStyle={{paddingTop: '4px', marginLeft:'-5px'}}>{description}</SectionParagraph>
             </FlexBetweenContainer>
         </MainColorContainer>)
 }

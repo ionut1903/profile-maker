@@ -8,9 +8,9 @@ export const SectionTitleAndListComponent = ({title, list}) => {
     return (
         <MainColorContainer>
             <FlexBetweenContainer>
-                <SectionHeader>{title}</SectionHeader>
+                <SectionHeader extraStyles={{paddingTop: '3px', paddingBottom: '3px'}}>{title}</SectionHeader>
                 
-                <ul style={{width: layout.articleWidth, paddingLeft: layout.listPaddingLeft, paddingTop: layout.listPaddingLeft}}>
+                <ul style={{width: layout.articleWidth, paddingLeft: layout.listPaddingLeft, paddingTop: '7px', paddingBottom: '3px'}}>
                     {
                         list?
                         list.map((elem, i) => {
