@@ -15,7 +15,6 @@ const initialState = {
 }
 
 function preview(state: State = initialState, action: Action) {
-  debugger;
   switch (action.type) {
     case 'CLEAR_PREVIEW':
       return initialState

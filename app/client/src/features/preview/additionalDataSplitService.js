@@ -57,7 +57,7 @@ const getSkillsPages = (listOfElements, listOfElementsHeights, remainingPageHeig
                 elementsToAddToNextPage.pop();
                 i--;
             }
-            console.log('Added a number of elements: ', elementsToAddToNextPage.length);
+            // console.log('Added a number of elements: ', elementsToAddToNextPage.length);
             pages.push([elementsToAddToNextPage, currentPageHeight]);
             elementsToAddToNextPage = [];
             currentPageHeight = initialCurrentPageHeight;
@@ -66,7 +66,7 @@ const getSkillsPages = (listOfElements, listOfElementsHeights, remainingPageHeig
     }
 
     if (elementsToAddToNextPage.length > 0) {
-        console.log('Added a number of elements: ', elementsToAddToNextPage.length);
+        // console.log('Added a number of elements: ', elementsToAddToNextPage.length);
         pages.push([elementsToAddToNextPage, currentPageHeight]);
     }
 

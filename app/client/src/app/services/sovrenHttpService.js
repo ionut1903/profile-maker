@@ -39,7 +39,7 @@ const makeRequestForJSONResume = (options, callback) => {
         response.on('end', () => {
             const responseAsJson = JSON.parse(responseAsString);
             const resumeData = responseAsJson.Value.ResumeData;
-            console.log("SOVREN json: ", resumeData);
+            // console.log("SOVREN json: ", resumeData);
             const resume = getMappedResumeData(resumeData)
 
             callback(resume);

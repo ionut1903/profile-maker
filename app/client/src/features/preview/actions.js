@@ -49,7 +49,6 @@ function generateResumeFailure(): Action {
 function generateResume(resumeData: FormValuesWithSectionOrder): AsyncAction {
   return async (dispatch, getState) => {
     const { resume, data } = getState().preview
-    debugger;
     if (resume.status === 'pending' || isEqual(data.json, resumeData)) {
       return
     }
