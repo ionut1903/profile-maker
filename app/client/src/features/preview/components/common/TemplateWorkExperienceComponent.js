@@ -39,11 +39,11 @@ const HighlightedTitle = ({children}) => {
 }
 
 export const WorkExperienceSection = ({work}) => {
-    const startDate = work.startDate.split('-');
-    const endDate = work.endDate.split('-');
-    const date = `${startDate[1]}/${startDate[0]} - ${endDate[1]}/${endDate[0]}`
+    const startDate = work.startDate? work.startDate.split('-') : '';
+    const endDate =  work.endDate? work.endDate.split('-'): '';
+    const date = (startDate ? `${startDate[1]}/${startDate[0]}`: 'NO START DATE') +'-'+ (endDate? `${endDate[1]}/${endDate[0]}`:'NO END DATE');
     const {name, summary} = work;
-    let summaryData = summary.split('\n');
+    let summaryData = summary? summary.split('\n') : ['NO WORK SUMMARY DATA'];
 
     return (
         <WorkExperienceContainer>

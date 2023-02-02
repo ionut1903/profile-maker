@@ -286,6 +286,36 @@ function form(state: FormState = initialState, action: Action): FormState {
             }
         }
 
+        case 'SET_ALL_SKILLS': {
+            return {
+                ...state,
+                values: {
+                    ...state.values,
+                    allSkills: action.allSkills
+                }
+            }
+        }
+
+        case 'ADD_SKILL_BY_INDEX': {
+            return {
+                ...state,
+                values: {
+                    ...state.values,
+                    allSkills: action.allSkills
+                }
+            }
+        }
+
+        case 'REMOVE_SKILL_BY_INDEX': {
+            return {
+                ...state,
+                values: {
+                    ...state.values,
+                    allSkills: action.allSkills
+                }
+            }
+        }
+
         case 'ADD_SKILL': {
             return {
                 ...state,
@@ -320,13 +350,13 @@ function form(state: FormState = initialState, action: Action): FormState {
                 ...state,
                 values: {
                     ...state.values,
-                    skills: [
-                        ...state.values.skills.slice(0, action.index),
+                    allSkills: [
+                        ...state.values.allSkills.slice(0, action.index),
                         {
-                            ...state.values.skills[action.index],
-                            keywords: [...state.values.skills[action.index].keywords, '']
+                            ...state.values.allSkills[action.index],
+                            keywords: [...state.values.allSkills[action.index].keywords, '']
                         },
-                        ...state.values.skills.slice(action.index + 1)
+                        ...state.values.allSkills.slice(action.index + 1)
                     ]
                 }
             }
@@ -334,9 +364,9 @@ function form(state: FormState = initialState, action: Action): FormState {
 
         case 'REMOVE_SKILL_KEYWORD': {
             if (
-                !state.values.skills[action.index] ||
-                !state.values.skills[action.index].keywords ||
-                state.values.skills[action.index].keywords.length <= 1
+                !state.values.allSkills[action.index] ||
+                !state.values.allSkills[action.index].keywords ||
+                state.values.allSkills[action.index].keywords.length <= 1
             ) {
                 return state
             }
@@ -345,13 +375,13 @@ function form(state: FormState = initialState, action: Action): FormState {
                 ...state,
                 values: {
                     ...state.values,
-                    skills: [
-                        ...state.values.skills.slice(0, action.index),
+                    allSkills: [
+                        ...state.values.allSkills.slice(0, action.index),
                         {
-                            ...state.values.skills[action.index],
-                            keywords: state.values.skills[action.index].keywords.slice(0, -1)
+                            ...state.values.allSkills[action.index],
+                            keywords: state.values.allSkills[action.index].keywords.slice(0, -1)
                         },
-                        ...state.values.skills.slice(action.index + 1)
+                        ...state.values.allSkills.slice(action.index + 1)
                     ]
                 }
             }

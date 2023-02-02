@@ -3,7 +3,6 @@
  */
 
 import React from 'react'
-import { Divider} from '../../../../common/components'
 import LabeledInput from './LabeledInput'
 
 type Props = {
@@ -14,7 +13,6 @@ type Props = {
 function AdditionalDataFragment({ index }: Props) {
     return (
         <div>
-            {index > 0 ? <Divider /> : null}
             <LabeledInput
                 name={`allSkills[${index}]`}
                 label="Skill Name"

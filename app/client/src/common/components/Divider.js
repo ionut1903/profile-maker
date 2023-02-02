@@ -9,7 +9,7 @@ const Divider = styled.hr`
   height: 10px;
   margin-left: 0;
   margin-right: 0;
-  margin-top: 35px;
+  margin-top: 25px;
   border: none;
   background: ${colors.primary};
   opacity: 0.75;

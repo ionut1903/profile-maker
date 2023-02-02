@@ -42,7 +42,7 @@ class TemplateComponent extends Component<Props> {
         const shortDescription = json.basics.shortDescription ? json.basics.shortDescription.toUpperCase() : 'NOT FOUND - SHORT DESCRIPTION?';
         const phoneNumber = json.basics.phone ? json.basics.phone : 'NOT FOUND - PHONE NUMBER'
         const email = this.getEmail(json.basics.email);
-        const fullName = json.basics.name.toUpperCase();
+        const fullName = json.basics.name? json.basics.name.toUpperCase(): 'NOT FOUND NAME';
         const certifications = [];
         json.education.forEach(edu => {
             if (edu.area) {
@@ -51,7 +51,7 @@ class TemplateComponent extends Component<Props> {
         });
         const workList = json.work;
         workList.forEach((w) => {
-            w.position = w.position.toUpperCase();
+            w.position =  w.position? w.position.toUpperCase() : '';
         });
         const coreCompetencies = [];
         json.skills.forEach(skill => {
@@ -61,7 +61,10 @@ class TemplateComponent extends Component<Props> {
         });
         const description = json.basics.summary;
         const languages = json.languages;
-        const allSkills = json.allSkills.filter(sk => sk);
+        let allSkills = [];
+        if(json.allSkills) {
+            allSkills = json.allSkills.filter(sk => sk)
+        }
         return {
             languages,
             allSkills,
@@ -79,6 +82,9 @@ class TemplateComponent extends Component<Props> {
     }
 
     render() {
+        if(!this) {
+            return null;
+        }
         const {
             languages,
             allSkills,

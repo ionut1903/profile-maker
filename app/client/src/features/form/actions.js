@@ -153,6 +153,13 @@ function addTechSkill(): Action {
     }
 }
 
+function setAllSkills(allSkills: Array<string>): Action {
+    return {
+      type: 'SET_ALL_SKILLS',
+      allSkills,
+    }
+  }
+
 function removeTechSkill(): Action {
     return {
         type: 'REMOVE_TECH_SKILL'
@@ -239,5 +246,6 @@ export {
     removeProjectKeyword,
     addAward,
     removeAward,
-    uploadFileAndGenerateResume
+    uploadFileAndGenerateResume,
+    setAllSkills
 }
