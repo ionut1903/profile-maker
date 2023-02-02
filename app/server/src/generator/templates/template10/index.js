@@ -43,8 +43,8 @@ const generator: template10Generator = {
       const input = name;
       const [firstname, lastname] = input.split(' ');
 
-    console.log(firstname)
-    console.log(lastname)
+    // console.log(firstname)
+    // console.log(lastname)
 
     return (
       stripIndent`
