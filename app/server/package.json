@@ -53,7 +53,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "blyss": "^10.1.0",
-    "flow-bin": "^0.61.0",
+    "flow-bin": "^0.63.1",
     "flow-coverage-report": "^0.4.1",
     "flow-typed": "^2.2.0",
     "glow": "^1.1.0",

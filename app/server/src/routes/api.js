@@ -53,7 +53,9 @@ router.post('/upload', async ({request, response}) => {
 
 router.post('/htmltopdf', async ({request, response}) => {
     try {
-        const browser = await pupeteer.launch();
+        const browser = await pupeteer.launch({
+		executablePath: '/usr/bin/chromium-browser'
+	});
         const pagePaths = [];
         for (let i = 0; i < request.body.html.length; i++) {
             const page = await browser.newPage();
