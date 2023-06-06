@@ -31,6 +31,17 @@ function Skills({
   addSkillKeyword,
   removeSkillKeyword
 }: Props) {
+  React.useEffect(() => {
+    const newFieldIndex = skills.length - 1;
+
+    if (newFieldIndex >= 0) {
+      const els = document.getElementsByName(`skills[${newFieldIndex}].name`);
+      if(els.length > 0) {
+        els[0].scrollIntoView({ behavior: 'smooth' });
+        els[0].focus();
+      }
+    }
+  }, [skills]);
   return (
     <Section heading="CORE COMPETENCIES">
       {skills.map((skill, i) => (

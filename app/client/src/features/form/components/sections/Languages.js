@@ -25,6 +25,18 @@ function Languages({
                    }: Props) {
     const lang = languages.length > 0 ? languages : languages;
 
+    React.useEffect(() => {
+        const newFieldIndex = lang.length - 1;
+    
+        if (newFieldIndex >= 0) {
+          const els = document.getElementsByName(`languages[${newFieldIndex}]`);
+          if(els.length > 0) {
+            els[0].scrollIntoView({ behavior: 'smooth' });
+            els[0].focus();
+          }
+        }
+      }, [lang]);
+
     return (
         <Section heading="LANGUAGES">
             {lang.map((lang, i) => (

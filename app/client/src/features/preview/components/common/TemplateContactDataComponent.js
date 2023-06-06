@@ -63,7 +63,7 @@ export const LanguageElements = ({title, values}) => {
                 <label><strong>{title}</strong></label>
             </SpanElementWithMarginRight>
             {
-                values.map((val)=>{
+                values && values.map((val)=>{
                     return <p key={val} style={{margin: '0px',wordBreak: 'break-word'}}>{val}</p>
                 })
             }

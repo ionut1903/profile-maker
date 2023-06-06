@@ -19,6 +19,19 @@ type Props = {
 }
 
 function Education({ education, addSchool, removeSchool }: Props) {
+
+  React.useEffect(() => {
+    const newFieldIndex = education.length - 1;
+
+    if (newFieldIndex >= 0) {
+      const els = document.getElementsByName(`education[${newFieldIndex}].area`);
+      if(els.length > 0) {
+        els[0].scrollIntoView({ behavior: 'smooth' });
+        els[0].focus();
+      }
+    }
+  }, [education]);
+
   return (
     <Section heading="Your Educational Background">
       {education.map((school, i) => <School key={i} index={i} />)}

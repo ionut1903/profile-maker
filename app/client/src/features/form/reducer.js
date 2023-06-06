@@ -64,6 +64,8 @@ const initialState = {
                 keywords: ['']
             }
         ],
+	allSkills: [""],
+	languages: [""],
         awards: [
             {
                 title: '',

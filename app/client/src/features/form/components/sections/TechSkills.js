@@ -113,6 +113,17 @@ const SortableList = SortableContainer(({ items,  addSkillByIndex, removeSkillBy
     const removeSkill = (index) =>{
         removeSkillByIndex(index)
     }
+    React.useEffect(() => {
+      const newFieldIndex = items.length - 1;
+  
+      if (newFieldIndex >= 0) {
+        const els = document.getElementsByName(`allSkills[${newFieldIndex}]`);
+        if(els.length > 0) {
+          els[0].scrollIntoView({ behavior: 'smooth' });
+          els[0].focus();
+        }
+      }
+    }, [items]);
     return (
       <List>
         {items.map((value, index) => (
