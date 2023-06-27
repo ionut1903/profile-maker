@@ -69,12 +69,10 @@ class SideNav extends Component<Props> {
         document.body && document.body.classList.toggle('grabbing')
     }
 
-    render() {
-        let {sections} = this.props;
 
-        const templatesIndex = sections.indexOf('templates');
+    sectionMapper(sections) {
+
         const skillsIndex = sections.indexOf('skills');
-        const projIndex = sections.indexOf('projects');
         const languagesIndx = sections.indexOf('languages');
         const techSkillsIndx = sections.indexOf('techSkills');
 
@@ -87,6 +85,46 @@ class SideNav extends Component<Props> {
         if (techSkillsIndx === -1) {
             sections.push('techSkills');
         }
+
+        return sections.map((section) => {
+
+            const mapper = {
+                profile: {
+                    path: "profile",
+                    title: "Profile"
+                },
+                education: {
+                    path: "education",
+                    title: "Education"
+                },
+                work: {
+                    path: "work",
+                    title: "Work"
+                },
+                skills: {
+                    path: "core-competencies",
+                    title: "Core Competencies"
+                },
+                techSkills: {
+                    path: "skills",
+                    title: "Skills"
+                },
+                languages: {
+                    path: "languages",
+                    title: "Languages"
+                },
+            }
+    
+            return mapper[section]
+        })
+        
+    }
+
+    
+
+    render() {
+        let {sections} = this.props;
+
         return (
             <Aside>
                 <Nav>
@@ -94,7 +132,7 @@ class SideNav extends Component<Props> {
                         useDragHandle
                         lockToContainerEdges
                         lockAxis="y"
-                        items={sections}
+                        items={this.sectionMapper(sections)}
                         onSortStart={this.onSortStart}
                         onSortEnd={this.onSortEnd}
                     />
