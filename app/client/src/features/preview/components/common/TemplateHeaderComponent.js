@@ -38,7 +38,7 @@ const LogoImgContainer = () => {
     return (
         <div style={{height: "58px"}}>
             <img style={{height: '100%'}}
-                 src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
+                 src={"https://mertus-consulting.com/wp-content/uploads/2023/06/logo-1.png"}
                  alt="Mertus consulting logo"/>
         </div>
     )

@@ -102,8 +102,8 @@ class Form extends Component<Props> {
             <Route exact path="/generator/profile" component={Profile} />
             <Route exact path="/generator/education" component={Education} />
             <Route exact path="/generator/work" component={Work} />
-            <Route exact path="/generator/skills" component={Skills} />
-            <Route exact path="/generator/techSkills" component={AllSkills} />
+            <Route exact path="/generator/core-competencies" component={Skills} />
+            <Route exact path="/generator/skills" component={AllSkills} />
             <Route exact path="/generator/languages" component={Languages} />
             <Route path="*" render={() => <h1 style={{ margin: 0 }}>404</h1>} />
           </Switch>

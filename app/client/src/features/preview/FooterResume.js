@@ -1,6 +1,7 @@
 import React from "react";
 import {FlexBetweenContainer} from "./components/common/TemplateFlexComponents";
 import {colors, font} from "./components/TemplateCommonComponents";
+import logo from "./assets/logo.png"
 
 const noMargin = {
     margin: 0,
@@ -19,7 +20,7 @@ export const FooterResume = () => {
             <FlexBetweenContainer>
                 <div style={{width: '20%', display: 'flex', fontSize: '10px'}}>
                     <img style={{width: '100%', alignSelf: 'center'}}
-                         src="https://mertus-consulting.com/wp-content/uploads/2021/06/logo_mertus.png"
+                         src={"https://mertus-consulting.com/wp-content/uploads/2023/06/logo-1.png"}
                          alt="Mertus logo"/>
                 </div>
                 <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 15px', width: '68%'}}>

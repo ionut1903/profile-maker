@@ -123,7 +123,7 @@ const SortableList = SortableContainer(({ items,  addSkillByIndex, removeSkillBy
           els[0].focus();
         }
       }
-    }, [items]);
+    }, [items.length]);
     return (
       <List>
         {items.map((value, index) => (
@@ -135,14 +135,6 @@ const SortableList = SortableContainer(({ items,  addSkillByIndex, removeSkillBy
             indx={index}
             value={value}
           />
-          <FlexContainer style={{'alignSelf':'center'}}>
-            <Button onClick={()=> addSkill(index)} type="button">
-                Add
-            </Button>
-            <Button onClick={()=> removeSkill(index)} type="button">
-                Del
-            </Button>
-          </FlexContainer>
         </FlexContainer>
         ))}
       </List>
@@ -162,9 +154,9 @@ class TechSkills extends Component<Props> {
         }
     
         onSortEnd = ({oldIndex, newIndex}) => {
-            const {allSkills, setAllSkillsOrder} = this.props;
+            const {allSkills, setAllSkills} = this.props;
             const newSectionOrder = arrayMove(allSkills, oldIndex, newIndex);
-            setAllSkillsOrder(newSectionOrder)
+            setAllSkills(newSectionOrder)
             this.toggleGrabCursor()
         }
     

@@ -35,7 +35,7 @@ function Skill({ keywords, index, addKeyword, removeKeyword }: Props) {
       {index > 0 ? <Divider /> : null}
       <LabeledInput
         name={`skills[${index}].name`}
-        label="Skill Name"
+        label="Competence Name"
         placeholder="Programming Languages"
       />
     </div>

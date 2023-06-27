@@ -42,12 +42,12 @@ function Job({job, index}: Props) {
             <LabeledInput
                 name={`work[${index}].startDate`}
                 label="Start Date"
-                placeholder="YYYY-MM-DD"
+                placeholder="MM/YYYY"
             />
             <LabeledInput
                 name={`work[${index}].endDate`}
                 label="End Date"
-                placeholder="YYYY-MM-DD"
+                placeholder="MM/YYYY"
             />
             <TextareaComp
                 label="Job Responsibilities"

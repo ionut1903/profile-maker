@@ -22,7 +22,6 @@ import type { SanitizedValues } from '../types'
 function generatePDF(formData: SanitizedValues): Transform {
   const { texDoc, opts } = getTemplateData(formData)
   const pdf = latex(texDoc, opts)
-
   return pdf
 }
 

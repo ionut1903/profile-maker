@@ -35,7 +35,7 @@ function Languages({
             els[0].focus();
           }
         }
-      }, [lang]);
+      }, [lang.length]);
 
     return (
         <Section heading="LANGUAGES">
