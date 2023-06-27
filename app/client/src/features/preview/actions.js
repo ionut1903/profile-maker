@@ -69,7 +69,6 @@ function generateResume(resumeData: FormValuesWithSectionOrder): AsyncAction {
       const response = await fetch('/api/generate/resume', request)
       const blob = await response.blob()
       const url = URL.createObjectURL(blob)
-
       dispatch(saveResumeData(resumeData))
       dispatch(generateResumeSuccess(url))
     } catch (err) {

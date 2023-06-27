@@ -1,6 +1,7 @@
 import React from 'react'
 import {colors, font, layout, MainColorContainer} from "../TemplateCommonComponents";
 import {FlexBetweenContainer} from "./TemplateFlexComponents";
+import { formatDateToMMYYYY } from '../../utils/date.util';
 
 const WorkExperienceTextContainer = ({children}) => {
     return (
@@ -39,9 +40,9 @@ const HighlightedTitle = ({children}) => {
 }
 
 export const WorkExperienceSection = ({work}) => {
-    const startDate = work.startDate? work.startDate.split('-') : '';
-    const endDate =  work.endDate? work.endDate.split('-'): '';
-    const date = (startDate ? `${startDate[1]}/${startDate[0]}`: 'NO START DATE') +'-'+ (endDate? `${endDate[1]}/${endDate[0]}`:'NO END DATE');
+    const startDate = work.startDate? formatDateToMMYYYY(work.startDate) : '';
+    const endDate =  work.endDate? formatDateToMMYYYY(work.endDate) : '';
+    const date = (startDate ? startDate: 'NO START DATE') +'-'+ (endDate? endDate:'NO END DATE');
     const {name, summary} = work;
     let summaryData = summary? summary.split('\n') : ['NO WORK SUMMARY DATA'];
 

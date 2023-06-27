@@ -30,7 +30,7 @@ function Education({ education, addSchool, removeSchool }: Props) {
         els[0].focus();
       }
     }
-  }, [education]);
+  }, [education.length]);
 
   return (
     <Section heading="Your Educational Background">

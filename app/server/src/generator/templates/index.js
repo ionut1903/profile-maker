@@ -40,6 +40,7 @@ import type { SanitizedValues, TemplateData } from '../../types'
 function getTemplateData(data: SanitizedValues): TemplateData {
   switch (data.selectedTemplate) {
     case TEMPLATE1:
+    
       return {
         texDoc: template1(data),
         opts: {

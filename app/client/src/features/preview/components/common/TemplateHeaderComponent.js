@@ -1,6 +1,5 @@
 import React from 'react'
 import {layout, font, colors} from "../TemplateCommonComponents";
-import logo from "../../assets/logo.png"
 
 export const LogoContainer = ({fullName, shortDescription, img}) => {
     return (
@@ -39,7 +38,7 @@ const LogoImgContainer = () => {
     return (
         <div style={{height: "58px"}}>
             <img style={{height: '100%'}}
-                 src={logo}
+                 src={"https://mertus-consulting.com/wp-content/uploads/2023/06/logo-1.png"}
                  alt="Mertus consulting logo"/>
         </div>
     )

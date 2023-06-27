@@ -41,7 +41,7 @@ function Skills({
         els[0].focus();
       }
     }
-  }, [skills]);
+  }, [skills.length]);
   return (
     <Section heading="CORE COMPETENCIES">
       {skills.map((skill, i) => (
@@ -54,14 +54,14 @@ function Skills({
         />
       ))}
       <Button onClick={addSkill} type="button">
-        Add Skill
+        Add Competence
       </Button>
       <Button
         onClick={removeSkill}
         disabled={skills.length === 1}
         type="button"
       >
-        Remove Skill
+        Remove Competence
       </Button>
     </Section>
   )
