@@ -83,21 +83,14 @@ class Preview extends Component<Props, State> {
 
     downloadPdfResume = async () => {
         const {json} = this.props
-        const html = document.implementation.createHTMLDocument("resume");
-        const link = document.createElement("link");
-        link.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,600,300";
-        link.rel = "stylesheet"
-        link.type = "text/css"
-        html.head.appendChild(link);
+
         const node = await document.querySelector("#componentToPrint");
         const pages = splitResumeToA4Pages(node);
         const htmls = pages.map((p, i) => {
             const html = document.implementation.createHTMLDocument(`resume_page_${i}`);
-            const link = document.createElement("link");
-            link.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,600,300";
-            link.rel = "stylesheet"
-            link.type = "text/css"
-            html.head.appendChild(link);
+            html.head.innerHTML = `<link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;750" rel="stylesheet" type="text/css">`
             html.body.innerHTML = p 
             return `<html>${html.documentElement.innerHTML}</html>`
         })
