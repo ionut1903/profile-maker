@@ -15,6 +15,8 @@ import {
 } from '../../actions'
 import type { FormValues } from '../../types'
 import type { State } from '../../../../app/types'
+import { bindActionCreators } from 'redux'
+import { change } from 'redux-form'
 
 type Props = {
   work: $PropertyType<FormValues, 'work'>,
@@ -23,7 +25,8 @@ type Props = {
   addJob: () => void,
   removeJob: () => void,
   addJobHighlight: (index: number) => void,
-  removeJobHighlight: (index: number) => void
+  removeJobHighlight: (index: number) => void,
+  change: VoidFunction
 }
 
 function Work({
@@ -31,12 +34,14 @@ function Work({
   addJob,
   removeJob,
   addJobHighlight,
-  removeJobHighlight
+  removeJobHighlight,
+  change
 }: Props) {
   return (
     <Section heading="Your Work Experience">
       {work.map((job, i) => (
         <Job
+          changeField={change}
           key={i}
           index={i}
           job={job}
@@ -59,12 +64,18 @@ function mapState(state: State) {
     work: state.form.resume.values.work
   }
 }
-
-const mapActions = {
-  addJob,
-  removeJob,
-  addJobHighlight,
-  removeJobHighlight
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(
+      { 
+        change, 
+        addJob, 
+        removeJob, 
+        addJobHighlight, 
+        removeJobHighlight },
+      dispatch
+    )
+  }
 }
 
-export default connect(mapState, mapActions)(Work)
+export default connect(mapState, mapDispatchToProps)(Work)

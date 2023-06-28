@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {colors, font, layout, MainColorContainer} from "../TemplateCommonComponents";
 import {FlexBetweenContainer} from "./TemplateFlexComponents";
 import { formatDateToMMYYYY } from '../../utils/date.util';
@@ -40,24 +40,22 @@ const HighlightedTitle = ({children}) => {
 }
 
 export const WorkExperienceSection = ({work}) => {
+    const ref = useRef(null)
     const startDate = work.startDate? formatDateToMMYYYY(work.startDate) : '';
     const endDate =  work.endDate? formatDateToMMYYYY(work.endDate) : '';
     const date = (startDate ? startDate: 'NO START DATE') +'-'+ (endDate? endDate:'NO END DATE');
     const {name, summary} = work;
-    let summaryData = summary? summary.split('\n') : ['NO WORK SUMMARY DATA'];
-
+    let summaryData = summary? summary : ['NO WORK SUMMARY DATA'];
+    useEffect(() => {
+        ref.current.innerHTML = summaryData
+    }, [summaryData])
     return (
         <WorkExperienceContainer>
             <FlexBetweenContainer>
                 <WorkExperienceTitleSubtitle title={work.position} subtitle={date}></WorkExperienceTitleSubtitle>
                 <div style={{width: layout.articleWidth}}>
                     <HighlightedTitle><strong>{name}</strong></HighlightedTitle>
-                    {summaryData.map((s, i) => {
-                        if (!s) {
-                            return <p key={i} style={{margin: 0, height: layout.marginSmallRight}}></p>
-                        }
-                        return <p style={{margin: 0, padding: `${layout.padContainer} 0`}} key={i}>{s}<br/></p>
-                    })}
+                     <div style={{margin: 0}} ref={ref}><br/></div>
                 </div>
             </FlexBetweenContainer>
         </WorkExperienceContainer>

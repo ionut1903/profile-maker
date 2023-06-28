@@ -3,74 +3,79 @@
  */
 
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Section from './Section'
-import LabeledInput, {TextareaComp} from '../fragments/LabeledInput'
-import type {FormValues} from '../../types'
-import type {State} from '../../../../app/types'
+import LabeledInput, { TextareaComp } from '../fragments/LabeledInput'
+import type { FormValues } from '../../types'
+import type { State } from '../../../../app/types'
+import { TextEditor } from '../fragments/TextEditor'
+import { bindActionCreators } from 'redux'
+import { change } from 'redux-form'
 
 type Props = {
-    basics: $PropertyType<FormValues, 'basics'>,
+  basics: $PropertyType<FormValues, 'basics'>,
+  change: VoidFunction
 }
 
-function Profile({
-                     basics
-                 }: Props) {
-    return (
-        <Section heading="Your Personal Info">
-            <LabeledInput
-                name="basics.name"
-                label="Full Name"
-                placeholder="John Smith"
-            />
-            <LabeledInput
-                name="basics.email"
-                label="Email"
-                placeholder="johnsmith@gmail.com"
-            />
-            <LabeledInput
-                name="basics.phone"
-                label="Phone Number"
-                placeholder="(555) 123-4567"
-            />
-            <LabeledInput
-                name="basics.fullAddress"
-                label="Address"
-                placeholder="New York, NY"
-            />
-            <TextareaComp
+function Profile({ basics, change }: Props) {
+  return (
+    <Section heading="Your Personal Info">
+      <LabeledInput
+        name="basics.name"
+        label="Full Name"
+        placeholder="John Smith"
+      />
+      <LabeledInput
+        name="basics.email"
+        label="Email"
+        placeholder="johnsmith@gmail.com"
+      />
+      <LabeledInput
+        name="basics.phone"
+        label="Phone Number"
+        placeholder="(555) 123-4567"
+      />
+      <LabeledInput
+        name="basics.fullAddress"
+        label="Address"
+        placeholder="New York, NY"
+      />
+      {/* <TextareaComp
                 label="Professional profile description"
                 name={`basics.summary`}
                 defaultValue={basics.summary}
                 placeholder="Senior Software Developer"
-            ></TextareaComp>
-            <LabeledInput
-                name="basics.shortDescription"
-                label="Short description"
-                placeholder="Senior Software Developer"
-            />
-            {/*TODO: should we display the date of birth? also the labels should be named dateOfbirth?*/}
-            <LabeledInput
-                name="basics.year"
-                label="Year"
-                placeholder="1993"
-            />
-            <LabeledInput
-                name="basics.website"
-                label="Link"
-                placeholder="mycoolportfolio.com/myname"
-            />
-        </Section>
-    )
+            ></TextareaComp> */}
+      <TextEditor
+        onChange={c => change('resume', 'basics.summary', c)}
+        initialValue={basics.summary}
+        label="Professional profile description"
+      />
+      <LabeledInput
+        name="basics.shortDescription"
+        label="Short description"
+        placeholder="Senior Software Developer"
+      />
+      {/*TODO: should we display the date of birth? also the labels should be named dateOfbirth?*/}
+      <LabeledInput name="basics.year" label="Year" placeholder="1993" />
+      <LabeledInput
+        name="basics.website"
+        label="Link"
+        placeholder="mycoolportfolio.com/myname"
+      />
+    </Section>
+  )
 }
 
-const mapActions = {}
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ change }, dispatch)
+}
 
 function mapState(state: State) {
-    return {
-        basics: state.form.resume.values.basics,
-        selectedTemplate: state.form.resume.values.selectedTemplate
-    }
+  return {
+    basics: state.form.resume.values.basics,
+    selectedTemplate: state.form.resume.values.selectedTemplate
+  }
 }
 
-export default connect(mapState, mapActions)(Profile)
+export default connect(mapState, mapDispatchToProps)(Profile)
