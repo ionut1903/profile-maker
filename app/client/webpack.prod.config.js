@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
@@ -36,6 +36,7 @@ module.exports = {
   },
 
   plugins: [
+    new MinifyPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: 'body',
