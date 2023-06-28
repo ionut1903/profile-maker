@@ -22,6 +22,7 @@ import type { State } from '../../../app/types'
 import type { Section } from '../../../common/types'
 import AllSkills from "./sections/TechSkills";
 import Languages from "./sections/Languages";
+import Footer from './sections/Footer'
 
 const StyledForm = styled.form`
   width: 40%;
@@ -105,6 +106,7 @@ class Form extends Component<Props> {
             <Route exact path="/generator/core-competencies" component={Skills} />
             <Route exact path="/generator/skills" component={AllSkills} />
             <Route exact path="/generator/languages" component={Languages} />
+            <Route exact path="/generator/footer" component={Footer} />
             <Route path="*" render={() => <h1 style={{ margin: 0 }}>404</h1>} />
           </Switch>
         </ScrollToTop>

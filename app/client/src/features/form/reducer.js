@@ -64,8 +64,8 @@ const initialState = {
                 keywords: ['']
             }
         ],
-	allSkills: [""],
-	languages: [""],
+        allSkills: [""],
+        languages: [""],
         awards: [
             {
                 title: '',
@@ -73,7 +73,13 @@ const initialState = {
                 awarder: '',
                 summary: ''
             }
-        ]
+        ],
+        footer: {
+            contactName: "Herr Hans-Justus Daase",
+            contactNumber1: "+49 (0)173 43 91 430",
+            contactNumber2: "+49 (0)40 571 99 133",
+            contactEmail: "justus.daase@mertus-consulting.com",
+        }
     }
 }
 

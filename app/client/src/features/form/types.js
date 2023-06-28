@@ -61,6 +61,13 @@ type Award = {
     summary?: ?string
 }
 
+type Footer = {
+    contactName?: ?string,
+    contactNumber1?: ?string,
+    contactNumber2?: ?string,
+    contactEmail?: ?string
+} 
+
 type FormValues = {
     allSkills: Array<any>;
     languages: any;
@@ -71,7 +78,8 @@ type FormValues = {
     education: Array<School>,
     skills: Array<Skill>,
     projects: Array<Project>,
-    awards: Array<Award>
+    awards: Array<Award>,
+    footer: Footer
 }
 
 type FormValuesWithSectionOrder = FormValues & {

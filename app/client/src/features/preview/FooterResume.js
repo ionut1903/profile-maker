@@ -14,7 +14,16 @@ const footer = {
     width: '88.5%',
 }
 
-export const FooterResume = () => {
+type Props = {
+    info: {
+        contactName?: ?string,
+        contactNumber1?: ?string,
+        contactNumber2?: ?string,
+        contactEmail?: ?string,
+    }
+}
+
+export const FooterResume = ({ info = {} }: Props) => {
     return (
         <footer style={footer}>
             <FlexBetweenContainer>
@@ -35,10 +44,10 @@ export const FooterResume = () => {
                     </div>
                     <div style={{width: '47%'}}>
                         <p style={{fontSize: font.footerFontSize, ...noMargin}}>Ihr Ansprechpartner:</p>
-                        <p style={{padding:'0 0 8px 0', ...noMargin}}>Herr Hans-Justus Daase</p>
-                        <p style={noMargin}>+49 (0)173 43 91 430</p>
-                        <p style={noMargin}>+49 (0)40 571 99 133</p>
-                        <p style={noMargin}>justus.daase@mertus-consulting.com</p>
+                        <p style={{padding:'0 0 8px 0', ...noMargin}}>{info.contactName}</p>
+                        <p style={noMargin}>{info.contactNumber1}</p>
+                        <p style={noMargin}>{info.contactNumber2}</p>
+                        <p style={noMargin}>{info.contactEmail}</p>
                         <p style={noMargin}>www.mertus-consulting.com</p>
                     </div>
                 </FlexBetweenContainer>
@@ -46,3 +55,4 @@ export const FooterResume = () => {
         </footer>
     )
 }
+
