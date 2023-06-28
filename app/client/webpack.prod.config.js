@@ -36,10 +36,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      comments: false
-    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: 'body',
