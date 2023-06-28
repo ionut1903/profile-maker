@@ -75,7 +75,7 @@ class SideNav extends Component<Props> {
         const skillsIndex = sections.indexOf('skills');
         const languagesIndx = sections.indexOf('languages');
         const techSkillsIndx = sections.indexOf('techSkills');
-
+        const footerIndx = sections.indexOf('footer');
         if (skillsIndex === -1) {
             sections.push('skills');
         }
@@ -84,6 +84,9 @@ class SideNav extends Component<Props> {
         }
         if (techSkillsIndx === -1) {
             sections.push('techSkills');
+        }
+        if (footerIndx === -1) {
+            sections.push('footer');
         }
 
         return sections.map((section) => {
@@ -112,6 +115,10 @@ class SideNav extends Component<Props> {
                 languages: {
                     path: "languages",
                     title: "Languages"
+                },
+                footer: {
+                    path: "footer",
+                    title: "Footer"
                 },
             }
     

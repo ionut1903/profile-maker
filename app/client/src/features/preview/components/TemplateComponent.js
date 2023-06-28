@@ -34,6 +34,7 @@ class TemplateComponent extends Component<Props> {
 
     mapJsonResumeToTemplate = () => {
         let {json} = this.props;
+        console.log("json: ", json)
         if (!json) {
             json = basicJson;
         }
@@ -77,7 +78,8 @@ class TemplateComponent extends Component<Props> {
             workList,
             coreCompetencies,
             description,
-            shortDescription
+            shortDescription,
+            footer: json.footer
         };
     }
 
@@ -95,7 +97,8 @@ class TemplateComponent extends Component<Props> {
             workList,
             coreCompetencies,
             description,
-            shortDescription
+            shortDescription,
+            footer
         } = this.mapJsonResumeToTemplate();
 
         return (
@@ -136,7 +139,7 @@ class TemplateComponent extends Component<Props> {
                             })
                         }
                     </section>
-                    <FooterResume/>
+                    <FooterResume info={footer}/>
                 </TemplateContainer>
             </div>
 

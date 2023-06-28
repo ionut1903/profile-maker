@@ -10,5 +10,6 @@ type Section =
   | 'skills'
   | 'languages'
   | 'allSkills'
+  | 'footer'
 
 export type { Section }
