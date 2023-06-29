@@ -2,12 +2,12 @@ import React, { useState, useRef, useMemo, useEffect } from 'react'
 import JoditEditor from 'jodit-react'
 import { change, getFormValues } from 'redux-form'
 import { Label } from './LabeledInput'
-export const TextEditor = ({
+function TextEditor ({
   placeholder,
   onChange = () => {},
   initialValue = '',
   label=''
-}) => {
+})  {
   const editor = useRef(null)
   const [content, setContent] = useState(initialValue)
   const [isFocused, setFocus] = useState(false)
@@ -29,9 +29,10 @@ export const TextEditor = ({
     setContent(initialValue)
   }, [])
 
-  useEffect(() => {
-    onChange(content)
-  }, [content])
+  const onBlur = (newContent) => {
+    setContent(newContent)
+    onChange(newContent)
+  }
 
   return (
     <div>
@@ -41,8 +42,15 @@ export const TextEditor = ({
         value={content}
         config={config}
         tabIndex={1} // tabIndex of textarea
-        onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+        onBlur={onBlur} // preferred to use only this option to update the content for performance reasons
       />
     </div>
   )
 }
+function arePropsEqual(prevProps, nextProps) {
+  return prevProps.initialValue === nextProps.initialValue &&
+         prevProps.label === nextProps.label &&
+         prevProps.placeholder === nextProps.placeholder;
+}
+
+export default React.memo(TextEditor, arePropsEqual)

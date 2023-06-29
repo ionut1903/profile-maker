@@ -6,7 +6,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Divider, RoundButton, Icon } from '../../../../common/components'
 import LabeledInput, { Label, TextArea, TextareaComp } from './LabeledInput'
-import { TextEditor } from './TextEditor'
+import TextEditor from './TextEditor'
 
 
 const Row = styled.div`
@@ -30,7 +30,7 @@ type Props = {
 
 function Job({ job, index, changeField= () => {} }: Props) {
   return (
-    <div>
+    <div id={`job_${index}`}>
       {index > 0 ? <Divider /> : null}
       <LabeledInput
         name={`work[${index}].name`}
@@ -63,10 +63,15 @@ function Job({ job, index, changeField= () => {} }: Props) {
         onChange={c => changeField('resume', `work[${index}].summary`, c)}
         initialValue={job.summary}
         label="Job Responsibilities"
-        placeholder="Did cool stuff at company"
-      />
+        placeholder="Did cool stuff at company" />
+      
     </div>
   )
 }
 
-export default Job
+function arePropsEqual(prevProps, nextProps) {
+  return JSON.stringify(prevProps.job) === JSON.stringify(nextProps.job) &&
+         prevProps.index === nextProps.index;
+}
+
+export default React.memo(Job, arePropsEqual)
