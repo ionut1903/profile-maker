@@ -8,7 +8,7 @@ import Section from './Section'
 import LabeledInput, { TextareaComp } from '../fragments/LabeledInput'
 import type { FormValues } from '../../types'
 import type { State } from '../../../../app/types'
-import { TextEditor } from '../fragments/TextEditor'
+import TextEditor from '../fragments/TextEditor'
 import { bindActionCreators } from 'redux'
 import { change } from 'redux-form'
 
