@@ -33,10 +33,28 @@ function generateResumeRequest(): Action {
   }
 }
 
-function generateResumeSuccess(resumeURL: string): Action {
+function generateResumeSuccess(resumeURL: string = ""): Action {
   return {
     type: 'GENERATE_RESUME_SUCCESS',
     resumeURL
+  }
+}
+
+function generateResumeRequest(): Action {
+  return {
+    type: 'GENERATE_RESUME_REQUEST'
+  }
+}
+
+function downloadPDFResumeRequest(): Action {
+  return {
+    type: 'DOWNLOAD_PDF_RESUME_REQUEST',
+  }
+}
+
+function downloadPDFResumeSuccess(): Action {
+  return {
+    type: 'DOWNLOAD_PDF_RESUME_SUCCESS',
   }
 }
 
@@ -139,5 +157,7 @@ export {
   downloadSourceRequest,
   downloadSourceSuccess,
   downloadSourceFailure,
-  downloadSource
+  downloadSource,
+  downloadPDFResumeRequest,
+  downloadPDFResumeSuccess
 }

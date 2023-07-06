@@ -1,7 +1,6 @@
 import React from "react";
-import {FlexBetweenContainer} from "./components/common/TemplateFlexComponents";
-import {colors, font} from "./components/TemplateCommonComponents";
-import logo from "./assets/logo.png"
+import {FlexBetweenContainer} from "./TemplateFlexComponents";
+import {colors, font} from "../TemplateCommonComponents";
 
 const noMargin = {
     margin: 0,
@@ -12,6 +11,7 @@ const noMargin = {
 const footer = {
     margin: '0 auto',
     width: '88.5%',
+    fontFamily: 'Open Sans'
 }
 
 type Props = {
@@ -25,14 +25,14 @@ type Props = {
 
 export const FooterResume = ({ info = {} }: Props) => {
     return (
-        <footer style={footer}>
+        <footer id="footer-resume" style={footer}>
             <FlexBetweenContainer>
                 <div style={{width: '20%', display: 'flex', fontSize: '10px'}}>
                     <img style={{width: '100%', alignSelf: 'center'}}
                          src={"https://mertus-consulting.com/wp-content/uploads/2023/06/logo-1.png"}
                          alt="Mertus logo"/>
                 </div>
-                <FlexBetweenContainer extraStyle={{background: colors.mainColor, padding: '10px 15px', width: '68%'}}>
+                <FlexBetweenContainer extraStyle={{backgroundColor: colors.mainColor, padding: '10px 15px', width: '68%', color: "#ffffff"}}>
                     <div style={{width: '57%'}}>
                         {/*todo: create a list with all this data*/}
                         <p style={{fontSize: font.footerFontSize, ...noMargin}}>Mertus Consulting GmbH</p>

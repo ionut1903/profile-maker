@@ -49,7 +49,7 @@ export const TemplateContainer = (props) => {
 // Professional Profile
 export const MainColorContainer = ({extraStyle, children}) => {
     return (
-        <div style={{background: colors.mainColor, padding: layout.padContainer, marginBottom: layout.marginBottomSection, ...extraStyle}}>{children}</div>
+        <div style={{ background: colors.mainColor, padding: layout.padContainer, marginBottom: layout.marginBottomSection, ...extraStyle}}>{children}</div>
     )
 }
 

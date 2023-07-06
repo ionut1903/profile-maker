@@ -6,7 +6,7 @@ import {ListElement} from "./ListComponent";
 
 export const SectionTitleAndListComponent = ({title, list}) => {
     return (
-        <MainColorContainer>
+        <MainColorContainer extraStyle={{ pageBreakInside:"avoid"}}>
             <FlexBetweenContainer>
                 <SectionHeader extraStyles={{paddingTop: '3px', paddingBottom: '3px'}}>{title}</SectionHeader>
                 

@@ -15,7 +15,7 @@ import {SectionTitleAndDescriptionComponent} from "./common/SectionTitleAndDescr
 import {SectionTitleAndListComponent} from "./common/SectionTitleAndListComponent";
 import {SectionHeader} from "./common/SectionHeader";
 import {AdditionalDataComponent} from "./common/AdditionalDataComponent";
-import {FooterResume} from "../FooterResume";
+import {FooterResume} from "./common/FooterResume";
 // todo - investigate where is the email set as a string and not as an array?
 type Props = {
     json?: any
@@ -34,7 +34,6 @@ class TemplateComponent extends Component<Props> {
 
     mapJsonResumeToTemplate = () => {
         let {json} = this.props;
-        console.log("json: ", json)
         if (!json) {
             json = basicJson;
         }
