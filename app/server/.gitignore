@@ -3,4 +3,6 @@ node_modules
 dist
 *.swp
 *.pdf
+*.jpeg
+tmp
 

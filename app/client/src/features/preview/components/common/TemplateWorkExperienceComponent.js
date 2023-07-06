@@ -24,6 +24,7 @@ const WorkExperienceContainer = ({children}) => {
     return (
         <MainColorContainer extraStyle={{
             background: colors.white,
+            pageBreakInside:"avoid",
             color: colors.black,
             borderBottom: '2px solid lightgray',
             width: '93%',

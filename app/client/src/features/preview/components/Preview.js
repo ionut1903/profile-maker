@@ -9,8 +9,9 @@ import {Toolbar, LoadingBar} from '.'
 import {sizes} from '../../../common/theme'
 import type {State as ReduxState} from '../../../app/types'
 import TemplateComponent from "./TemplateComponent";
-import {generatePDF} from "../../../app/services/generatePdfService";
-import {splitResumeToA4Pages} from "../downloadService";
+import {generatePDF, requestPDFConversion} from "../../../app/services/generatePdfService";
+import { downloadPDFResumeRequest, downloadPDFResumeSuccess } from "../actions"
+import { getHTMLWrapper, getWrappedElement } from '../utils/html.util'
 
 const Wrapper = styled.div`
   width: 60%;
@@ -32,7 +33,9 @@ type Props = {
     jsonURL?: string,
     status?: 'pending' | 'success' | 'failure',
     hideOnMobile?: boolean,
-    downloadSource: () => Promise<void>
+    downloadSource: () => Promise<void>,
+    downloadPDFResumeRequest: VoidFunction,
+    downloadPDFResumeSuccess: VoidFunction
 }
 
 type State = {
@@ -82,19 +85,29 @@ class Preview extends Component<Props, State> {
     }
 
     downloadPdfResume = async () => {
-        const {json} = this.props
 
-        const node = await document.querySelector("#componentToPrint");
-        const pages = splitResumeToA4Pages(node);
-        const htmls = pages.map((p, i) => {
-            const html = document.implementation.createHTMLDocument(`resume_page_${i}`);
-            html.head.innerHTML = `<link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;750" rel="stylesheet" type="text/css">`
-            html.body.innerHTML = p 
-            return `<html>${html.documentElement.innerHTML}</html>`
-        })
-        generatePDF(htmls, json.basics.name.toUpperCase());
+        const {json, downloadPDFResumeRequest, downloadPDFResumeSuccess} = this.props;
+
+        downloadPDFResumeRequest();
+
+        const contentWrapper = getHTMLWrapper();
+        const footerWrapper = getHTMLWrapper();
+        
+
+        const container = document.querySelector('#componentToPrint');
+
+        const content = container.firstChild.cloneNode(true);
+        const footer = content.lastChild;
+        // remove footer from content
+        content.removeChild(footer);
+
+        // html wrapping with styles
+        const contentHTML = getWrappedElement(content, contentWrapper)
+        const footerHTML = getWrappedElement(footer, footerWrapper)
+
+        await requestPDFConversion({ content: contentHTML, footer: footerHTML}, json.basics.name.toUpperCase())
+
+        downloadPDFResumeSuccess()
     }
 
     render() {
@@ -134,6 +147,8 @@ function mapState(state: ReduxState) {
 }
 
 const mapActions = {
+    downloadPDFResumeRequest,
+    downloadPDFResumeSuccess
 }
 
 export default connect(mapState, mapActions)(Preview)

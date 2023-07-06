@@ -50,6 +50,23 @@ function preview(state: State = initialState, action: Action) {
           url: action.resumeURL
         }
       }
+    case 'DOWNLOAD_PDF_RESUME_REQUEST':
+      return {
+        ...state,
+        resume: {
+          ...state.resume,
+          status: 'pending'
+        }
+      }
+
+    case 'DOWNLOAD_PDF_RESUME_SUCCESS':
+      return {
+        ...state,
+        resume: {
+          ...state.resume,
+          status: 'success',
+        }
+      }
 
     case 'GENERATE_RESUME_FAILURE':
       return {

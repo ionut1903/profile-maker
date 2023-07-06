@@ -4,13 +4,11 @@
 
 import Router from 'koa-router'
 import formidable from 'koa2-formidable'
-import {generatePDF, generateSourceCode} from '../generator'
-import {sanitizer, jsonResume} from '../middleware'
+import { generatePDF, generateSourceCode } from '../generator'
+import { sanitizer, jsonResume } from '../middleware'
+import { generatePDFFromHTML } from '../generator/pdfGenerator'
 
-const pupeteer = require('puppeteer');
-const router = new Router({prefix: '/api'})
-const PDFMerger = require("pdf-merger-js")
-const fs = require('fs')
+const router = new Router({ prefix: '/api' })
 
 /**
  * Router middleware
@@ -24,7 +22,7 @@ router.use('/htmltopdf')
  * Generate PDF from form data
  */
 
-router.post('/generate/resume', async ({request, response}) => {
+router.post('/generate/resume', async ({ request, response }) => {
     response.body = generatePDF((request.body: any))
     response.type = 'application/pdf'
 })
@@ -33,7 +31,7 @@ router.post('/generate/resume', async ({request, response}) => {
  * Generate TeX source from form data
  */
 
-router.post('/generate/source', async ({request, response}) => {
+router.post('/generate/source', async ({ request, response }) => {
     response.body = generateSourceCode((request.body: any))
     response.type = 'application/zip'
 })
@@ -42,7 +40,7 @@ router.post('/generate/source', async ({request, response}) => {
  * Handle JSON upload from input file
  */
 
-router.post('/upload', async ({request, response}) => {
+router.post('/upload', async ({ request, response }) => {
     response.body = (request.jsonResume: any)
     response.type = 'application/json'
 })
@@ -50,45 +48,12 @@ router.post('/upload', async ({request, response}) => {
 /**
  * Handle HTML input and generate pdf from it
  */
+router.post("/htmltopdf", async ({ request, response }) => {
+    const { content, footer }: any = request.body;
+    const pdf = await generatePDFFromHTML(content, footer)
 
-router.post('/htmltopdf', async ({request, response}) => {
-    try {
-        const browser = await pupeteer.launch({
-		executablePath: '/usr/bin/google-chrome-stable'
-	});
-        const pagePaths = [];
-        for (let i = 0; i < request.body.html.length; i++) {
-            const page = await browser.newPage();
-            const path = `page${i}.pdf`;
-            await page.setContent(request.body.html[i], { waitUntil: 'networkidle2' });
-            await page.emulateMediaType('screen');
-            await page.pdf({
-                path: path,
-                    format: 'A4',
-                    margin: {top: '10px', right: '5px', bottom: '10px', left: '5px'},
-                    printBackground: true,
-            })
-            pagePaths.push(path);
-        }
-
-        await browser.close();
-        const merger = new PDFMerger();
-
-        for (let i = 0; i < pagePaths.length; i++) {
-            await merger.add(pagePaths[i]);
-        }
-
-        await merger.save('resume.pdf');
-        for (let i = 0; i < pagePaths.length; i++) {
-            fs.unlinkSync(pagePaths[i]);
-        }
-        const src = fs.createReadStream('resume.pdf');
-        response.set("content-type", "application/pdf");
-        response.body = src;
-
-        // fs.unlinkSync(resumeName);
-    } catch (error) {
-        console.error(error);
-    }
+    response.set("content-type", "application/pdf");
+    response.body = pdf;
 })
+
 export default router

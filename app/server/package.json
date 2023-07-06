@@ -46,7 +46,8 @@
     "pdf-merger-js": "^4.1.0",
     "pretty-latex": "^0.1.0",
     "puppeteer": "^16.2.0",
-    "sanitize-latex": "^0.1.2"
+    "sanitize-latex": "^0.1.2",
+    "wkhtmltopdf": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
