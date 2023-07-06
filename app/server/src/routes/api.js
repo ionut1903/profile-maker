@@ -56,4 +56,4 @@ router.post("/htmltopdf", async ({ request, response }) => {
     response.body = pdf;
 })
 
-export default router
+export default router;
