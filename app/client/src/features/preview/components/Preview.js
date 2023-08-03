@@ -84,7 +84,7 @@ class Preview extends Component<Props, State> {
         (document.body: any).appendChild(frame)
     }
 
-    downloadPdfResume = async () => {
+    downloadPdfResume = async (enableDownload=true) => {
 
         const {json, downloadPDFResumeRequest, downloadPDFResumeSuccess} = this.props;
 
@@ -105,9 +105,11 @@ class Preview extends Component<Props, State> {
         const contentHTML = getWrappedElement(content, contentWrapper)
         const footerHTML = getWrappedElement(footer, footerWrapper)
 
-        await requestPDFConversion({ content: contentHTML, footer: footerHTML}, json.basics.name.toUpperCase())
+        const res = await requestPDFConversion({ content: contentHTML, footer: footerHTML}, json.basics.name.toUpperCase(), enableDownload)
 
         downloadPDFResumeSuccess()
+
+        return res;
     }
 
     render() {
@@ -126,6 +128,7 @@ class Preview extends Component<Props, State> {
                 <Toolbar
                     
                     resumeURL={''}
+                    json={json}
                     jsonURL={jsonURL}
                     downloadSource={this.downloadPdfResume}
                     print={this.print}

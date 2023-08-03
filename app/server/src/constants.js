@@ -36,6 +36,8 @@ export const BROWSER_ARGS = ['--disable-features=IsolateOrigins',
     '--use-gl=swiftshader',
     '--use-mock-keychain']
 
-
+export const SALESFORCE_API_KEY = "M01WRzk4R3EyTzhQbzRabHdFVXhSZkJrbDJtWFpwTzVIWFV5ajZHT0wwbERudlM1WGVYb1FvX0RwVXc5LnNSX21ycXdjd2xnUnRoc09reTVpNWhnVzozM0E1QThFNTcyODU0QkVGNDMzMDM5QURBQUI1MDk0NEIxMEU5NDE5RTNCN0MyMDg0MUM1OTE1OTZENEM0MDI0"
+export const SALESFORCE_URL_BASE = "https://mertus2-dev-ed.develop.my.salesforce.com";
+export const SALESFORCE_OWNER_ID = "0057R00000CyyrXQAR";
 export const PATH_RESUME = 'resume.pdf'
 export const PATH_FOOTER = 'footer.jpeg'

@@ -42,6 +42,7 @@
     "koa-helmet": "^3.3.0",
     "koa-router": "^7.2.1",
     "koa2-formidable": "^1.0.2",
+    "node-fetch": "^2.6.12",
     "node-latex": "^2.5.0",
     "pdf-merger-js": "^4.1.0",
     "pretty-latex": "^0.1.0",
