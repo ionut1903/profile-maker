@@ -5,5 +5,5 @@ export function getCurrentDateFormatted() {
     const year = currentDate.getFullYear();
     const ms = currentDate.getMilliseconds()
   
-    return `${day}-${month}-${year}_${ms}`;
+    return `${day}-${month}-${year}`;
   }
