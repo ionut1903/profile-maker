@@ -1,11 +1,12 @@
 import React from 'react'
 import {HeaderElement} from "./TemplateHeaderComponent";
 
-export const TemplateProfilePhotoComponent =({profilePhoto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'})=>{
+export const TemplateProfilePhotoComponent =({profilePhoto= 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'})=>{
+    console.log("profile photo: ", profilePhoto)
     return (
         <HeaderElement extraStyle={{width: "23%"}}>
-            <img style={{width: '100%', height: '100%'}}
-                 src={profilePhoto}
+            <img style={{width: '100%', height: '100%', objectFit: 'cover' }}
+                 src={profilePhoto ? profilePhoto: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'}
                  alt="Mertus consulting user profile"/>
         </HeaderElement>
     )

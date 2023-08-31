@@ -49,6 +49,7 @@ class TemplateComponent extends Component<Props> {
                 certifications.push(edu.area);
             }
         });
+        const profilePhoto = json.basics.profile_photo;
         const workList = json.work;
         workList.forEach((w) => {
             w.position =  w.position? w.position.toUpperCase() : '';
@@ -78,7 +79,8 @@ class TemplateComponent extends Component<Props> {
             coreCompetencies,
             description,
             shortDescription,
-            footer: json.footer
+            footer: json.footer,
+            profilePhoto
         };
     }
 
@@ -97,7 +99,8 @@ class TemplateComponent extends Component<Props> {
             coreCompetencies,
             description,
             shortDescription,
-            footer
+            footer,
+            profilePhoto
         } = this.mapJsonResumeToTemplate();
 
         return (
@@ -106,7 +109,7 @@ class TemplateComponent extends Component<Props> {
                     <FlexBetweenContainer extraStyle={{marginBottom: layout.marginBottomSection, height: layout.headerHeight}}>
                         <LogoContainer fullName={fullName}
                                        shortDescription={shortDescription}/>
-                        <TemplateProfilePhotoComponent/>
+                        <TemplateProfilePhotoComponent profilePhoto={profilePhoto}/>
                         <TemplateContactDataComponent dateOfBirth={dateOfBirth}
                                                       fullAddress={fullAddress}
                                                       languages={languages}/>
