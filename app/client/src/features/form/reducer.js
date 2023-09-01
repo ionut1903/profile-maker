@@ -206,6 +206,16 @@ function form(state: FormState = initialState, action: Action): FormState {
             }
         }
 
+        case 'SET_ALL_JOBS': {
+            return {
+                ...state,
+                values: {
+                    ...state.values,
+                    work: action.allJobs
+                }
+            }
+        }
+
         case 'ADD_JOB_HIGHLIGHT': {
             return {
                 ...state,
