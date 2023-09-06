@@ -17,6 +17,7 @@ import { colors } from '../../common/theme'
 import type { State } from '../types'
 import data from "../../../../../test_json.json";
 import makeRequestForJSONResume, {setAndGetOptionsForJSONResumeRequest} from "../services/sovrenHttpService";
+import { getPDF } from '../services/getPDFSourceService'
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -248,6 +249,21 @@ type Props = {
 class Home extends Component<Props> {
   toastId: *
 
+  async componentDidMount() {
+    const params = new URLSearchParams(this.props.location.search)
+
+    const profile_url = params.get('profile') || '';
+    const freelancer_id = params.get('freelancer_id') || '';
+    const record_id = params.get('record_id')
+
+    if(profile_url && freelancer_id && record_id) {
+      localStorage.setItem("salesforce", JSON.stringify({ freelancer_id, record_id }))
+      toast.info('Uploading profile...', {position: toast.POSITION.TOP_CENTER})
+      const response = await getPDF(profile_url)
+      this.handleProfileExtraction(response.blob, response.lastModified);
+    }
+  }
+
   onFileUpload = async (e: SyntheticInputEvent<*>) => {
     const { uploadFileAndGenerateResume } = this.props
     const file = e.target.files[0]
@@ -262,10 +278,9 @@ class Home extends Component<Props> {
       toast.error(jsonUpload.errMessage, { position: toast.POSITION.TOP_LEFT })
     }
   }
-  onFileUploadProfile = async (e: SyntheticInputEvent<*>) => {
+
+  handleProfileExtraction = async (file: Blob, modifiedDate) => {
     const {uploadFileAndGenerateResume} = this.props
-    const file = e.target.files[0];
-    const modifiedDate = (new Date(file.lastModified)).toISOString().substring(0, 10);
     const reader = new FileReader();
 
     reader.onload = async (event) => {
@@ -295,6 +310,11 @@ class Home extends Component<Props> {
 
     // when the file is read it triggers the onload event above.
     reader.readAsArrayBuffer(file);
+  }
+  onFileUploadProfile = async (e: SyntheticInputEvent<*>) => {
+    const file = e.target.files[0];
+    const modifiedDate = (new Date(file.lastModified)).toISOString().substring(0, 10);
+    await this.handleProfileExtraction(file, modifiedDate);
   }
 
 

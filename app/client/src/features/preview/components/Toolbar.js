@@ -5,8 +5,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { darken } from 'polished'
-import { Icon } from '../../../common/components'
+import { Icon, PrimaryButton } from '../../../common/components'
 import { colors } from '../../../common/theme'
+import { syncSalesforce } from '../../../app/services/SalesforceService'
 
 const Wrapper = styled.div`
   width: calc(100% - 2px);
@@ -25,18 +26,12 @@ const Wrapper = styled.div`
 `
 
 const ButtonGroup = styled.div`
-  width: calc(100% / 4.5);
+  width: 100%;
+  padding-left: 35px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
-  &:first-child {
-    justify-content: flex-start;
-  }
-
-  &:last-child {
-    justify-content: flex-end;
-  }
 
   @media screen and (max-width: 850px) {
     width: 100%;
@@ -81,7 +76,7 @@ const Button = styled.a`
 
 const ToolButton = Button.extend`
   border-radius: 2px;
-  margin: 0 2px;
+  margin: 0 5px;
 
   @media screen and (max-width: 850px) {
     border: 1px solid ${colors.borders};
@@ -137,7 +132,8 @@ type Props = {
   currPage: number,
   resumeURL: string,
   jsonURL?: string,
-  downloadSource: () => any,
+  json: any,
+  downloadSource: (enableDownload?:Boolean) => any,
   prevPage: () => void,
   nextPage: () => void,
   zoomIn: () => void,
@@ -154,38 +150,35 @@ function Toolbar({
   nextPage,
   print,
   zoomIn,
-  zoomOut
+  zoomOut,
+  json
 }: Props) {
+  const salesforce = localStorage.getItem('salesforce') || ''
+
+
+  const handleSalesforce = async () => {
+    const pdf_blob = await downloadSource(false);
+
+    const str = JSON.stringify(json);
+    const bytes = new TextEncoder().encode(str);
+    const json_blob = new Blob([bytes], {
+      type: "application/json;charset=utf-8"
+    });
+    syncSalesforce(json_blob, pdf_blob);
+  }
   return (
     <Wrapper>
-      <ButtonGroup>
+      <ButtonGroup sytle={{width: 'calc(100% / 3.5)'}}>
         <ToolButton onClick={downloadSource} >
           <Icon type="file_download" /> PDF
         </ToolButton>
         <ToolButton href={jsonURL} download="resume.json">
           <Icon type="file_download" /> JSON
         </ToolButton>
+        {salesforce !== '' && <ToolButton onClick={handleSalesforce}>
+          <Icon type="cloud" /> Salesforce
+        </ToolButton>}
       </ButtonGroup>
-      {/*<Pagination>*/}
-      {/*  <PageButton onClick={prevPage}>*/}
-      {/*    <Icon type="arrow_back" />*/}
-      {/*  </PageButton>*/}
-      {/*  <PageNumber>Page {currPage}</PageNumber>*/}
-      {/*  <PageButton onClick={nextPage}>*/}
-      {/*    <Icon type="arrow_forward" />*/}
-      {/*  </PageButton>*/}
-      {/*</Pagination>*/}
-      {/*<ButtonGroup hideOnMobile>*/}
-      {/*  <ToolButton onClick={zoomOut}>*/}
-      {/*    <Icon type="zoom_out" />*/}
-      {/*  </ToolButton>*/}
-      {/*  <ToolButton onClick={zoomIn}>*/}
-      {/*    <Icon type="zoom_in" />*/}
-      {/*  </ToolButton>*/}
-      {/*  <ToolButton onClick={() => print(resumeURL)}>*/}
-      {/*    <Icon type="print" />*/}
-      {/*  </ToolButton>*/}
-      {/*</ButtonGroup>*/}
     </Wrapper>
   )
 }

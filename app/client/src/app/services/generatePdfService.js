@@ -23,7 +23,7 @@ export const generatePDF = async (pages, userName) => {
 
 }
 
-export const requestPDFConversion = async ({content, footer }, userName) => {
+export const requestPDFConversion = async ({content, footer }, userName, enableDownload=true) => {
     const { fetch } = window;
     const request = {
         method: 'POST',
@@ -36,12 +36,16 @@ export const requestPDFConversion = async ({content, footer }, userName) => {
 
     const pdfBuffer = await fetch('/api/htmltopdf', request);
 
-    pdfBuffer.blob().then(res => {
-        const fileURL = window.URL.createObjectURL(res);
-        let alink = document.createElement('a');
-        alink.href = fileURL;
-        alink.download = `${userName}.pdf`;
-        alink.click();
+    return pdfBuffer.blob().then(res => {
+        if(enableDownload){
+            const fileURL = window.URL.createObjectURL(res);
+            let alink = document.createElement('a');
+            alink.href = fileURL;
+            alink.download = `${userName}.pdf`;
+            alink.click();
+            return
+        }
+        return res;
     }).catch(err => {
         console.error(err);
     })
