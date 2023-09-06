@@ -18,6 +18,7 @@ const initialState = {
             awards: ''
         },
         basics: {
+            profile_photo: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
             name: '',
             email: '',
             phone: '',
@@ -201,6 +202,16 @@ function form(state: FormState = initialState, action: Action): FormState {
                 values: {
                     ...state.values,
                     work: state.values.work.slice(0, -1)
+                }
+            }
+        }
+
+        case 'SET_ALL_JOBS': {
+            return {
+                ...state,
+                values: {
+                    ...state.values,
+                    work: action.allJobs
                 }
             }
         }

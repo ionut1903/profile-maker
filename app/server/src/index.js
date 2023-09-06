@@ -16,7 +16,7 @@ if (app.env === 'development') {
 
 app.use(errorHandler())
 app.use(helmet())
-app.use(bodyParser())
+app.use(bodyParser({jsonLimit:'5mb'}))
 app.use(router)
 
 export default app

@@ -102,6 +102,13 @@ function addJob(): Action {
     }
 }
 
+function setAllJobs(allJobs: any[]): Action {
+    return {
+        type: 'SET_ALL_JOBS',
+        allJobs
+    }
+}
+
 function removeJob(): Action {
     return {
         type: 'REMOVE_JOB'
@@ -247,5 +254,6 @@ export {
     addAward,
     removeAward,
     uploadFileAndGenerateResume,
-    setAllSkills
+    setAllSkills,
+    setAllJobs
 }

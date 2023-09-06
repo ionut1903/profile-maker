@@ -7,6 +7,7 @@ import { Field } from 'redux-form'
 import styled from 'styled-components'
 import { darken } from 'polished'
 import { colors } from '../../../../common/theme'
+import RichText from './RichText'
 
 const Label = styled.label`
   display: block;
@@ -136,19 +137,36 @@ function LabeledInput({ label, name, placeholder, type = 'text' }: Props) {
   )
 }
 
-function TextareaComp({ label, name, placeholder, type = 'text' }: Props) {
+
+function TextareaComp({ label, name, placeholder, type = 'text', disabled, style }: Props) {
     return (
         <div>
             <Label>{label}</Label>
             <TextArea
+                style = {{... style}}
                 type={type}
                 name={name}
                 placeholder={placeholder}
                 component="textarea"
+                disabled={disabled}
             />
         </div>
     )
 }
 
-export { Label, Input, TextArea, TextareaComp }
+function JobSummary({ label, name, placeholder, disabled, style }: Props) {
+  return (
+          <Field
+              style = {{... style}}
+              label={label}
+              name={name}
+              placeholder={placeholder}
+              component={RichText}
+              disabled={disabled}
+          />
+
+  )
+}
+
+export { Label, Input, TextArea, TextareaComp, JobSummary }
 export default LabeledInput

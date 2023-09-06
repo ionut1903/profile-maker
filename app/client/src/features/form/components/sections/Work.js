@@ -11,12 +11,15 @@ import {
   addJob,
   removeJob,
   addJobHighlight,
+  setAllJobs,
   removeJobHighlight
 } from '../../actions'
 import type { FormValues } from '../../types'
 import type { State } from '../../../../app/types'
 import { bindActionCreators } from 'redux'
 import { change } from 'redux-form'
+import { move } from '../../../preview/utils/array.util'
+
 
 type Props = {
   work: $PropertyType<FormValues, 'work'>,
@@ -35,14 +38,29 @@ function Work({
   removeJob,
   addJobHighlight,
   removeJobHighlight,
+  setAllJobs,
   change
 }: Props) {
+
+  const manageOrder = (idx, direction) => {
+    let jobs = work;
+    if(direction) {
+      move(jobs, idx, idx - 1)
+      setAllJobs(jobs)
+    }else {
+      move(jobs, idx, idx + 1)
+      setAllJobs(jobs)
+    }
+  }
   return (
     <Section heading="Your Work Experience">
       {work.map((job, i) => (
         <Job
           changeField={change}
+          changeOrder={manageOrder}
           key={i}
+          total = {work.length}
+          work = {work}
           index={i}
           job={job}
           addHighlight={addJobHighlight}
@@ -71,6 +89,7 @@ const mapDispatchToProps = dispatch => {
         change, 
         addJob, 
         removeJob, 
+        setAllJobs,
         addJobHighlight, 
         removeJobHighlight },
       dispatch

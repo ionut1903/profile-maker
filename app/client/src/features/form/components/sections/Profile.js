@@ -11,6 +11,7 @@ import type { State } from '../../../../app/types'
 import TextEditor from '../fragments/TextEditor'
 import { bindActionCreators } from 'redux'
 import { change } from 'redux-form'
+import ImageUploader from '../fragments/ImageUploader'
 
 type Props = {
   basics: $PropertyType<FormValues, 'basics'>,
@@ -20,6 +21,9 @@ type Props = {
 function Profile({ basics, change }: Props) {
   return (
     <Section heading="Your Personal Info">
+
+      <ImageUploader onPhotoChange={p => change('resume', 'basics.profile_photo', p)} currentPhoto={basics.profile_photo}/>
+
       <LabeledInput
         name="basics.name"
         label="Full Name"
@@ -40,12 +44,7 @@ function Profile({ basics, change }: Props) {
         label="Address"
         placeholder="New York, NY"
       />
-      {/* <TextareaComp
-                label="Professional profile description"
-                name={`basics.summary`}
-                defaultValue={basics.summary}
-                placeholder="Senior Software Developer"
-            ></TextareaComp> */}
+      
       <TextEditor
         onChange={c => change('resume', 'basics.summary', c)}
         initialValue={basics.summary}
@@ -63,6 +62,8 @@ function Profile({ basics, change }: Props) {
         label="Link"
         placeholder="mycoolportfolio.com/myname"
       />
+
+      
     </Section>
   )
 }

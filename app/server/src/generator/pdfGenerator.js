@@ -55,7 +55,7 @@ async function getPDF(contentHTML: string, footerTemplate: string, browser: pupe
 export async function generatePDFFromHTML(contentHTML: string, footerHTML: string) {
     try {
         const browser = await pupeteer.launch({
-            executablePath: '/usr/bin/google-chrome-stable', 
+            //executablePath: '/usr/bin/google-chrome-stable', 
             headless: true,
             args: BROWSER_ARGS,
             userDataDir: "./tmp"
