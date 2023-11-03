@@ -18,8 +18,8 @@ export const setAndGetOptionsForJSONResumeRequest = (payload, modifiedDate) => {
         path: '/v10/parser/resume',
         method: 'POST',
         headers: {
-            'Sovren-AccountId': '76707722',
-            'Sovren-ServiceKey': 'jCOrx2XAC0Twn2N1qnv5qb3ClTy1ts1fCRAOjuA7',
+            'Sovren-AccountId': '18007492',
+            'Sovren-ServiceKey': 'YRXLfLXmoEtuP7K7RzJ5XsHAfWIWKh9J3LihwiCU',
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(postData)
