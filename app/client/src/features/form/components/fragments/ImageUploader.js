@@ -63,22 +63,17 @@ const ImageUploader = ({ onPhotoChange, currentPhoto }) => {
    };
   }
   const handlePictureClick = () => {
-    console.log('selected photo: ', selectedPhoto)
     if(selectedPhoto != null){
       setSelectedPhoto(null);
       onPhotoChange(null);
       ref.current.value = null;
     }
-    else{
-      console.log("aca pues")
+    else
       ref.current.click()
-    }
-      
   }
 
 
   const handlePhotoUpload = (event) => {
-    console.log(event);
     const uploadedImage = event.target.files[0];
     const MB = 1024 * 1024;
     if(uploadedImage && uploadedImage.size > 1*MB) {
@@ -87,7 +82,6 @@ const ImageUploader = ({ onPhotoChange, currentPhoto }) => {
     }
     if (uploadedImage && uploadedImage.size < 1*MB) {
       setError(false)
-      console.log('uploaded image: ', uploadedImage)
       setSelectedPhoto(URL.createObjectURL(uploadedImage));
       toBase64(uploadedImage, onPhotoChange)
     }
